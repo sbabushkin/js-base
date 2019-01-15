@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Домашняя работа к уроку 2</title>
+</head>
+<body>
+    <h3>
+        Домашнее задание к уроку 2 по JavaScript
+    </h3>
+    <div class="container">
+        <h4>
+            Упражнение 1
+        </h4>
+        <div>
+            <pre>
+<span class="blue">var</span> <span class="lightBlue">a</span> = 1, <span class="lightBlue">b</span> = 1, <span class="lightBlue">c</span>, <span class="lightBlue">d</span>;
+<span class="lightBlue">c</span> = ++<span class="lightBlue">a</span>; <span class="orange">alert</span>(<span class="lightBlue">c</span>);         <span class="comment">// 2 сначала идет увеличение a, затем присвоение (a=2, c=2)</span>
+<span class="lightBlue">d</span> = <span class="lightBlue">b</span>++; <span class="orange">alert</span>(<span class="lightBlue">d</span>);         <span class="comment">// 1 сначала присваиваем значение 1 переменной d, затем увеличиваем b (d=1, b=2)</span>
+<span class="lightBlue">c</span> = (2+ ++<span class="lightBlue">a</span>); <span class="orange">alert</span>(<span class="lightBlue">c</span>);    <span class="comment">// 5 сначала увеличение a (которая теперь становится 3), потом сложение (a=3, c=5)</span>
+<span class="lightBlue">d</span> = (2+ <span class="lightBlue">b</span>++); <span class="orange">alert</span>(<span class="lightBlue">d</span>);    <span class="comment">// 4 сначала сложение 2+(b=2) потом увеличение b (d=4, b=3)</span>
+<span class="orange">alert</span>(<span class="lightBlue">a</span>);                  <span class="comment">// 3 a=3</span>
+<span class="orange">alert</span>(<span class="lightBlue">b</span>);                  <span class="comment">// 3 b=3</span>
+            </pre>
+        </div>
+        <hr>
+        <h4>
+            Упражнение 2
+        </h4>
+        <div>
+            <pre>
+<span class="blue">var</span> <span class="lightBlue">a</span> = 2;
+<span class="blue">var</span> <span class="lightBlue">x</span> = 1 + (<span class="lightBlue">a</span> *= 2); <span class="comment">// сначала выполняем то что в скобках (2*2=4), добавляем это к 1</span>
+            </pre>
+        </div>
+        <hr>
+        <h4>
+            Упражнение 3
+        </h4>
+        <form>
+            <div class="form-row">
+                <div class="col">
+                <input id="ex3a" type="number" class="form-control" placeholder="Первое число" onclick="this.select();">
+                </div>
+                <div class="col">
+                <input id="ex3b" type="number" class="form-control" placeholder="Второе число" onclick="this.select();">
+                </div>
+                <div class="col form-control result" id="ex3result">
+                    Введите числа
+                </div>
+            </div>
+        </form>
+        <hr>
+        <h4>
+            Упражнение 4
+        </h4>
+        <button class="btn btn-primary btn-lg btn-block" onclick=ex4()>Выполнить</button>
+        <hr>
+
+        <h4>
+            Упражнение 5-6
+        </h4>
+        <form>
+            <div class="form-row">
+                <div class="col">
+                    <input id="ex6a" type="number" class="form-control" placeholder="Первое число" onclick="this.select();">
+                </div>
+                <div class="col">
+                    <select id="ex6op" class="form-control">
+                        <option selected>add</option>
+                        <option>sub</option>
+                        <option>mul</option>
+                        <option>div</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <input id="ex6b" type="number" class="form-control" placeholder="Второе число" onclick="this.select();">
+                </div>
+                <div class="col form-control result" id="ex6result">
+                    Введите числа
+                </div>
+            </div>
+        </form>
+        <hr>    
+        <h4>
+            Упражнение 7
+        </h4>
+        <form>
+            <div class="form-row">
+                <div class="col">
+                <input id="ex7a" type="number" class="form-control" placeholder="Введите число" onclick="this.select();">
+                </div>
+                <div class="col">
+                <input id="ex7b" type="number" class="form-control" placeholder="Введите степень" onclick="this.select();" min="0">
+                </div>
+                <div class="col form-control result" id="ex7result">
+                    Введите положительные числа
+                </div>
+            </div>
+        </form>
+        <hr>
+    </div>
+
+    <script>
+        let inputA = document.getElementById("ex3a");
+        let inputB = document.getElementById("ex3b");
+        let inputC = document.getElementById("ex6a");
+        let inputD = document.getElementById("ex6b");
+        let inputE = document.getElementById("ex6op");
+        let inputF = document.getElementById("ex7a");
+        let inputG = document.getElementById("ex7b");
+
+        inputA.oninput = exercise3;
+        inputB.oninput = exercise3;
+        inputC.oninput = exercise6;
+        inputD.oninput = exercise6;
+        inputE.oninput = exercise6;
+        inputF.oninput = exercise7;
+        inputG.oninput = exercise7;
+
+        function exercise3() {
+            let a = parseFloat(inputA.value);
+            let b = parseFloat(inputB.value);
+            let result = ex3(a,b);
+            document.getElementById('ex3result').innerHTML = (result == null) ? 'Введите числа' : result;
+        }
+
+        function exercise6() {
+            let a = parseFloat(inputC.value);
+            let b = parseFloat(inputD.value);
+            let result = mathOperation(a,b,inputE.value);
+            document.getElementById('ex6result').innerHTML = isNaN(result) ? 'Введите числа' : result;
+        }
+
+        function exercise7() {
+            let a = parseFloat(inputF.value);
+            let b = parseFloat(inputG.value);
+            let result = power(a,b);
+            console.log(result);
+            document.getElementById('ex7result').innerHTML = isNaN(result) ? 'Введите положительные числа' : result;
+        }
+    </script>
+</body>
+</html>
