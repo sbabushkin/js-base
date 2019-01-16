@@ -26,19 +26,35 @@ function mathOperation(arg1, arg2, operation) {
     var result;
     switch (operation) {
         case '*':
-            result = arg1 * arg2;
+            result = mathMultiply(arg1, arg2);
             break;
         case '+':
-            result = arg1 + arg2;
+            result = mathSum(arg1, arg2);
             break;
         case '-':
-            result = arg1 - arg2;
+            result = mathMinus(arg1, arg2);
             break;
         case '/':
-            result = arg1 / arg2;
+            result = mathDiv(arg1, arg2);
             break;
     }
     return result;
+}
+
+function mathSum (arg1, arg2) {
+    return arg1 + arg2;
+}
+
+function mathMultiply (arg1, arg2) {
+    return arg1 * arg2;
+}
+
+function mathDiv (arg1, arg2) {
+    return arg1 / arg2;
+}
+
+function mathMinus (arg1, arg2) {
+    return arg1 - arg2;
 }
 
 function task3() {
@@ -115,4 +131,32 @@ function task4() {
             alert(a++);
             break;
     }
+}
+
+function task5() {
+    'use strict';
+    var a, b, operation, result;
+    do {
+        a = parseInt(prompt('Введите число а:'));
+        if (isNaN(a)) {
+            alert('Введено не верное значение. Повторите ввод');
+        }
+    } while (isNaN(a));
+    do {
+        b = parseInt(prompt('Введите число b:'));
+        if (isNaN(b)) {
+            alert('Введено не верное значение. Повторите ввод');
+        }
+    } while (isNaN(b));
+    
+    do {
+        operation = prompt('Выберите операцию +, -, *, /:');
+        if (operation!='+' && operation!='-' && operation!='*' && operation!='/') {
+            alert('Введено не верное значение. Повторите ввод');
+        }
+    } while (operation!='+' && operation!='-' && operation!='*' && operation!='/');
+    
+    result = mathOperation(a,b,operation);
+    
+    alert(result);
 }
