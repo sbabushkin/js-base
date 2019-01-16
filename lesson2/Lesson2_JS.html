@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson2</title>
+	<script>
+
+		//1.Задание
+			let a = 1, b = 1, c, d;
+			c = ++a; alert(c); // 2 (префикс увеличивает а до 2 и возвращает)
+			d = b++; alert(d); // 1 (постфикс увеличивает на 1, т.е. до 2, но возвращает прежнее число 1)
+			c = (2+ ++a); alert(c); // 5 (увеличили а до 3 и сложили с 2)
+			d = (2+ b++); alert(d); // 4 (b было 2, увеличили до 3 но вернули прежнее число=> 2+2=4)
+			alert(a); // 3 ( после всех преобразований а=3)
+			alert(b); // 3 (( после всех преобразований а=3))
+
+
+		//2.Задание. Чему будет равен x в примере ниже?
+			let a = 2;
+			let x = 1 + (a * = 2)
+			alert (x); // x=5  (1+(2*2))
+
+		//3.Задание
+			let a = 2;
+			let b = 3;
+
+			if ( a >= 0 && b >= 0) {
+				alert (a - b);
+			};
+
+			if ( a <= 0 && b <= 0) {
+				alert (a * b);
+			};
+
+			if ( a <= 0 && b >= 0) {
+				alert (a + b);
+			};
+
+			//4.Задание
+				let a = +prompt ('Insert number from 10-15');
+				switch (a) {
+					case 1:
+						alert (a++);
+					case 2:
+						alert (a++);
+					case 3:
+						alert (a++);
+					case 4:
+						alert (a++);
+					case 5:
+						alert (a++);
+					case 6:
+						alert (a++);
+					case 7:
+						alert (a++);
+					case 8:
+						alert (a++);
+					case 9:
+						alert (a++);
+					case 10:
+						alert (a++);
+					case 11:
+						alert (a++);
+					case 12:
+						alert (a++);
+					case 13:
+						alert (a++);
+					case 14:
+						alert (a++);
+					case 15:
+						alert (a++);
+					case a >= 15:
+						alert ('Well Done!');
+						break;
+					default:
+						alert ('Smth goes wrong!');
+				}
+
+			//5.Задание
+				function addition (x, y) {
+					return (x + y);
+				}
+					add = addition (10, 8);
+					alert (add);
+
+				function substraction (x, y) {
+					return (x - y);
+				}
+					sub = substraction (10, 8);
+					alert (sub);
+
+				function multiplication (x, y) {
+					return (x * y);
+				}
+					mul = multiplication (10, 8);
+					alert (mul);
+
+				function division (x, y) {
+					return (x / y);
+				}
+					divis = division (10, 8);
+					alert (divis);
+
+				//6.Задание
+					let first =+ prompt ('Insert 1 argument: ');
+					let second =+ prompt ('Insert 2 argument: ');
+					let oper = prompt ('Insert name of operation: addition, substraction, multiplication, division:');
+					let result;
+
+					function mathOperation(arg1, arg2, operation) {
+						switch (operation){
+							case 'addition' :
+								return arg1 + arg2;
+								break;
+							case 'substraction' :
+								return arg1 - arg2;
+								break;
+							case 'multiplication' :
+								return arg1 * arg2;
+								break;
+							case 'division' :
+								return arg1 / arg2;
+								break;
+						}
+					}
+
+					result = mathOperation (first, second, oper);
+					alert ('Answer: ' + result);
+
+					//7.Задание
+						//Null - исп для отражения отстутствия какого-либо значения, а 0 - это конкретное значение. 
+
+					//8.Задание
+			
+						function power(val, pow){
+							if (pow != 1) {
+							 return val * power (val, pow - 1);}
+							 else {
+							 	return val;
+							 }
+						}
+						alert(power (5, 2));
+	</script>
+</head>
+<body>
+	dsadadad
+</body>
+</html>
