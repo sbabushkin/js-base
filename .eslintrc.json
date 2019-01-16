@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "tabWidth": 2
+      }
+    ],
+    "no-alert": 0,
+    "no-restricted-globals": 0
+  },
+  "env": {
+    "browser": true
+  }
+}
