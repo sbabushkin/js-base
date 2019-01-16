@@ -41,19 +41,19 @@ function mathOperation(arg1, arg2, operation) {
     return result;
 }
 
-function mathSum (arg1, arg2) {
+function mathSum(arg1, arg2) {
     return arg1 + arg2;
 }
 
-function mathMultiply (arg1, arg2) {
+function mathMultiply(arg1, arg2) {
     return arg1 * arg2;
 }
 
-function mathDiv (arg1, arg2) {
+function mathDiv(arg1, arg2) {
     return arg1 / arg2;
 }
 
-function mathMinus (arg1, arg2) {
+function mathMinus(arg1, arg2) {
     return arg1 - arg2;
 }
 
@@ -90,44 +90,44 @@ function task4() {
         if (isNaN(a)) {
             alert('Введено не верное значение. Повторите ввод');
             valid = false;
-        } else if (a<0 || a>15) {
-            alert('Значение должно быть в промежутке [0..15]. Повторите ввод.'); 
+        } else if (a < 0 || a > 15) {
+            alert('Значение должно быть в промежутке [0..15]. Повторите ввод.');
             valid = false;
         }
-    } while (valid==false);
-    
+    } while (valid == false);
+
     switch (a) {
-        case 0: 
+        case 0:
             alert(a);
-        case 1: 
+        case 1:
             alert(a++);
-        case 2: 
+        case 2:
             alert(a++);
-        case 3: 
+        case 3:
             alert(a++);
-        case 4: 
+        case 4:
             alert(a++);
-        case 5: 
+        case 5:
             alert(a++);
-        case 6: 
+        case 6:
             alert(a++);
-        case 7: 
+        case 7:
             alert(a++);
-        case 8: 
+        case 8:
             alert(a++);
-        case 9: 
+        case 9:
             alert(a++);
-        case 10: 
+        case 10:
             alert(a++);
-        case 11: 
+        case 11:
             alert(a++);
-        case 12: 
+        case 12:
             alert(a++);
-        case 13: 
+        case 13:
             alert(a++);
-        case 14: 
+        case 14:
             alert(a++);
-        case 15: 
+        case 15:
             alert(a++);
             break;
     }
@@ -148,15 +148,65 @@ function task5() {
             alert('Введено не верное значение. Повторите ввод');
         }
     } while (isNaN(b));
-    
+
     do {
         operation = prompt('Выберите операцию +, -, *, /:');
-        if (operation!='+' && operation!='-' && operation!='*' && operation!='/') {
+        if (operation != '+' && operation != '-' && operation != '*' && operation != '/') {
             alert('Введено не верное значение. Повторите ввод');
         }
-    } while (operation!='+' && operation!='-' && operation!='*' && operation!='/');
-    
-    result = mathOperation(a,b,operation);
-    
+    } while (operation != '+' && operation != '-' && operation != '*' && operation != '/');
+
+    result = mathOperation(a, b, operation);
+
     alert(result);
+}
+
+function task7() {
+    var a = null;
+    var b = 0,
+        result;
+
+    result = a == b;
+    alert('a == b = ' + result + ' - потому что null это пустое значение, а 0 уже является значением')
+
+}
+
+function power(arg1, arg2) {
+    var result, k = false;
+    if (arg2 < 0) {
+        arg2 = -1*arg2;
+        k = true;
+    }
+    if (arg2 == 1) {
+        result = arg1;
+    } else if (arg2 == 0) {
+        result = 1;
+    } else {
+        result = arg1 * power(arg1, --arg2);
+    }
+    if (k == true) {
+        result = 1 / result;
+    }
+    return result;
+}
+
+function task8() {
+    'use strict';
+    var a, b, result;
+    do {
+        a = parseInt(prompt('Введите число а:'));
+        if (isNaN(a)) {
+            alert('Введено не верное значение. Повторите ввод');
+        }
+    } while (isNaN(a));
+    do {
+        b = parseInt(prompt('Введите число b:'));
+        if (isNaN(b)) {
+            alert('Введено не верное значение. Повторите ввод');
+        }
+    } while (isNaN(b));
+
+    result = power(a, b);
+
+    alert(a + ' ^ ' + b + ' = ' + result);
 }
