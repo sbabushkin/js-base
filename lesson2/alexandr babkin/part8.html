@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW2_part8</title>
+</head>
+
+<body>
+    <script>
+        function power(val, pow) {
+
+
+            if (pow != 1) {
+                return val * power(val, pow - 1)
+            } else {
+                return val;
+            }
+        }
+        alert(power(2, 4));
+    </script>
+</body>
+</html>

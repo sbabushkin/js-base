@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW2_part6</title>
+</head>
+
+<body>
+    <script>
+        function mathOperation(arg1, arg2, operation) {
+
+            switch (operation) {
+                case 'plus':
+                    return arg1 + arg2
+                case 'minus':
+                    return arg1 - arg2;
+                case 'umnogenie':
+                    return arg1 * arg2;
+                case 'delenie':
+                    return arg1 / arg2;
+            }
+
+        }
+        var arg1 = prompt('Введите первое число', '');
+        var arg2 = prompt('Введите второе число', '');
+        var operation = prompt('Введите операцию', '');
+
+        var b = mathOperation(parseInt(arg1), parseInt(arg2), operation);
+        alert(b);
+    </script>
+</body>
+</html>
