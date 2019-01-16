@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Задание №4</title>
+</head>
+<body>
+   <p>Для перезапуска программы обновите страницу.</p>
+   <p>Через switch и через for.</p>
+    <script async>
+        let a = Math.round(Math.random()*15); // Рандом от 0 до 15ж;
+       
+        switch (a){
+            case 0:
+                alert('Используя switch: a='+a+', 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15');
+                break;
+            case 1:
+                alert('Используя switch: a='+a+', 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15');
+                break;
+            case 2:
+                alert('Используя switch: a='+a+', 2 3 4 5 6 7 8 9 10 11 12 13 14 15');
+                break;
+            case 3:
+                alert('Используя switch: a='+a+', 3 4 5 6 7 8 9 10 11 12 13 14 15');
+                break;
+            case 4:
+                alert('Используя switch: a='+a+', 4 5 6 7 8 9 10 11 12 13 14 15');
+                break;
+            case 5:
+                alert('Используя switch: a='+a+', 5 6 7 8 9 10 11 12 13 14 15');
+                break;
+            case 6:
+                alert('Используя switch: a='+a+', 6 7 8 9 10 11 12 13 14 15');
+                break;
+            case 7:
+                alert('Используя switch: a='+a+', 7 8 9 10 11 12 13 14 15');
+                break;
+            case 8:
+                alert('Используя switch: a='+a+', 8 9 10 11 12 13 14 15');
+                break;
+            case 9:
+                alert('Используя switch: a='+a+', 9 10 11 12 13 14 15');
+                break;
+            case 10:
+                alert('Используя switch: a='+a+', 10 11 12 13 14 15');
+                break;
+            case 11:
+                alert('Используя switch: a='+a+', 11 12 13 14 15');
+                break;
+            case 12:
+                alert('Используя switch: a='+a+', 12 13 14 15');
+                break;
+            case 13:
+                alert('Используя switch: a='+a+', 13 14 15');
+                break;
+            case 14:
+                alert('Используя switch: a='+a+', 14 15');
+                break;
+            case 15:
+                alert('Используя switch: a='+a+', 15');
+                break;
+        }
+        
+        let numbers = '';
+        for(let i=a; i<16; i++){
+            numbers += i + ' ';    
+        }
+        alert('Используя for: a='+a+', '+numbers);
+    </script>
+</body>
+</html>

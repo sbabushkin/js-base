@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    min-height: 300px;
+    min-width: 500px;
+    height: 100%;
+}
+
+.wrapper {
+    box-sizing: border-box;
+    border: 1px solid #4E7C9B;
+    border-left: 3px solid #4E7C9B;
+    border-radius: 10px;
+    font-family: 'helvetica neue', helvetica, sans-serif;
+    height: 300px;
+    padding: 20px 40px;
+    width: 500px;
+}
+
+.wrapper>p {
+    margin: 10px 0;
+}
+
+.wrapper p:nth-child(1) {
+	font-size: 2em;
+	font-weight: bold;
+    margin-top: 0;
+}
