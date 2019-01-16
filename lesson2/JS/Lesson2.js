@@ -66,3 +66,53 @@ function task3() {
     }
     alert(result);
 }
+
+function task4() {
+    var a, valid = true;
+    do {
+        a = parseInt(prompt('Введите число а в промежутке от [0..15]:'));
+        if (isNaN(a)) {
+            alert('Введено не верное значение. Повторите ввод');
+            valid = false;
+        } else if (a<0 || a>15) {
+            alert('Значение должно быть в промежутке [0..15]. Повторите ввод.'); 
+            valid = false;
+        }
+    } while (valid==false);
+    
+    switch (a) {
+        case 0: 
+            alert(a);
+        case 1: 
+            alert(a++);
+        case 2: 
+            alert(a++);
+        case 3: 
+            alert(a++);
+        case 4: 
+            alert(a++);
+        case 5: 
+            alert(a++);
+        case 6: 
+            alert(a++);
+        case 7: 
+            alert(a++);
+        case 8: 
+            alert(a++);
+        case 9: 
+            alert(a++);
+        case 10: 
+            alert(a++);
+        case 11: 
+            alert(a++);
+        case 12: 
+            alert(a++);
+        case 13: 
+            alert(a++);
+        case 14: 
+            alert(a++);
+        case 15: 
+            alert(a++);
+            break;
+    }
+}
