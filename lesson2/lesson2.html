@@ -103,7 +103,23 @@
 
     /* Задание №6 */ 
     
-    
+    function mathOperation(arg1, arg2, operation) {
+  switch (operation) {
+    case 'addition':
+      return add(arg1, arg2);
+      break;
+    case 'subtraction':
+      return sub(arg1, arg2);
+      break;
+    case 'multiplication':
+      return mult(arg1, arg2);
+      break;
+    case 'division':
+      return division(arg1, arg2);
+      break;
+  }
+}
+
   </script>
 </head>
 <body>
