@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Урок два задание 3</title>
+    
+  <!--  
+3) Объявить две целочисленные переменные a и b и задать им произвольные начальные значения. Затем написать скрипт, который работает по следующему принципу:
+* если a и b положительные, вывести их разность;
+* если а и b отрицательные, вывести их произведение;
+* если а и b разных знаков, вывести их сумму;
+ноль можно считать положительным числом. -->
+   
+    <script type="text/javascript"> 
+        
+        let a = parseInt(prompt('insert number from -100 to 100'));
+        if (isNaN(a))
+            alert('Введите число')
+        let b = parseInt(prompt('insert number from -100 to 100'));
+        if (isNaN(b))
+            alert('Введите число')
+        
+        if (a >= 0 && b >= 0) {
+            alert(a - b);
+        }
+        
+        if (a < 0 && b < 0) {
+            alert(a * b);
+        }
+        
+        if (a >= 0 && b < 0) {
+            alert(a + b);
+        }
+        
+        if (a < 0 && b >= 0) {
+            alert(a + b);
+        } 
+        
+    </script> 
+
+    
+</head>
+<body>
+    
+</body>
+</html>
