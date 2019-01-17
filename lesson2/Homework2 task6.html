@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Урок два задание 6</title>
+
+<!--6) Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation), где arg1, arg2 – значения аргументов, operation – строка с названием операции.
+ В зависимости от переданного значения операции выполнить одну из арифметических операций (использовать функции из пункта 3) и вернуть полученное значение (использовать switch).-->
+   
+    <script type="text/javascript">
+    
+        function sum(a, b) {
+            return(a + b);
+        }
+        
+        function diff(a, b) {
+            return(a - b);
+        }
+        
+        function mult(a, b) {
+            return(a * b);
+        }
+        
+        function div(a, b) {
+            return(a / b);
+        } 
+        
+        function mathOperation(arg1, arg2, operation) {
+            let a = arg1;
+            let b = arg2;
+            
+            switch(operation) {
+                case sum:
+                    return(sum(a, b));
+                break;
+                
+                case diff:
+                    return(diff(a, b));
+                break;
+                    
+                case mult:
+                    return(mult(a, b));
+                break;
+                    
+                case div:
+                    return(div(a,b));
+                break;
+            }
+        }
+        
+        alert(mathOperation(22, 22, sum));
+        alert(mathOperation(22, 28, diff));
+        alert(mathOperation(24, 21, mult));
+        alert(mathOperation(22, 2, div));
+    
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
