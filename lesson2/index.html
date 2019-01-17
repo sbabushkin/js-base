@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lesson2</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="main">
+    <div id="job_1">
+        <h3> Задание 1</h3>
+        <div>
+            <div>c = ++a</div>
+            <div> 2</div>
+            <br>
+            <p>перед присваиванием происходит увелечение <span>а</span> на 1 за счет <span>++a</span>, после выводится
+                переменная</p>
+        </div>
+        <div>
+            <div>d = b++</div>
+            <div>1</div>
+            <br>
+            <p>увелечение переменной <span>b</span> происходит после присваивания <span>b</span> переменной
+                <span>d</span></p>
+        </div>
+        <div>
+            <div>c = (2+ ++a)</div>
+            <div>5</div>
+            <br>
+            <p><span>а</span> уже = 2, и перед сложением они увеличивается еще на 1, в итоге 2+3 = 5</p>
+        </div>
+        <div>
+            <div>d = (2+ b++)</div>
+            <div>4</div>
+            <br>
+            <p>сначало мы выполняем сложение 2+<span>b</span>, и потолько потом увеличиваем переменную <span>b</span>
+            </p>
+        </div>
+        <div>
+            <div>a</div>
+            <div>3</div>
+            <br>
+            <p>мы увеличили <span>а</span> с 1 до 2х, потом с 2х до 3х</p>
+        </div>
+        <div>
+            <div>b</div>
+            <div>3</div>
+            <br>
+            <p>мы увеличили <span>b</span> с 1 до 2х, потом с 2х до 3х</p>
+        </div>
+    </div>
+
+    <div id="job_2">
+        <h3> Задание 2</h3>
+        <div>
+            <div>let x = 1 + (a *= 2)</div>
+            <div>a = 2, x = 5</div>
+            <br>
+            <p>5 т.к. сначало выполнится скобочки после сложение, операция в скобочках это сокращеная
+                запись присваивания и умножения переменной на некое число</p>
+        </div>
+    </div>
+
+    <div id="job_3">
+        <h3> Задание 3</h3>
+        <div class="inputs">
+            <input id="job_3_a" type="number" title="a" placeholder="a">
+            <input id="job_3_b" type="number" title="b" placeholder="b"><br>
+            <input type="submit" onclick="Job3()" value="Рассчитать">
+            <div class="result">
+                <div id="job_3_res"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="job_4">
+        <h3> Задание 4</h3>
+        <div class="inputs">
+            <input id="job_4_a" type="number" title="a" placeholder="a"><br>
+            <input type="submit" onclick="Job4()" value="Рассчитать">
+            <div class="result" style="margin-left: 10px">
+                <div id="job_4_res"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="job_6">
+        <h3> Задание 6</h3>
+        <div>
+            <input id="job_6_a" type="number" title="a" placeholder="a">
+            <input id="job_6_b" type="number" title="b" placeholder="b">
+            <select id="job_6_operation" title="operation">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <br>
+            <input type="submit" onclick="Job6()" value="Рассчитать">
+            <div class="result" style="display: inline-block;">
+                <div id="job_6_res"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="job_7">
+        <h3> Задание 7</h3>
+        <div style="height: 152px;">
+            <div>null > 0</div>
+            <div>false</div>
+            <div>null < 0</div>
+            <div>false</div>
+            <div>null == 0</div>
+            <div>false</div>
+            <br><br>
+            <div>null >= 0</div>
+            <div style="color: red">true</div>
+            <div>null <= 0</div>
+            <div style="color: red">true</div>
+            <br>
+            <p style="height: 30px">алгоритм работы равенств > < <= >= предполагает преобразование к числу обьекты
+                разных типов
+                , в итоге null преобразуеся к 0, а == не пеобразует null к числу
+            </p>
+
+            <div id="alertNull" style="color: #00f3ff; width: 160px" onclick="AlertNull()"> alert(Number(null))</div>
+        </div>
+    </div>
+
+    <div id="job_8">
+        <h3> Задание 8</h3>
+        <div class="inputs">
+            <input id="job_8_a" type="number" title="a" placeholder="a">
+            <input id="job_8_pow" type="number" title="pow" placeholder="pow"><br>
+            <input type="submit" onclick="alert(powFunc())" value="Рассчитать">
+            <div class="result" style="margin-left: 10px">
+                <div id="job_8_res"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

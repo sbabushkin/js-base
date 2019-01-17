@@ -1,0 +1,154 @@
+body {
+    background: darkgray;
+}
+
+#main {
+    margin: 0 auto;
+    width: 800px;
+}
+
+#job_1 {
+
+}
+
+h3 {
+    color: #ff7800;
+    text-shadow: 0 -1px 1px #000000, 0 -1px 1px #000000, 0 1px 1px #000000, 0 1px 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+#job_1 > div, #job_2 > div, #job_3 > div, #job_4 > div, #job_6 > div, #job_7 > div, #job_8 > div {
+    width: 800px;
+    background-size: 5px 2px;
+    background-image: linear-gradient(1deg, rgba(33, 176, 255, 0.6), rgba(37, 160, 225, 0.6) 6px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+    border: 1px solid #25a0e1;
+    border-radius: 10px;
+    margin-top: 10px;
+    height: 69px;
+    color: #ffffff;
+    text-shadow: 0 -1px 1px #000000, 0 -1px 1px #000000, 0 1px 1px #000000, 0 1px 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000;
+}
+
+#job_1 > div > div, #job_2 > div > div, #job_7 > div > div {
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+    width: 89px;
+    height: 14px;
+    float: left;
+    box-shadow: inset 0 0 5px black;
+    background: #8cb3c7;
+    text-align: center;
+    line-height: 14px;
+}
+
+#job_1 > div > p, #job_2 > div > p, #job_7 > div > p {
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+    height: 14px;
+    float: left;
+    box-shadow: inset 0 0 5px black;
+    background: #8cb3c7;
+    text-align: left;
+    line-height: 14px;
+    width: 779px;
+    color: black;
+    text-shadow: none;
+}
+
+#job_1 > div span, #job_2 > div span, #job_7 > div span {
+    color: #ffffff;
+    text-shadow: 0 -1px 1px #000000, 0 -1px 1px #000000, 0 1px 1px #000000, 0 1px 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000;
+}
+
+#job_2 > div {
+    height: 80px;
+}
+
+#job_2 > div > p {
+    height: 27px;
+}
+
+#job_2 > div > div {
+    width: 128px;
+}
+
+#job_3 > div {
+
+}
+
+input {
+    width: 50px;
+    height: 20px;
+    border-radius: 5px;
+    border: 0;
+    background: rgba(91, 98, 104, 0.9);
+    color: #ffef0f;
+    box-shadow: inset 0 0 5px black;
+    background: #8cb3c7;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    padding: 5px;
+    text-shadow: 0 -1px 1px #000000, 0 -1px 1px #000000, 0 1px 1px #000000, 0 1px 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000;
+}
+
+input::placeholder {
+    color: #ff7800;
+    text-shadow: 0 -1px 1px #000000, 0 -1px 1px #000000, 0 1px 1px #000000, 0 1px 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000;
+    font-size: 20px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=submit] {
+    width: 128px;
+    height: 26px;
+    line-height: 17px;
+    color: white;
+    transition: 0.2s;
+}
+
+input[type=submit]:hover {
+    color: #ffe418;
+}
+
+input[type=submit]:active {
+    transform: scale(0.9);
+}
+
+#job_3 .result {
+    display: inline-block;
+}
+
+#job_4 div {
+    display: inline-block;
+}
+
+select {
+    width: 50px;
+    height: 31px;
+    border-radius: 5px;
+    border: 0;
+    color: #ffef0f;
+    box-shadow: inset 0 0 5px black;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    padding: 0 5px;
+    text-shadow: 0 -1px 1px #000000, 0 -1px 1px #000000, 0 1px 1px #000000, 0 1px 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px 0 1px #000000, 1px 0 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000, -1px -1px 1px #000000, 1px -1px 1px #000000, -1px 1px 1px #000000, 1px 1px 1px #000000;
+    background: #8cb3c7;
+}
+
+#alertNull:hover {
+    background: #ffe418;
+}
