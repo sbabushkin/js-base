@@ -43,41 +43,42 @@ if (a >= 0 && b >= 0) {
 /*
   Задание 4
 */
-
+let result = '';
 a = 8;
 
 switch (a) {
   case 1:
-    alert(1);
+    result += '1' + ' ';
   case 2:
-    alert(2);
+    result += '2' + ' ';
   case 3:
-    alert(3);
+    result += '3' + ' ';
   case 4:
-    alert(4);
+    result += '4' + ' ';
   case 5:
-    alert(5);
+    result += '5' + ' ';
   case 6:
-    alert(6);
+    result += '6' + ' ';
   case 7:
-    alert(7);
+    result += '7' + ' ';
   case 8:
-    alert(8);
+    result += '8' + ' ';
   case 9:
-    alert(9);
+    result += '9' + ' ';
   case 10:
-    alert(10);
+    result += '10' + ' ';
   case 11:
-    alert(11);
+    result += '11' + ' ';
   case 12:
-    alert(12);
+    result += '12' + ' ';
   case 13:
-    alert(13);
+    result += '13' + ' ';
   case 14:
-    alert(14);
+    result += '14' + ' ';
   case 15:
-    alert(15);
+    result += '15' + ' ';
 }
+alert(result);
 
 /*
   Задание 5
@@ -104,7 +105,6 @@ function division(number1, number2) {
 */
 
 function mathOperation(arg1, arg2, operation) {
-  let result;
   switch (operation) {
     case '+':
       result = addition(arg1, arg2);
@@ -133,7 +133,7 @@ function mathOperation(arg1, arg2, operation) {
 /*
   Задание 8
 */
-let result = 1;
+result = 1;
 
 function power(val, pow) {
   result *= val;
