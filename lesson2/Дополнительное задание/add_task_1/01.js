@@ -1,5 +1,5 @@
 /*условиия использованы только для валидации входного параметра, само решение от них
-не зависит, в качестве ограничителя использовал минимальность длинны массива '0'.
+не зависит, в качестве ограничителя использовал логарифм числа.
 отсутствуют циклы, условия и прерывания
 */
 function fn_revers (n){    
@@ -8,7 +8,7 @@ function fn_revers (n){
         if (typeof n === 'number'){ //проверяем тип параметра
             if (parseInt(n) === parseFloat(n)){ // число должно быть 'integer'
                 if (n >0 && n < 101){ // число должно быть от 1 до 100
-                    document.write(fn_Numbers(n)+'</br></br>');                            
+                    document.write(fn_Numbers(n).split(' ').sort(function(a,b){return a-b;}).join(' ')+'</br></br>'); //произвожу реверс чисел, т.к. по условию числа должны быть от 1 до n+'</br></br>');                            
                 } else {
                     throw new Error('Function parameter must be between 1 and 100');
                 };
@@ -23,12 +23,8 @@ function fn_revers (n){
         };
     
     function fn_Numbers (n){
-        try{
-            let arr = Array(n-1);                    
-            count += ' ' + (arr.length+1);
-            fn_Numbers(--n);
-        } finally {
-            return count.split(' ').sort(function(a,b){return a-b;}).join(' '); //произвожу реверс чисел, т.к. по условию числа должны быть от 1 до n
-        };
+        count += ' ' + n;
+        !isNaN(Math.log(n-2)) && fn_Numbers(--n); //n-2 т.к. 1 count лишний за счет предыдущей строки и один лишний, т.к. infinity - это число
+        return count;
     }; 
 };     
