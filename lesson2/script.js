@@ -75,12 +75,58 @@
          
         console.log('Переменная a = ' + a + '.');
         
-        while (a <= 15) {
-            console.log(a++);
-            b++;
+        switch (a) {
+            case 0:
+                console.log(a++);
+                b++;
+            case 1:
+                console.log(a++);
+                b++;
+            case 2:
+                console.log(a++);
+                b++;
+            case 3:
+                console.log(a++);
+                b++;
+            case 4:
+                console.log(a++);
+                b++;
+            case 5:
+                console.log(a++);
+                b++;
+            case 6:
+                console.log(a++);
+                b++;
+            case 7:
+                console.log(a++);
+                b++;
+            case 8:
+                console.log(a++);
+                b++;
+            case 9:
+                console.log(a++);
+                b++;
+            case 10:
+                console.log(a++);
+                b++;
+            case 11:
+                console.log(a++);
+                b++;
+            case 12:
+                console.log(a++);
+                b++;
+            case 13:
+                console.log(a++);
+                b++;
+            case 14:
+                console.log(a++);
+                b++;
+            case 15:
+                console.log(a++);
+                b++;
+                break;
         }
         console.log('Счет закончен, сделано ' + b + ' шагов.');
-        // Тут был вывод с помощью switch case, но потом я вспомнил, что есть ещё цикл while, что помогло сократить код на много строк
      }
 
     // Функция математической операции в зависимости от значений чисел
