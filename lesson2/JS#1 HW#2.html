@@ -5,6 +5,29 @@
 </head>
 <body>
 	<script type="text/javascript">
+
+		/*
+		Написать функцию, которая на вход принимает целое число n от 1 до 100
+		Функция должна вывести числа от 1 до n без использования циклов, условий и прерываний
+		*/
+/*
+		const checkTheNumber = (num) =>{
+			if(num > 0 && num <=100) return true || false;
+		} 
+
+		const numToHundred = (num) =>{
+			if(checkTheNumber(num)){
+				numToHundred(num-1);
+				return console.log(num);
+			}
+		 }
+*/
+		// попробовал через .map 
+		const numToHundredTake2 = (num) =>{
+			return Array.apply(null, Array(num+1)).map(function (x, i) { return i; }).slice(1).join(' ');
+		}
+		console.log(numToHundredTake2(100));
+
 		
 		/*
 		//1. Дан код:
