@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<div>
+		<p>Задание№1</p>
+		var a = 1, b = 1, c, d;<br>
+		c = ++a; alert(c); <em><b>2</b> потому что в префиксной форме инкрементирование производится сразу, а возврат происходит уже с обновлённым значением.</em><br>
+		d = b++; alert(d); <em><b>1</b> потому что в постфиксной форме сначала происходит возвращение значения, а потом выполняется инкрементирование.</em><br>
+		c = (2+ ++a); alert(c); <em><b>5</b> потому что, ++a сначала приплюсовывает 1(или какой-либо указанный шаг),а затем выводит значение. </em><br>
+		d = (2+ b++); alert(d); <em><b>4</b> потому что сначала выводится значение b++,а затем будет приплюсован шаг.</em><br>
+		alert(a); <em><b>3</b></em><br>
+		alert(b); <em><b>3</b></em><br>
+		<style>
+			em{
+				color: #168d6d;
+			}
+			input{
+				display: flex;
+				margin-top: 5px;
+				background-color:#168d6d;
+				color: azure;
+			}
+			</style>
+	</div>
+	<p>Задание№2</p>
+	<div>
+		var a = 2;<br>
+		var x = 1 + (a *= 2); <em><b>х=5</b> потому что изначально выполнится возведение в степень,а затем сложение</em>
+	</div>
+	<input type="button" value="Задание№3" name="b" OnClick="b();">
+	<input type="button" value="Задание№4" name="c" OnClick="c();">
+	<input type="button" value="Задание№5-6" name="d" OnClick="d();">
+	<script type="text/javascript" src="js/ex3.js"></script>
+	<script type="text/javascript" src="js/ex4.js"></script>
+	<script type="text/javascript" src="js/ex5.js"></script>
+</body>
+
+</html>
