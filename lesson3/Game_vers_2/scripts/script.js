@@ -13,7 +13,7 @@ let resetButton;
 function fn_CheckGuess() {
     let bull = 0;
     let cow = 0;
-    if (!!(gn.value.match(/^[1-9][0-9]{3}$/))){ // проверяем, что ввели число jn 1000 до 9999
+    if (gn.value.search(/^[1-9][0-9]{3}$/) != -1){ // проверяем, что ввели число jn 1000 до 9999
         previous.textContent += ' ' + gn.value;	
         count++;
         for (let i=0; i<4; i++){
@@ -43,24 +43,24 @@ function fn_CheckGuess() {
             answer.style.backgroundColor = 'red';
             switch (bull){
                 case 0:
-                    let str_bull = ' быков, ';
+                    str_bull = ' быков, ';
                     break;
                 case 1:
-                    let str_bull = ' бык, ';
+                    str_bull = ' бык, ';
                     break;
                 default:
-                    let str_bull = ' быка, ';
+                    str_bull = ' быка, ';
                     break;
             };
             switch (cow){
                 case 0:
-                    let str_cow = ' коров.';
+                    str_cow = ' коров.';
                     break;
                 case 1:
-                    let str_cow = ' корова.';
+                    str_cow = ' корова.';
                     break;
                 default:
-                    let str_cow = ' коровы.';
+                    str_cow = ' коровы.';
                     break;
             };
             help.textContent = bull + str_bull + cow + str_cow;
@@ -110,9 +110,10 @@ function fn_ErrorOnInput (){
 };
 
 function fn_RandomNumber(randomNumber) {
+    let check;
     for (let i=0; i<4; i++){
         do {
-            let check = false;
+            check = false;
             randomNumber[i] = Math.round(Math.random()*9);
             for (let j=0; j<4; j++){
                 if (i !== j){
