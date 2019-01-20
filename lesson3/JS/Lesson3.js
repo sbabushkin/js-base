@@ -40,3 +40,18 @@ function task2() {
         i++
     } while (i<=10);
 }
+
+function task3() {
+    'use strict';
+    for (let i=0; i<=9; console.log(i++)) {    
+    }
+}
+
+function task4() {
+    'use strict';
+    let arr = '';
+    for (let i=1; i<=20; i++) {
+        arr+='x';
+        console.log(arr);
+    }
+}
