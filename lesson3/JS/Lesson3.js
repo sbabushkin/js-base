@@ -25,3 +25,18 @@ function task1() {
         alert(simpleDigits);
 }
 
+function task2() {
+    'use strict';
+    let simpleDigits = 'Простые числа от 0 до 100: ';
+    let i = 0;
+    do {
+        if (i==0) {
+            console.log(i+'- это ноль');
+        } else if (i/2===Math.round(i/2)) {
+            console.log(i+'- это четное число');
+        } else {
+            console.log(i+'- это нечетное число');
+        }
+        i++
+    } while (i<=10);
+}
