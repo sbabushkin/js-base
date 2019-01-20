@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Дополнительное задане</title>
+</head>
+<body>
+	<script>
+		let arr_Numbers = [];
+		for (let i=0; i<15; i++){
+			arr_Numbers[i] = Math.floor(Math.random()*100)-50; //заполняем массив числами от -50 до 50
+			document.write(arr_Numbers[i]+'</br>')
+		}
+
+		// используем reduce для определения максимального элемента
+		document.write('</br>Максимальное значение: '+ arr_Numbers.reduce(function(max, current){
+			if (max>current) {
+				return max;
+			} else {
+				return current;
+			};
+		}));
+	</script>
+</body>
+</html>
