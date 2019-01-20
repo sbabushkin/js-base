@@ -1,0 +1,51 @@
+.chess>table {
+	border: 2px double black;
+	border-collapse: collapse;
+}
+
+.chess>table>tr>td {
+	border: 1px solid black;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+}
+
+.chess>table>tr:nth-child(2n+1)>td:nth-child(2n){
+	background: #bf8e3f;
+}
+
+.chess>table>tr:nth-child(2n+1)>td:nth-child(2n+1){
+	background: #fdffdf;
+}
+
+.chess>table>tr:nth-child(2n)>td:nth-child(2n+1){
+	 background: #bf8e3f;
+}
+
+.chess>table>tr:nth-child(2n)>td:nth-child(2n){
+	background: #fdffdf;
+}
+
+.chess>table>tr:nth-last-child(1)>td {
+	background: #fdffdf !important;
+	border-left: none;
+	border-right: none;
+}
+
+.chess>table>tr:nth-child(1)>td {
+	background: #fdffdf !important;
+	border-left: none;
+	border-right: none;
+}
+
+.chess>table>tr>td:nth-child(1) {
+	background: #fdffdf !important;
+	border-bottom: none;
+	border-top: none;
+}
+
+.chess>table>tr>td:nth-last-child(1) {
+	background: #fdffdf !important;
+	border-bottom: none;
+	border-top: none;
+}
