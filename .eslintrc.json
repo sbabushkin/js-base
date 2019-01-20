@@ -1,17 +1,17 @@
 {
-  " extends " :  " airbnb-base " ,
-  " правила " : {
-    " Макс-лен " : [
-      " ошибка " ,
+  "extends": "airbnb-base",
+  "rules": {
+    "max-len": [
+      "error",
       {
-        « Код » :  120 ,
-        " tabWidth " :  2
+        "code": 120,
+        "tabWidth": 2
       }
     ],
-    « Без предупреждения » :  0 ,
-    " без ограничений-глобалов " :  0
+    "no-alert": 0,
+    "no-restricted-globals": 0
   },
-  " env " : {
-    " браузер " :  правда
+  "env": {
+    "browser": true
   }
 }
