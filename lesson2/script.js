@@ -2,14 +2,14 @@
 Задание 1
 */
 function ex1() {
-  var a = 1,
+  let a = 1,
     b = 1,
     c, d;
   c = ++a;
   alert("++a = " + c + " - 1+1 сначало прибавили, а потом вывели");
   d = b++;
   alert("b++ = " + d + " - 1 сначало вывели, а потом прибавили");
-  c = (2 + ++a);
+  c = (2 + (++a));
   alert("2 + (++a) = " + c + " - т.к. а = 2, мы сначало прибовляем 1 выполняя операцию ++а, потом прибовляем 2");
   d = (2 + b++);
   alert("2 + (b++) = " + d + " - т.к. b уже = 2 (то предыдущего b++) и мы прибовляем еще 2, и запоминаем что в следующем выводе будет +1");
@@ -33,7 +33,7 @@ function ex2() {
 function ex3() {
   var variable_1 = prompt("Введите число: ", -5);
   var variable_2 = prompt("Введите число: ", 10);
-  if (isNaN(variable_1) || isNaN(variable_2) || variable_1 == null || variable_2 == null) {
+  if (isNaN(variable_1) || isNaN(variable_2) || variable_1 === null || variable_2 === null) {
     alert('Нужно ввести число');
   } else if (variable_1 > 0 && variable_2 > 0) {
     alert('Введенные числа положительные: ' + (variable_1 - variable_2));
@@ -127,16 +127,16 @@ function ex5() {
 function mathOperation(arg1, arg2, operation) {
   switch (operation) {
     case '+':
-      return plus(arg1, arg2);
+      plus(arg1, arg2);
       break;
     case '-':
-      return minus(arg1, arg2);
+      minus(arg1, arg2);
       break;
     case '/':
-      return div(arg1, arg2);
+      div(arg1, arg2);
       break;
     case '*':
-      return mult(arg1, arg2);
+      mult(arg1, arg2);
       break;
   }
 }

@@ -2,13 +2,13 @@
 Задание 1
 */
 function ex1() {
-  var arr = []; //пустой масив
-  var n = 100; //длинна масива
-  for (var i = 0; i < n; i++) {
+  const arr = []; //пустой масив
+  const n = 100; //длинна масива
+  for (let i = 0; i < n; i++) {
     arr.push(i); //создаем масив из n элементов
   }
-  var p = 2,
-    j = 2; //объявляем переменныe
+  let p = 2;
+  let j = 2; //объявляем переменныe
   /*
   Для нахождения всех простых чисел не больше заданного числа n, следуя методу Эратосфена, нужно выполнить следующие шаги:
 
@@ -28,7 +28,7 @@ function ex1() {
   }
   delete arr[0];
   delete arr[1];
-  for (var i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i] !== undefined) {
       alert(arr[i]);
     }
@@ -45,7 +45,7 @@ function ex2() {
     if (i === 0) {
       alert(i + ' - это ноль');
     } else {
-      var d = (i % 2) ? alert(i + ' - нечетное число') : alert(i + ' - четное число');
+      let d = (i % 2) ? alert(i + ' - нечетное число') : alert(i + ' - четное число');
     }
     i++;
   } while (i <= n);
@@ -60,8 +60,8 @@ function ex3() {
 Задание 4
 */
 console.log("Задание 4.");
-var star = "*";
-for (var i = 1; i < 20; i++) {
+let star = "*";
+for (let i = 1; i < 20; i++) {
   star += "*";
   console.log(star);
 }
