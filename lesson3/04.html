@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание №4</title>
+</head>
+<body>
+    <script >
+        // выполню задание немного по-другому
+        var arr_pyramid = Array(13);// число дожно быть нечетным
+        var count = 1;
+        var k = 0;
+        var j = Math.floor(arr_pyramid.length/2); 
+        while (j != -1){
+            for(var i=0; i<arr_pyramid.length; i++){
+                if (i == j || (k>0 && k<count)){
+                    arr_pyramid[i] = 'x';
+                    k++;
+                } else {
+                    arr_pyramid[i] = ' ';
+                };
+            };
+            console.log(arr_pyramid.join(''));
+            count += 2;
+            j--;
+            k = 0;
+        };
+    </script>
+</body>
+</html>

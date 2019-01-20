@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание №1 из методички</title>
+</head>
+<body>
+    <script>
+		document.write('Простые числа:</br></br>');
+        let i = 1;
+        outer: while (i < 101){
+			let n = 2;
+        	do {
+            	if (i % n === 0) {
+					i++;
+					continue outer
+            	}
+            	n++;
+            } while (n < Math.ceil(i/2));
+            document.write(i+'</br>');
+			i++;
+        }
+    </script>
+</body>
+</html>
