@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script> 
+      
+// Задание1
+//Число является простым, если оно  больше  1 и при этом делится без остатка только на  1 и на  само себя.
+       
+       
+       let x = 2;
+       while(x <= 100){ 
+       let y = 2;
+       while(y <= x){ 
+         if(x % y == 0){
+            break;
+        }
+        y++;
+    }
+    if(x == y){
+        document.write(x + ' ');
+    }
+      x++;
+  }
+     
+       
+//Задание2
+     
+       let i = 0;
+       do{
+           if(i == 0){
+               document.write('<br>' + i + '-это ноль' + '<br>');
+           } else if(i%2 == 0){
+               document.write(i + '-это четное число' + '<br>');
+           } else{
+               document.write(i + '-это не четное число' + '<br>');
+           }
+           i++;
+       } while(i<=10);
+       
+       
+       
+        
+//Задание 3
+       for(let j=0; j<=9; document.write(j++ + ' ')){}
+        
+       
+       
+ //Задание4
+      
+       
+       let a = 'X';
+       console.log(a + '\n');
+       for(let n=1; n<20; n++){
+           console.log((a += 'X') + '\n');
+       }
+       
+     
+             
+    </script>
+    
+</body>
+</html>
