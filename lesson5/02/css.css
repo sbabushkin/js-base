@@ -1,0 +1,28 @@
+.btn_busket {
+	background: #baffff;
+	border: 1px solid #33424a;
+	border-radius: 15px;
+	outline: none;
+	padding: 3px 5px;
+}
+
+.btn_busket:active {
+	box-shadow: 0 0 2px 2px #4E7C9B;
+}
+
+.busket__table {
+	border-collapse: collapse;
+}
+
+.busket__table th {
+	border: 1px solid black;
+	padding: 2px 5px;
+	text-align: center;
+}
+
+.busket__table td {
+	border: 1px solid black;
+	text-align: center;
+	padding: 2px 5px;
+}
+
