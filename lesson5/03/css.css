@@ -1,14 +1,14 @@
-.busket__table {
+.catalog__table {
 	border-collapse: collapse;
 }
 
-.busket__table th {
+.catalog__table th {
 	border: 1px solid black;
 	padding: 2px 5px;
 	text-align: center;
 }
 
-.busket__table td {
+.catalog__table td {
 	border: 1px solid black;
 	text-align: center;
 	padding: 2px 5px;

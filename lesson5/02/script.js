@@ -104,8 +104,10 @@ function fn_BusketOpen() { //функция создает таблицу тов
 		let boo_IsProduct = false; //проверяем, есть ли в корзине хотя бы один товар
 		for (let val in Busket){
 			if (typeof Busket[val] === 'object'){
-				boo_IsProduct = true;
-				break;
+				if (arr_Catalog[val].constructor.name === 'fnc_Product') {
+					boo_IsProduct = true;
+					break;
+				}
 			}
 		}
 
