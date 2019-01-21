@@ -69,3 +69,13 @@ for (let i = 1; i < 20; i++) {
   star += "*";
   console.log(star);
 }
+
+/*
+Доп. задание
+*/
+console.log("Доп. задание");
+const array1 = [1, 2, 10, 3, 4].reduce(function (previousValue, currentValue, index, array) {
+  return Math.max.apply(null, array);
+});
+
+console.log(array1);
