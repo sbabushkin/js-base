@@ -12,6 +12,22 @@ function fnc_Product (id, category, name, description, produccer, price, count, 
 
 // создадим корзину как объект
 let Busket = {
+	Count: function () {
+		try{
+			let count = 0;
+			for (let val in this) {
+				if (typeof this[val] === 'object'){
+					if (this[val].constructor.name === 'fnc_Product') {
+						count++;
+					}
+				}
+			}
+			return count;
+		} catch (e) {
+			console.log(e);
+		}
+	},
+
 	CostById: function (id) { //метод вычисляет стоимость по конкретному id товара, возвращает строку со стоимостью до 2х знаков полсе запятой
 		try {
 			if (arguments.length === 1){
@@ -75,12 +91,12 @@ let Busket = {
 };
 
 // создадим несколько позиций в корзине
-/*Busket['pos1'] = new fnc_Product(1, 'Жвачка', 'Бубльгум', 'Жутко вкусная жвачка', 'Bubl-production', 200, 800, 0.05);
+Busket['pos1'] = new fnc_Product(1, 'Жвачка', 'Бубльгум', 'Жутко вкусная жвачка', 'Bubl-production', 200, 800, 0.05);
 Busket.pos1.usercount = 5;
 Busket['pos2'] = new fnc_Product(2, 'Жвачка', 'Дирол', 'Мятная жвачка', 'Dirol-production', 400, 1500, 0.1);
 Busket.pos2.usercount = 3;
 Busket['pos3'] = new fnc_Product(3, 'Жвачка', 'Ментос', 'Мятная конфета', 'Mentos-production', 800, 400, 0.25);
-Busket.pos3.usercount = 3;*/
+Busket.pos3.usercount = 3;
 
 function fn_BusketOpen() { //функция создает таблицу товаров корзины
 	this.isOpened = false;
@@ -171,7 +187,7 @@ function fn_BusketOpen() { //функция создает таблицу тов
 		// строка с общей суммой
 			p = document.createElement('p');
 			p.setAttribute('class', 'busket__footer');
-			p.textContent = 'Итого: ' + Busket.Cost() + ' руб';
+			p.textContent = 'Итого: Товаров '+ Busket.Count() + ' на сумму ' + Busket.Cost() + ' руб';
 
 			div_busket.appendChild(p);
 		} else { // если товара нет
