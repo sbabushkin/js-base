@@ -1,0 +1,16 @@
+.busket__table {
+	border-collapse: collapse;
+}
+
+.busket__table th {
+	border: 1px solid black;
+	padding: 2px 5px;
+	text-align: center;
+}
+
+.busket__table td {
+	border: 1px solid black;
+	text-align: center;
+	padding: 2px 5px;
+}
+
