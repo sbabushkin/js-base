@@ -7,14 +7,10 @@
  
 ## Установка
 
-- Step 1. Сделайте форк этого репозитория (https://help.github.com/articles/fork-a-repo/)
+- Step 1. Склонируйте репозиторий себе на компьютер
 
-- Step 2. Склонируйте свой репозиторий себе на компьютер
+- Step 2. Установите npm (NodeJS) (https://nodejs.org/en/download/)
 
-- Step 3. Установите npm (NodeJS) (https://nodejs.org/en/download/)
+- Step 3. Для установки зависимостей из корня проекта выполните npm install
 
-- Step 4. Для установки зависимостей из корня проекта выполните npm install
-
-- Step 5. Для подсказок по форматированию кода скачайте и установите плагин Eslint для вашей среды разработки
-
-- Step 6. По итогу выполнения задания в уроке сделайте Pull Request в этот репозиторий (https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
+- Step 4. Для подсказок по форматированию кода скачайте и установите плагин Eslint для вашей среды разработки
