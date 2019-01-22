@@ -35,42 +35,10 @@ const numToObj = (num) =>{
 	return finalObj;
 };
 // обращаемся к функции и выводим результат в консоль:
+console.log('Объект, в котором в соответствующих свойствах описаны единицы, десятки и сотни:');
+console.log('Вызываем функцию, число 976');
 console.log(numToObj(976));
-
-/* 2. Начиная с этого урока, мы начинаем работать с функционалом интернет-магазина.
-Предположим, что у нас есть сущность корзины. Нужно реализовать функционал подсчета
-стоимости корзины в зависимости от находящихся в ней товаров. Товары в корзине хранятся в
-массиве.
-2.1. Организуйте такой массив для хранения товаров в корзине
-2.2. Организуйте функцию countBasketPrice, которая будет считать стоимость корзины. */
-
-let basketItems = ['Утюг', 'Утюг', 'Кофеварка','Пылесос'];
-let ItemsCost = [['Утюг', 100], ['Кофеварка', 50],['Пылесос', 250]];
-
-//функция возврата стоимости конкретного товара.
-const getItemPrice = (item, array) =>{
-	let items = [];
-	let costs = [];
-	//предполагаем, что мы знаем структуру массива со стоимостями товара, поэтому разбиваем его на 2 одномерных массива
-	for(let i=0; i<array.length; i++){
-		items.push(array[i][0]);
-		costs.push(array[i][1]);
-	}
-	//используя метод .indexOf получаем индекс товара в массиве с названиями товаров и возвращаем стоимость по этому индексу из массива цен
-	return costs[items.indexOf(item)];
-}
-
-const countBasketPrice = (basketArr, costArr) =>{
-	let totalCost = 0;
-	for(let i=0;i<basketArr.length;i++){
-		//на каждой итерации обхода массива корзины обращаемся к функции получения стоимости единицы товара.
-		totalCost += getItemPrice(basketArr[i],costArr);
-	}
-	return totalCost;
-}
-console.log("Массив корзины: "+basketItems);
-console.log("Массив стоимости каждого товара: "+ItemsCost);
-console.log("Вывод полной стоимости корзины: "+countBasketPrice(basketItems, ItemsCost));
+console.log('============================');
 
 /*
 2. Продолжаем работу с нашим интернет-магазином
@@ -153,8 +121,20 @@ let basketItemsObj = {
 	}
 };
 
+// инфо часть:
+console.log('Предметы в БД:')
+for (keys in itemsDatabaseObj.items){
+	console.log(keys+', цена: '+itemsDatabaseObj.items[keys].cost);
+}
+console.log('============================');
+console.log('Предметы в корзине:');
+for (keys in basketItemsObj){
+	console.log(keys+', в количестве: '+basketItemsObj[keys].count+' шт.')
+}
+console.log('============================');
+
 // вывод метода getItemCostAll объекта itemsDatabaseObj в консоль:
-console.log(itemsDatabaseObj.getItemCostAll(basketItemsObj));
+console.log('Стоимость корзины: '+itemsDatabaseObj.getItemCostAll(basketItemsObj));
 
 /*
 3. * Подумайте над глобальными сущностями. К примеру, сущность “Продукт” в
