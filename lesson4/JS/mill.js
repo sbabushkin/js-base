@@ -76,7 +76,7 @@ function task3() {
     console.log('Всего вопросов' + summs.length);
     do {
         console.log('----------------------------------------------');
-        console.log('ВОПРОС №' + Number(question.currentNumber+1)+ '  СУММА: '+ Number(summs[question.currentNumber] + ' руб.'));
+        console.log('ВОПРОС №' + Number(question.currentNumber+1)+ '  СУММА: '+ Number(summs[question.currentNumber]) + ' руб.');
         console.log('----------------------------------------------');
         question.nextQuestion(questions);
         console.log(question.currentText);
