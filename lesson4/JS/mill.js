@@ -68,10 +68,12 @@ const question = {
 }
 
 function task3() {
+
     let cAnswer = '';
     let continueAnswer = true;
     question.currentNumber=0;
     question.lastNoFireSum=0;
+    console.log('Всего вопросов' + summs.length);
     do {
         console.log('----------------------------------------------');
         console.log('ВОПРОС №' + Number(question.currentNumber+1)+ '  СУММА: '+ Number(summs[question.currentNumber] + ' руб.'));
@@ -85,8 +87,8 @@ function task3() {
         } while (cAnswer != 'A' && cAnswer != 'B' && cAnswer != 'C' && cAnswer != 'D' && cAnswer != 'a' && cAnswer != 'b' && cAnswer != 'c' && cAnswer != 'd');
 
         continueAnswer = question.checkCorrect(cAnswer);
-    } while (question.currentNumber < 15 && continueAnswer == true);
-    if (question.currentNumber==15) {
+    } while (question.currentNumber < summs.length && continueAnswer == true);
+    if (question.currentNumber==summs.length) {
        console.log('ПОЗДРАВЛЯЕМ. ВЫ МИЛЛИОНЕР!!!'); 
     }
 }
