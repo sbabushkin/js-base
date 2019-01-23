@@ -60,7 +60,7 @@ chessWrapLink.insertBefore(colDiv2, rowDiv2);
 
 /* now we need to put markings */
 const numbers = [1,2,3,4,5,6,7,8];
-const markers = ['','a','b','c','d','e','f','g','h',''];
+const markers = ['','A','B','C','D','E','F','G','H',''];
 /* ROWS */
 for(let i=0; i<markers.length;i++){
 	/* row 1 */
