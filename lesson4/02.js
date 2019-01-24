@@ -1,5 +1,5 @@
 // объект корзины состоит из имени товара, его колличества и цены
-function fnc_Product (name, count, price) {
+function fncProduct (name, count, price) {
 	this.name = name;
 	this.count = count;
 	this.price = price;
@@ -10,11 +10,11 @@ let arr_Busket = [];
 
 // заполняем массив произвольными значениями
 for (let i=0; i<10; i++) {
-	arr_Busket[i] = new fnc_Product('product'+i,i,i*500);
+	arr_Busket[i] = new fncProduct('product'+i,i,i*500);
 }
 
 //функция вычисляет стоимость по конкретному товару. Считаем, что имя товара уникально
-function fn_CostByName(name) {
+function fnCostByName(name) {
 	try {
 		if (arguments.length === 1){
 			if (typeof name === 'string'){
@@ -36,7 +36,7 @@ function fn_CostByName(name) {
 }
 
 // функция считает общую стоимость корзины
-function fn_Cost() {
+function fnCost() {
 	let cost = 0;
 	for (let i=0; i<arr_Busket.length; i++) {
 		cost += arr_Busket[i].count*arr_Busket[i].price;

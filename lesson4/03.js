@@ -2,7 +2,7 @@
 На мой взгляд задание слишком абстрактное, лучше бы конкретное тз
 */
 //примерный вариант объекта Product
-function fnc_Product (id, category, name, description, produccer, price, count, discount) {
+function fncProduct (id, category, name, description, produccer, price, count, discount) {
 	this.id = id; //идендификатор
 	this.category = category; // категория
 	this.name = name; // наименование товара
@@ -79,7 +79,7 @@ let Busket = {
 
 // заполняем корзину произвольными значениями
 for (let i=0; i<10; i++) {
-	Busket['product'+i] = new fnc_Product();
+	Busket['product'+i] = new fncProduct();
 	Busket['product'+i].id = i; //идендификатор
 	Busket['product'+i].price = Math.floor((i+500)*270)/100; // стоимость
 	Busket['product'+i].discount = Math.round((i+7)/5)/100; //скидка
