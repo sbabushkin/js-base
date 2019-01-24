@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson2</title>
+    <script>
+        //1.
+        let a = 1, b = 1, c, d;
+        c = ++a;
+        alert(c);           // 2 ++a означает что мы к переменной а прибавляем единицу
+        d = b++;
+        alert(d);           // 1 ++ после переменной означает,что мы прибавляем единицу но выводим предыдущее значение
+        c = (2 + ++a);
+        alert(c);      // 5 в первом примере мы прибавили единицу, значение стало равно2,прибавляем единицу и а становится равно 3, ответ 5
+        d = (2 + b++);
+        alert(d);      // 4  во втором примере мы прибавили единицу в переменную b ее значение стало2,В примере прибавляем еще единицу и а становится 3 но выводится предыдущее значение 2, ответ 4
+        alert(a);                    // 3 прибавили единицу в примере 1 и примере 3
+        alert(b);                    // 3 прибавили единицу в примере 2 и примере 4
+
+        //2.
+        a = 2;
+        let x = 1 + (a *= 2);
+        alert(x); // x=5  (1+(2*2))
+
+        //3.
+
+        equivalentAB(Math.random() * 100, Math.random() * 100);
+
+        function equivalentAB(a, b) {
+            if (a >= 0 && b >= 0) {
+                alert(a - b);
+            }
+            if (a <= 0 && b <= 0) {
+                alert(a * b);
+            }
+            if ((a < 0 && b > 0) || (a > 0 && b < 0)) {
+                alert(a + b);
+            }
+        }
+
+        //4.
+        Switch(10);
+
+        function Switch(a) {
+            let result = '';
+
+            switch (a) {
+                case 1:
+                    result += 1 + ', ';
+                case 2:
+                    result += 2 + ', ';
+                case 3:
+                    result += 3 + ', ';
+                case 4:
+                    result += 4 + ', ';
+                case 5:
+                    result += 5 + ', ';
+                case 6:
+                    result += 6 + ', ';
+                case 7:
+                    result += 7 + ', ';
+                case 8:
+                    result += 8 + ', ';
+                case 9:
+                    result += 9 + ', ';
+                case 10:
+                    result += 10 + ', ';
+                case 11:
+                    result += 11 + ', ';
+                case 12:
+                    result += 12 + ', ';
+                case 13:
+                    result += 13 + ', ';
+                case 14:
+                    result += 14 + ', ';
+                case 15:
+                    result += 15;
+            }
+            alert(result)
+        }
+
+        //5.
+        function divide(a, b) {
+            return a / b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function subtr(a, b) {
+            return a - b;
+        }
+
+        function summ(a, b) {
+            return a + b;
+        }
+
+        //6.
+        function mathOperation(arg1, arg2, operation) {
+            switch (operation) {
+                case '+':
+                    return summ(arg1, arg2);
+                case '-':
+                    return subtr(arg1, arg2);
+                case '*':
+                    return multiply(arg1, arg2);
+                case '/':
+                    return divide(arg1, arg2);
+                default:
+                    return 'Неправильно введена операция';
+            }
+        }
+
+
+        //7.  если приобразовать null к числу будет 0,если  null больши или равное, получиться true
+
+        //.8
+        function power(val, pow) {
+            if (pow > 0) {
+                return val * power(val, pow - 1);
+            } else if (pow < 0) {
+                return val * power(val, pow + 1);
+            } else
+                return 1;
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>4
