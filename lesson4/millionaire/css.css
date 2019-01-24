@@ -16,12 +16,12 @@ body {
 		background-size: contain;
 		align-content: center;
 		display: flex;
-		flex: 1 0 auto;
+		flex: 0 0 auto;
 		flex-flow: row wrap;
 		justify-content: space-around;
-		height: 100%;
-		max-height: 600px;
-		max-width: 800px;
+		position: relative;
+		height: 600px;
+		width: 800px;
 	}
 
 		.main__btnStart-block {
@@ -72,7 +72,7 @@ body {
 						padding: 0 10px;
 					}
 
-					.main-sumTable__unfire td {
+					.main-sumTable__nofire td {
 						color: white;
 					}
 
@@ -108,7 +108,6 @@ body {
 			.main__questVar {
 				background: url("images/insert.png") no-repeat center;
 				background-size: contain;
-				box-sizing: border-box;
 				cursor: pointer;
 				display: inline-block;
 				flex: 0 0 50%;
@@ -116,6 +115,44 @@ body {
 			}
 
 				.main__questVar>p {
+					box-sizing: border-box;
 					color: aliceblue;
 					padding: 0 40px;
+				}
+
+			.main__win-block {
+				align-items: center;
+				background: rgba(6, 32, 41, 0.3);
+				display: flex;
+				justify-content: center;
+				position: absolute;
+				height: 100%;
+				width: 100%;
+			}
+
+				.main__win {
+					align-items: center;
+					background: #06202a;
+					border: #02020b;
+					border-radius: 20px;
+					box-sizing: border-box;
+					display: flex;
+					flex-flow: row wrap;
+					justify-content: center;
+					height: 200px;
+					width: 300px;
+					padding: 50px;
+				}
+
+				.main__win p {
+					color: #baffff;
+					flex: 0 0 100%;
+					margin-bottom: 20px;
+				}
+
+				.main__win button {
+					border: #02020b;
+					border-radius: 5px;
+					color: #02020b;
+					flex: 0 0 50px;
 				}
