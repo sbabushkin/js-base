@@ -8,7 +8,7 @@ function arrResult(arg) {
     return {};
   }
   arg += '';
-  return {'единицы': arg[0], 'десятки': arg[1], 'сотни': arg[2]};
+  return {'единицы': arg[2], 'десятки': arg[1], 'сотни': arg[0]};
 }
 
 console.log(arrResult(684));
