@@ -1,9 +1,17 @@
 let game = {
-	questions: [], // элемены массива text, variants, answer, sum
+	questionNumber: 0, // номер текущего вопроса
+	questions: [], // элемены массива object {text, variants, answer, sum}
 
 	init: function () { // начало новой игры
 		if (questionBase && questionBase.low.length > 4 && questionBase.middle.length > 4 && questionBase.high.length > 4){
-			this.questionGenerator();
+			this.questionGenerator(); // генерируется массив с вопросами
+			this.showQuestion(); // показывается первый вопрос
+			let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
+			for (let j = 0; j<4; j++){
+				variant[j].addEventListener('click', function (event) {
+					let answer = this.textContent.substring(3); // тут this будет ссылаться на event, а не на game
+					game.checkAnswer(answer)});
+			}
 		}
 	},
 
@@ -73,41 +81,42 @@ let game = {
 			arr_used = [];
 		}
 		this.questions=arr_questions;
+	},
+
+	showQuestion: function () { // показывает новый вопрос в интерфейсе
+		let questBoard = document.querySelector('.main-questBoard__question'); // добавляем воппрос
+		questBoard.textContent = this.questions[this.questionNumber].text;
+
+		let variant = document.querySelectorAll('.main__questVar'); // добавляем ответы
+		for (let j = 0; j<variant.length; j++){ // если уже есть варианты ответов, удаляем их
+			if (variant[j].hasChildNodes()){
+				for (let i=0; i < variant[j].childNodes.length; i++){
+					variant[j].removeChild(variant[j].childNodes[i]);
+				}
+			}
+		}
+
+		let arr_i = [0,1,2,3]; // ответы добавляются в рандомном порядке
+		let arr_variant = ['A', 'B', 'C', 'D'];
+		for (let j = 0; j<4; j++){
+			arr_i.sort(function(a,b){return Math.random()-0.5});
+			let p = document.createElement('p');
+			p.textContent = arr_variant[j] + '. ' +this.questions[this.questionNumber].variant[arr_i[0]];
+			variant[j].appendChild(p);
+			arr_i.shift();
+		}
+	},
+
+	checkAnswer: function (answer) {
+		if (answer === this.questions[this.questionNumber].answer){ // если ответ верный
+			this.questionNumber++; //переходим к следующему вопросу
+			this.showQuestion(); // показываем следующий вопрос
+		}
 	}
 };
 
 window.onload = function () {
-	game.init();
-	console.log(game.questions);
+	let btnStart = document.querySelector('.main__btnStart');
+	btnStart.addEventListener('click', function() {game.init()});  // назначаем событие на кнопку начала игры
 
-	let body = document.querySelector('body');
-
-	let wrapper = document.createElement('div');
-	wrapper.setAttribute('class', 'wrapper');
-	body.appendChild(wrapper);
-
-	let main = document.createElement('div');
-	main.setAttribute('class', 'main');
-	wrapper.appendChild(main);
-
-	let sumTable = document.createElement('table');
-	sumTable.setAttribute('class', 'sumTable');
-	for (let i = 15; i > 0; i--){
-		let tr = document.createElement('tr');
-		tr.setAttribute('class', 'tr'+(i));
-
-		let td = document.createElement('td');
-		td.textContent = i;
-		tr.appendChild(td);
-
-		td = document.createElement('td');
-		td.textContent = game.questions[i-1].sum;
-		tr.appendChild(td);
-
-		sumTable.appendChild(tr);
-	}
-	main.appendChild(sumTable);
-
-	let questBoard = document.createElement('div');
-	questBoard.setAttribute('class', 'questBoard');
 };
