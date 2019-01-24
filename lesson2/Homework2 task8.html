@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Урок два задание 8</title>
+
+<!--8) * С помощью рекурсии организовать функцию возведения числа в степень. Формат: function power(val, pow), где val – заданное число, pow – степень. -->
+   
+    <script type="text/javascript">
+        
+        function power(val, pow) {
+            return(pow != 1)? val * power(val, pow-1): val;
+        }
+
+        let val = prompt('Введите число, которое необходимо возвести в степень');
+        if(isNaN(val)) {
+                alert('Необходимо ввести целое число!');
+            } 
+        
+        let pow = prompt('Введите степень в которую требуется возвести число');
+        if(isNaN(pow)) {
+                alert('Необходимо ввести целое число!');
+            }
+        
+        alert(power(val, pow));
+    
+    </script>
+    
+</head>
+<body>
+    
+</body>
+</html>
