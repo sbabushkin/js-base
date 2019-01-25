@@ -24,13 +24,143 @@ body {
 		width: 800px;
 	}
 
+		.user-block {
+			box-sizing: border-box;
+			align-items: center;
+			display: flex;
+			flex: 0 0 100%;
+			flex-flow: row nowrap;
+			justify-content: space-around;
+			height: 50px;
+			padding: 0 40px;
+		}
+
+			.user__name {
+				flex: 1 0 auto;
+			}
+
+				.user__name p{
+					color: aliceblue;
+				}
+
+			.user__score {
+				flex: 1 0 auto;
+			}
+
+				.user__score p{
+					color: aliceblue;
+				}
+
+			.user__total {
+				flex: 1 0 auto;
+			}
+
+				.user__total p{
+					color: aliceblue;
+				}
+
+			.user__hints {
+				align-items: center;
+				display: flex;
+				flex: 0 0 200px;
+				flex-flow: row nowrap;
+				justify-content: space-around;
+			}
+
+				.user__hint-hall {
+					border: none;
+					cursor: pointer;
+					flex: 0 0 auto;
+					height: 40px;
+					width: 60px;
+					outline: none;
+				}
+
+					.user__hint-hall_no-used {
+						background: url("images/buttonHall.png") no-repeat center;
+						background-size: contain;
+					}
+
+					.user__hint-hall_used {
+						background: url("images/buttonHallUsed.png") no-repeat center;
+						background-size: contain;
+					}
+
+					.user__hint-hall:hover {
+						height: 44px;
+						width: 66px;
+					}
+
+					.user__hint-hall:active {
+						height: 40px;
+						width: 60px;
+					}
+
+				.user__hint-fifty {
+					border: none;
+					cursor: pointer;
+					flex: 0 0 auto;
+					height: 40px;
+					width: 60px;
+					outline: none;
+				}
+
+					.user__hint-fifty_no-used {
+						background: url("images/buttonFifty.png") no-repeat center;
+						background-size: contain;
+					}
+
+					.user__hint-fifty_used {
+						background: url("images/buttonFiftyUsed.png") no-repeat center;
+						background-size: contain;
+					}
+
+					.user__hint-fifty:hover {
+						height: 44px;
+						width: 66px;
+					}
+
+					.user__hint-fifty:active {
+						height: 40px;
+						width: 60px;
+					}
+
+				.user__hint-friend {
+					border: none;
+					cursor: pointer;
+					flex: 0 0 auto;
+					height: 40px;
+					width: 60px;
+					outline: none;
+				}
+
+					.user__hint-friend_no-used {
+						background: url("images/buttonFriend.png") no-repeat center;
+						background-size: contain;
+					}
+
+					.user__hint-friend_used {
+						background: url("images/buttonFriendUsed.png") no-repeat center;
+						background-size: contain;
+					}
+
+					.user__hint-friend:hover {
+						height: 44px;
+						width: 66px;
+					}
+
+					.user__hint-friend:active {
+						height: 40px;
+						width: 60px;
+					}
+
 		.main__btnStart-block {
 			align-items: center;
 			display: flex;
-			flex: 0 0 70%;
+			flex: 0 0 75%;
 			flex-flow: row nowrap;
 			justify-content: center;
-			margin-top: 50px;
+			margin-top: 25px;
 		}
 
 			.main__btnStart {
@@ -52,19 +182,19 @@ body {
 			}
 
 		.main__sumTable-block {
-			flex: 0 0 30%;
-			margin-top: 50px;
+			flex: 0 0 25%;
+			margin-top: 25px;
 		}
 				.main__sumTable {
 					border-collapse: collapse;
 				}
 
 					.main-sumTable__now {
-						background: #ffd88d;
+						background: #a95400;
 					}
 
 					.main-sumTable__win {
-						background: #7bb01d;
+						background: #21811d;
 					}
 
 					.main__sumTable td {

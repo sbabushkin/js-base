@@ -1,12 +1,20 @@
 /*структура:
 game = {
 	--- свойства ---
+	hints {}				// подсказки
+		hall				// доступность помощи зала true/false
+		fifty				// доступность 50/50 true/false
+		friend				// доступность звонок другу true/false
 	questionNumber 	 		// номер текущего вопроса
 	questions		 		// массив вопросов для текущей викторины элемены массива object {text, variants, answer, sum}
 	varListener {}			// добавляет/удаляет обработчик событий на кнопки с вариантами ответов параметры: add, remove
 		add ()					//добавляет обработчики событий на кнопки с вариантами ответов
 		remove ()				//удаляет обработчики событий с кнопок с вариантами ответов
 		varListenerHandler ()	//обработчик событий
+	user {}					// данные игрока
+		name					// имя
+		score					// очки за текущий раунд
+		total					// всего набрано очков
 
 	--- методы ---
 	checkAnswer (answer) 	// проверяет правильность выбранного ответа параметры берутся от ивента
@@ -24,9 +32,18 @@ game = {
  */
 
 let game = {
+	hints: {  // подсказки
+		hall: true,
+		fifty: true,
+		friend: true
+	},
+
 	btnVarListener: false, // метка, чтобы не переустанавливать обработчики событий на кнопки ответов при начале каждой новой игры
+
 	questionNumber: 0, // номер текущего вопроса
+
 	questions: [], // элемены массива object {text, variants, answer, sum}
+
 	varListener: { //добавляет/удаляет обработчики событий на кнопки с вариантами ответов
 		add: function () {//добавляет обработчики событий на кнопки с вариантами ответов
 			let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
@@ -71,14 +88,16 @@ let game = {
 			}, 1500);
 			let thisVar = this;
 			timer = setTimeout (function () {
-				let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
-				for (let j = 0; j < 4; j++) {
-					variant[j].setAttribute('class', 'main__questVar main__questVar_bgBlue main__questVar_clickable');
-				}
 				game.checkAnswer(thisVar.textContent.substring(3)); // здесь thisVar ссылается на ивент обработчика событий 'click'
 			}, 3000);
 		},
 
+	},
+
+	user: {  // данные игрока
+		name: '',
+		score: 0,
+		total: 0
 	},
 
 	checkAnswer: function (answer) { // проверяем правильность выбранного ответа
@@ -235,6 +254,7 @@ let game = {
 		let variant = document.querySelectorAll('.main__questVar'); // добавляем ответы
 		for (let j = 0; j<variant.length; j++){ // если уже есть варианты ответов, удаляем их
 			if (variant[j].hasChildNodes()){
+				variant[j].setAttribute('class', 'main__questVar main__questVar_bgBlue main__questVar_clickable');//назначаем бакграунд для кнопок с ответами
 				for (let i=0; i < variant[j].childNodes.length; i++){
 					variant[j].removeChild(variant[j].childNodes[i]);
 				}
