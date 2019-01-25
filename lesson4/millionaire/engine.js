@@ -1,9 +1,12 @@
 /*структура:
 game = {
 	--- свойства ---
-	btnVarListener			// метка, чтобы не переустанавливать обработчики событий на кнопки ответов при начале каждой новой игры
 	questionNumber 	 		// номер текущего вопроса
 	questions		 		// массив вопросов для текущей викторины элемены массива object {text, variants, answer, sum}
+	varListener {}			// добавляет/удаляет обработчик событий на кнопки с вариантами ответов параметры: add, remove
+		add ()					//добавляет обработчики событий на кнопки с вариантами ответов
+		remove ()				//удаляет обработчики событий с кнопок с вариантами ответов
+		varListenerHandler ()	//обработчик событий
 
 	--- методы ---
 	checkAnswer (answer) 	// проверяет правильность выбранного ответа параметры берутся от ивента
@@ -14,6 +17,7 @@ game = {
 	reload ()				// перезагрузка игры
 	showQuestion ()			// показывает новый вопрос в интерфейсе
 	sumTable (clean)		// показывает сумму текущего вопроса параметр clean true/false - чистая таблица при перезагрузке игры
+	varListenerHandler ()	// обработчик событий для varListener
 	win ()					// победа или забрали сумму выводим сообщение
  }
 
@@ -23,6 +27,59 @@ let game = {
 	btnVarListener: false, // метка, чтобы не переустанавливать обработчики событий на кнопки ответов при начале каждой новой игры
 	questionNumber: 0, // номер текущего вопроса
 	questions: [], // элемены массива object {text, variants, answer, sum}
+	varListener: { //добавляет/удаляет обработчики событий на кнопки с вариантами ответов
+		add: function () {//добавляет обработчики событий на кнопки с вариантами ответов
+			let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
+			for (let j = 0; j < 4; j++) {
+				variant[j].setAttribute('class', 'main__questVar main__questVar_bgBlue main__questVar_clickable'); // добавляем свойство cursor:
+				// pointer и background
+				variant[j].addEventListener('click', game.varListener.varListenerHandler);
+			}
+		},
+
+		remove: function () {//удаляет обработчики событий с кнопок с вариантами ответов
+			let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
+			for (let j = 0; j < 4; j++) {
+				variant[j].setAttribute('class', 'main__questVar');
+				variant[j].removeEventListener('click', game.varListener.varListenerHandler);
+			}
+		},
+
+		varListenerHandler: function () { //обработчик событий
+			this.setAttribute('class', 'main__questVar main__questVar_bgYellow main__questVar_clickable'); //меняем бакграунд выбранного ответа
+			let mod = true;
+			let timer = setTimeout(function () { // таймер для задержки проверки ответа для анимации
+				let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
+				for (let j = 0; j < 4; j++) {
+					if (variant[j].textContent.substring(3) === game.questions[game.questionNumber].answer){ // анимация верного ответа
+						let variantClass = variant[j].getAttribute('class'); // запоминаем предыдущий класс
+						variant[j].setAttribute('class', 'main__questVar main__questVar_bgGreen main__questVar_clickable'); //меняем бакграунд
+						// выбранного
+						// ответа
+						let timer2 = setInterval(function (){
+							if (mod) {
+								variant[j].setAttribute('class', variantClass);
+								mod = false;
+							} else {
+								variant[j].setAttribute('class', 'main__questVar main__questVar_bgGreen main__questVar_clickable');
+								mod = true;
+							}
+						}, 500, mod);
+						let timer2Stop = setInterval(function() {clearInterval(timer2)}, 1000);
+					}
+				}
+			}, 1500);
+			let thisVar = this;
+			timer = setTimeout (function () {
+				let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
+				for (let j = 0; j < 4; j++) {
+					variant[j].setAttribute('class', 'main__questVar main__questVar_bgBlue main__questVar_clickable');
+				}
+				game.checkAnswer(thisVar.textContent.substring(3)); // здесь thisVar ссылается на ивент обработчика событий 'click'
+			}, 3000);
+		},
+
+	},
 
 	checkAnswer: function (answer) { // проверяем правильность выбранного ответа
 		if (answer === this.questions[this.questionNumber].answer){ // если ответ верный
@@ -48,6 +105,7 @@ let game = {
 			this.questionGenerator(); // генерируется массив с вопросами
 			this.showQuestion(); // показывается первый вопрос
 			this.sumTable(false); // обновляем таблицу выйгрыша
+			this.varListener.add(); // добавляет обработчик событий на кнопки с вариантами ответов
 		}
 	},
 
@@ -161,6 +219,7 @@ let game = {
 		questBoard.textContent = 'Нажми на кнопку "Кто хочет стать миллионером?" чтобы начать игру.';
 
 		this.sumTable(true); // обновляем таблицу выйгрыша
+		this.varListener.remove(); // удаляем обработчик событий с кнопок с вариантами ответов
 
 		let div_WinBlock = document.querySelector('.main__win-block'); //удаляем всплывающее сообщение
 		if (div_WinBlock) {
@@ -224,7 +283,7 @@ let game = {
 	},
 
 	win: function () { // победа или забрали сумму выводим сообщение
-		this.message('win')
+		this.message('win');
 	},
 
 
@@ -234,14 +293,5 @@ window.onload = function () {
 	let btnStart = document.querySelector('.main__btnStart');
 	btnStart.addEventListener('click', function() {
 		game.init(); // создаем новую викторину
-		if (game.btnVarListener === false){  // назначаем событие на кнопку начала игры
-			let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
-			for (let j = 0; j<4; j++){
-				variant[j].addEventListener('click', function () {
-					let answer = this.textContent.substring(3);
-					game.checkAnswer(answer)});
-			}
-			game.btnVarListener = true;
-		}
 	});
 };

@@ -106,13 +106,29 @@ body {
 				}
 
 			.main__questVar {
-				background: url("images/insert.png") no-repeat center;
-				background-size: contain;
-				cursor: pointer;
 				display: inline-block;
 				flex: 0 0 50%;
 				height: 50px;
 			}
+
+				.main__questVar_bgBlue {
+					background: url("images/insert.png") no-repeat center;
+					background-size: contain;
+				}
+
+				.main__questVar_bgYellow {
+					background: url("images/insert_yellow.png") no-repeat center;
+					background-size: contain;
+				}
+
+				.main__questVar_bgGreen {
+					background: url("images/insert_green.png") no-repeat center;
+					background-size: contain;
+				}
+
+				.main__questVar_clickable {
+					cursor: pointer;
+				}
 
 				.main__questVar>p {
 					box-sizing: border-box;
