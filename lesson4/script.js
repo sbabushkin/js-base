@@ -1,9 +1,9 @@
 function partitionOfNumbers() {
   const namber = prompt("Введите число от 0 до 999: ", 275);
   if (namber > 0 && namber <= 999) {
-    let units = namber % 10; //находим единицы
-    let ten = namber % 100 - units; //находим десятки
-    let hundreds = namber - units - ten; //находим сотни
+    const units = namber % 10; //находим единицы
+    const ten = namber % 100 - units; //находим десятки
+    const hundreds = namber - units - ten; //находим сотни
     objectNamber = {
       units: units,
       ten: ten / 10,
