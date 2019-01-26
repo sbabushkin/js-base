@@ -1,5 +1,5 @@
 function partitionOfNumbers() {
-  let namber = prompt("Введите число от 0 до 999: ", 275);
+  const namber = prompt("Введите число от 0 до 999: ", 275);
   if (namber > 0 && namber <= 999) {
     let units = namber % 10; //находим единицы
     let ten = namber % 100 - units; //находим десятки
@@ -9,9 +9,13 @@ function partitionOfNumbers() {
       ten: ten / 10,
       hundreds: hundreds / 100
     }
+    console.log(objectNamber);
     alert("Единицы: " + objectNamber.units + ", Десятки: " + objectNamber.ten + ", Сотни: " + objectNamber.hundreds);
+  } else if (namber > 999) {
+    console.log(objectNamber = {});
+    alert('Вы ввели число больше 999');
   } else {
-    alert('Ваше число "' + namber + '" должно быть в от 0 до 999');
+    alert('Вы ввели "' + namber + '", а должна быть цифра от 0 до 999');
   }
 };
 
