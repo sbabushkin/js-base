@@ -1,0 +1,17 @@
+table {
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 80px;
+}
+td {
+    width: 100px;
+    height: 100px;
+}
+
+.black-cell {
+    background-color: saddlebrown;
+}
+
+.white-cell {
+    background-color: sandybrown;
+}
