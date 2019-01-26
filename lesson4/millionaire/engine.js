@@ -14,14 +14,14 @@ game = {
 	user {}					// данные игрока
 		name					// имя
 		score					// очки за текущий раунд
-		total					// всего набрано очков
+		totalMem				// запоминает очки с предыдущих раундов
 
 	--- методы ---
 	checkAnswer (answer) 	// проверяет правильность выбранного ответа параметры берутся от ивента
 	fail ()					// проигрыш
 	init			 		// начало новой игры
 	questionGenerator ()	// генерация вопросов для текущей викторины
-	message (parametr)		// выводит сообщение с уведомлением параметры: win, fail
+	message (parametr)		// выводит сообщение с уведомлением параметры: win, fail, getName, nofire1, nofire2
 	reload ()				// перезагрузка игры
 	showQuestion ()			// показывает новый вопрос в интерфейсе
 	sumTable (clean)		// показывает сумму текущего вопроса параметр clean true/false - чистая таблица при перезагрузке игры
@@ -37,8 +37,6 @@ let game = {
 		fifty: true,
 		friend: true
 	},
-
-	btnVarListener: false, // метка, чтобы не переустанавливать обработчики событий на кнопки ответов при начале каждой новой игры
 
 	questionNumber: 0, // номер текущего вопроса
 
@@ -97,14 +95,21 @@ let game = {
 	user: {  // данные игрока
 		name: '',
 		score: 0,
-		total: 0
+		totalMem: 0
 	},
 
 	checkAnswer: function (answer) { // проверяем правильность выбранного ответа
 		if (answer === this.questions[this.questionNumber].answer){ // если ответ верный
+			if (this.questions[this.questionNumber].sum > this.user.score) { // увеличение счетчика максимальной суммы
+				this.user.score = this.questions[this.questionNumber].sum;
+				document.querySelector('.user__score').childNodes[0].textContent = 'Макс. счет: ' + this.user.score + ' руб';
+			}
+			document.querySelector('.user__total').childNodes[0].textContent = 'Всего: ' + (this.user.totalMem + this.questions[this.questionNumber].sum) + ' руб'; // увеличение счетчика общей суммы
 			if (this.questionNumber++ === 14){ //переходим к следующему вопросу и проверяем  его номер
 				this.win(); // победа
 			} else {
+				if (this.questionNumber === 5) this.message('nofire1');
+				if (this.questionNumber === 10) this.message('nofire2');
 				this.showQuestion(); // показываем следующий вопрос
 			}
 		} else {
@@ -196,33 +201,97 @@ let game = {
 		this.questions=arr_questions;
 	},
 
-	message: function(parametr) { //выводит сообщение с уведомлением параметры: win, fail
+	message: function(parametr) { //выводит сообщение с уведомлением параметры: win, fail, getName
 		let main = document.querySelector('.main');
 		let div_WinBlock = document.createElement('div');
 		div_WinBlock.setAttribute('class', 'main__win-block');
 		let div = document.createElement('div');
 		div.setAttribute('class', 'main__win');
 		let p = document.createElement('p'); // текст сообщения
+		p.setAttribute('class', 'main__win-p');
 		let mess;
-		if (parametr === 'win'){
-			mess = 'Поздравляем, вы выйграли '+ this.questions[this.questionNumber-1].sum + ' руб.';
-		} else if (parametr === 'fail'){
-			if (this.questionNumber-1 < 4) {
-				mess = 'Вы проиграли. Ваш выйгрыш 0 руб.';
-			} else if (this.questionNumber-1 < 9) {
-				mess = 'Вы проиграли. Ваш выйгрыш 1 000 руб.';
-			} else {
-				mess = 'Вы проиграли. Ваш выйгрыш 32 000 руб.';
-			}
+		switch (parametr) {
+			case 'win':
+				mess = 'Поздравляем, вы выйграли </br></br></br><span class="span2">'+ this.questions[this.questionNumber-1].sum + ' руб.</span>';
+				this.user.totalMem += this.questions[this.questionNumber-1].sum;
+				break;
+			case 'nofire1':
+				mess = 'Несгораеммая сумма.</br></br></br><span class="span2">1 000 руб.</span>';
+				break;
+			case 'nofire2':
+				mess = 'Несгораеммая сумма.</br></br></br><span class="span2">32 000 руб.</span>';
+				break;
+			case 'fail':
+				if (this.questionNumber-1 < 4) {
+					mess = 'Вы проиграли. Ваш выйгрыш</br></br></br><span class="span2">0 руб.</span>';
+				} else if (this.questionNumber-1 < 9) {
+					mess = 'Вы проиграли. Ваш выйгрыш</br></br></br><span class="span2">1 000 руб.</span>';
+					this.user.totalMem += 1000;
+				} else {
+					mess = 'Вы проиграли. Ваш выйгрыш</br></br></br><span class="span2">32 000 руб.</span>';
+					this.user.totalMem += 32000;
+				}
+				break;
+			case 'getName':
+				mess = 'Введите Ваше имя.</br><span class="span1">(Используйте английские буквы и цифры, минимум три символа.)</span>';
+				break;
 		}
-		p.textContent = mess;
+		p.innerHTML = mess;
 		div.appendChild(p);
+		if (parametr === 'getName'){
+			let input = document.createElement('input'); // создае поле для ввода name
+			input.setAttribute('type', 'text');
+			input.setAttribute('maxlength', 20);
+			input.setAttribute('class', 'main__win-input');
+			input.addEventListener('input', function(){
+				if (!this.value.match(/^[a-zA-Z0-9а-яА-Я]{0,20}$/)){ // ограничение на вводимые символы
+					this.setAttribute('class', 'main__win-input main__win-input_fail');
+					this.value = this.value.substr(0, this.value.length-1); // удаляем последний введенный символ
+					let thisInput = this;
+					let timer = setTimeout(function () { // анимация неверно использованных символов
+						thisInput.setAttribute('class', 'main__win-input');
+					}, 500);
+				} else {
+					this.setAttribute('class', 'main__win-input');
+				}
+			});
+			div.appendChild(input);
+		}
 		let btn = document.createElement('button');
+		btn.setAttribute('class', 'main__win-button');
 		btn.textContent = 'OK';
-		btn.addEventListener('click', function () {game.reload()}); // очищаем интерфейс, готовим новую игру
+		btn.addEventListener('click', function () { //нажатие на кнопку ОК
+			if (parametr === 'getName'){ // запоминаем name, если нужно
+				let input = document.querySelector('.main__win-input');
+				if (input.value.length >2) { //имя минимум 3 символа
+					game.user.name = input.value;
+					document.querySelector('.user__name').childNodes[0].textContent = game.user.name;
+					game.init(); // создаем новую викторину
+				} else {
+					input.setAttribute('class', 'main__win-input main__win-input_fail');
+					let timer = setTimeout(function () { // анимация неверно использованных символов
+						input.setAttribute('class', 'main__win-input');
+					}, 500);
+					return;
+				}
+			} else if (!(parametr === 'nofire1' || parametr === 'nofire2')) {
+				game.reload(); // перезапуск игры если win/fail
+			}
+
+			let div_WinBlock = document.querySelector('.main__win-block'); //удаляем всплывающее сообщение
+			if (div_WinBlock) {
+				div_WinBlock.parentNode.removeChild(div_WinBlock);
+			}
+
+			document.querySelector('.user__total').childNodes[0].textContent = 'Всего: ' + game.user.totalMem + ' руб'; // изменить счетчик общей
+			// суммы
+		});
 		div.appendChild(btn);
 		div_WinBlock.appendChild(div);
 		main.appendChild(div_WinBlock);
+		if(document.querySelector('.main__win-input')){
+			document.querySelector('.main__win-input').focus();
+		}
 	},
 
 	reload: function () { //перезагрузка игры
@@ -239,12 +308,6 @@ let game = {
 
 		this.sumTable(true); // обновляем таблицу выйгрыша
 		this.varListener.remove(); // удаляем обработчик событий с кнопок с вариантами ответов
-
-		let div_WinBlock = document.querySelector('.main__win-block'); //удаляем всплывающее сообщение
-		if (div_WinBlock) {
-			div_WinBlock.parentNode.removeChild(div_WinBlock);
-		}
-
 	},
 
 	showQuestion: function () { // показывает новый вопрос в интерфейсе
@@ -312,6 +375,10 @@ let game = {
 window.onload = function () {
 	let btnStart = document.querySelector('.main__btnStart');
 	btnStart.addEventListener('click', function() {
-		game.init(); // создаем новую викторину
+		if (game.user.name === '') { // запрашиваем имя игрока
+			game.message('getName');
+		} else {
+			game.init(); // создаем новую викторину
+		}
 	});
 };

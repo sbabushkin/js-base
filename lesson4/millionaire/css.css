@@ -36,7 +36,9 @@ body {
 		}
 
 			.user__name {
+				box-sizing: border-box;
 				flex: 1 0 auto;
+				padding: 0 5px;
 			}
 
 				.user__name p{
@@ -44,7 +46,9 @@ body {
 				}
 
 			.user__score {
+				box-sizing: border-box;
 				flex: 1 0 auto;
+				padding: 0 5px;
 			}
 
 				.user__score p{
@@ -52,7 +56,9 @@ body {
 				}
 
 			.user__total {
+				box-sizing: border-box;
 				flex: 1 0 auto;
+				padding: 0 5px;
 			}
 
 				.user__total p{
@@ -61,10 +67,12 @@ body {
 
 			.user__hints {
 				align-items: center;
+				box-sizing: border-box;
 				display: flex;
 				flex: 0 0 200px;
 				flex-flow: row nowrap;
 				justify-content: space-around;
+				padding: 0 5px;
 			}
 
 				.user__hint-hall {
@@ -276,6 +284,7 @@ body {
 				width: 100%;
 			}
 
+			/*  Всплывающее окно с сообщением */
 				.main__win {
 					align-items: center;
 					background: #06202a;
@@ -287,18 +296,38 @@ body {
 					justify-content: center;
 					height: 200px;
 					width: 300px;
-					padding: 50px;
+					padding: 10px 40px;
 				}
 
-				.main__win p {
+				.main__win-p {
 					color: #baffff;
 					flex: 0 0 100%;
 					margin-bottom: 20px;
+					text-align: center;
 				}
 
-				.main__win button {
+					.main__win-p .span1 {
+						font-size: 0.7em;
+					}
+
+					.main__win-p .span2 {
+						font-size: 1.3em;
+					}
+
+				.main__win-input {
+					flex: 0 0 90%;
+					margin-bottom: 20px;
+				}
+
+				.main__win-input_fail {
+					background: rgba(227, 0, 20, 0.75);
+				}
+
+				.main__win-button {
 					border: #02020b;
 					border-radius: 5px;
+					cursor: pointer;
 					color: #02020b;
 					flex: 0 0 50px;
+					outline: none;
 				}
