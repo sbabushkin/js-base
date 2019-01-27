@@ -1,11 +1,12 @@
-.Board{
+.Board {
     width: 490px;
     height: 490px;
     margin: 100px auto;
     display: block;
     background: url("img/400.jpg") no-repeat center;
 }
-.wordWhite{
+
+.wordWhite {
     width: 410px;
     height: 40px;
     padding: 0 38px;
@@ -13,7 +14,7 @@
     margin-top: -8px;
 }
 
-.wordBlack{
+.wordBlack {
     width: 410px;
     height: 40px;
     padding: 0 38px;
@@ -21,7 +22,7 @@
     background: #f9c6a0;
 }
 
-.numberWhite{
+.numberWhite {
     width: 47px;
     height: 410px;
     float: left;
@@ -29,17 +30,16 @@
 
 }
 
-.numberBlack{
+.numberBlack {
     width: 50px;
     height: 395px;
     float: right;
     transform: rotate(180deg);
     background: #f9c6a0;
 
-
 }
 
-.numCell{
+.numCell {
     height: 30px;
     width: 45px;
     text-align: center;
@@ -47,9 +47,9 @@
     color: #12010b;
     background: #f9c6a0;
 
-
 }
-.wordCell{
+
+.wordCell {
     height: 30px;
     width: 50px;
     float: left;
@@ -58,13 +58,14 @@
     color: #11030e;
 
 }
+
 .board {
     width: 400px;
     height: 400px;
     margin: 0 40px;
 
-
 }
+
 .boardCell {
     width: 39px;
     height: 39px;
