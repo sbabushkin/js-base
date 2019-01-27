@@ -1,0 +1,76 @@
+.Board{
+    width: 490px;
+    height: 490px;
+    margin: 100px auto;
+    display: block;
+    background: url("img/400.jpg") no-repeat center;
+}
+.wordWhite{
+    width: 410px;
+    height: 40px;
+    padding: 0 38px;
+    background: #f9c6a0;
+    margin-top: -8px;
+}
+
+.wordBlack{
+    width: 410px;
+    height: 40px;
+    padding: 0 38px;
+    transform: rotate(180deg);
+    background: #f9c6a0;
+}
+
+.numberWhite{
+    width: 47px;
+    height: 410px;
+    float: left;
+    background: #f9c6a0;
+
+}
+
+.numberBlack{
+    width: 50px;
+    height: 395px;
+    float: right;
+    transform: rotate(180deg);
+    background: #f9c6a0;
+
+
+}
+
+.numCell{
+    height: 30px;
+    width: 45px;
+    text-align: center;
+    padding-top: 20px;
+    color: #12010b;
+    background: #f9c6a0;
+
+
+}
+.wordCell{
+    height: 30px;
+    width: 50px;
+    float: left;
+    padding-top: 10px;
+    text-align: center;
+    color: #11030e;
+
+}
+.board {
+    width: 400px;
+    height: 400px;
+    margin: 0 40px;
+
+
+}
+.boardCell {
+    width: 39px;
+    height: 39px;
+    float: left;
+    padding: 5px;
+    text-align: center;
+}
+
+
