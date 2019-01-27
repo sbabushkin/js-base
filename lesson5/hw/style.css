@@ -1,0 +1,52 @@
+#wrapper {
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    
+}
+div.chessdeck {
+    margin: 5px 20px 5px 20px;
+    border: 1px solid black;
+    padding: 45px 15px 5px 30px;
+    width: 621px;
+    height: 621px;
+    border-radius: 10px;      
+}
+
+.cell {
+    width: 69px;
+    height: 69px;
+    border: 1px solid black;
+}
+.row {
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.h0 {
+    margin-right: 10px;
+    color: #808080; 
+}
+
+.letter {
+    width: 71px;
+    height: 71px;
+    border-top: 1px solid black;
+    }
+.letter h3 {
+    padding-left: 25px;
+    margin-top: 5px;
+    color: #808080;
+}
+.borderTop {
+    border-top: 2px solid black;
+}
+.borderRight {
+    border-right: 2px solid black;
+}
+.borderLeft {
+    border-left: 2px solid black;
+}
+.black {
+    background: #808080;
+}
