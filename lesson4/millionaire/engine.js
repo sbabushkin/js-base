@@ -55,7 +55,7 @@ let game = {
 		remove: function () {//удаляет обработчики событий с кнопок с вариантами ответов
 			let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
 			for (let j = 0; j < 4; j++) {
-				variant[j].setAttribute('class', 'main__questVar');
+				variant[j].setAttribute('class', 'main__questVar main__questVar_bgBlue');
 				variant[j].removeEventListener('click', game.varListener.varListenerHandler);
 			}
 		},
@@ -180,7 +180,7 @@ let game = {
 							arr_questions[arr_questions.length-1].sum = 64000;
 							break;
 						case 12:
-							arr_questions[arr_questions.length-1].sum = 12500;
+							arr_questions[arr_questions.length-1].sum = 125000;
 							break;
 						case 13:
 							arr_questions[arr_questions.length-1].sum = 250000;
@@ -203,12 +203,12 @@ let game = {
 
 	message: function(parametr) { //выводит сообщение с уведомлением параметры: win, fail, getName
 		let main = document.querySelector('.main');
-		let div_WinBlock = document.createElement('div');
-		div_WinBlock.setAttribute('class', 'main__win-block');
+		let div_messageBlock = document.createElement('div');
+		div_messageBlock.setAttribute('class', 'main__message-block');
 		let div = document.createElement('div');
-		div.setAttribute('class', 'main__win');
+		div.setAttribute('class', 'main__message');
 		let p = document.createElement('p'); // текст сообщения
-		p.setAttribute('class', 'main__win-p');
+		p.setAttribute('class', 'main__message-p');
 		let mess;
 		switch (parametr) {
 			case 'win':
@@ -242,55 +242,54 @@ let game = {
 			let input = document.createElement('input'); // создае поле для ввода name
 			input.setAttribute('type', 'text');
 			input.setAttribute('maxlength', 20);
-			input.setAttribute('class', 'main__win-input');
+			input.setAttribute('class', 'main__message-input');
 			input.addEventListener('input', function(){
 				if (!this.value.match(/^[a-zA-Z0-9а-яА-Я]{0,20}$/)){ // ограничение на вводимые символы
-					this.setAttribute('class', 'main__win-input main__win-input_fail');
+					this.setAttribute('class', 'main__message-input main__message-input_fail');
 					this.value = this.value.substr(0, this.value.length-1); // удаляем последний введенный символ
 					let thisInput = this;
 					let timer = setTimeout(function () { // анимация неверно использованных символов
-						thisInput.setAttribute('class', 'main__win-input');
+						thisInput.setAttribute('class', 'main__message-input');
 					}, 500);
 				} else {
-					this.setAttribute('class', 'main__win-input');
+					this.setAttribute('class', 'main__message-input');
 				}
 			});
 			div.appendChild(input);
 		}
 		let btn = document.createElement('button');
-		btn.setAttribute('class', 'main__win-button');
+		btn.setAttribute('class', 'main__message-button');
 		btn.textContent = 'OK';
 		btn.addEventListener('click', function () { //нажатие на кнопку ОК
 			if (parametr === 'getName'){ // запоминаем name, если нужно
-				let input = document.querySelector('.main__win-input');
+				let input = document.querySelector('.main__message-input');
 				if (input.value.length >2) { //имя минимум 3 символа
 					game.user.name = input.value;
 					document.querySelector('.user__name').childNodes[0].textContent = game.user.name;
 					game.init(); // создаем новую викторину
 				} else {
-					input.setAttribute('class', 'main__win-input main__win-input_fail');
+					input.setAttribute('class', 'main__message-input main__message-input_fail');
 					let timer = setTimeout(function () { // анимация неверно использованных символов
-						input.setAttribute('class', 'main__win-input');
+						input.setAttribute('class', 'main__message-input');
 					}, 500);
 					return;
 				}
 			} else if (!(parametr === 'nofire1' || parametr === 'nofire2')) {
 				game.reload(); // перезапуск игры если win/fail
+				document.querySelector('.user__total').childNodes[0].textContent = 'Всего: ' + game.user.totalMem + ' руб'; // изменить счетчик общей
+				// суммы
 			}
 
-			let div_WinBlock = document.querySelector('.main__win-block'); //удаляем всплывающее сообщение
-			if (div_WinBlock) {
-				div_WinBlock.parentNode.removeChild(div_WinBlock);
+			let div_messageBlock = document.querySelector('.main__message-block'); //удаляем всплывающее сообщение
+			if (div_messageBlock) {
+				div_messageBlock.parentNode.removeChild(div_messageBlock);
 			}
-
-			document.querySelector('.user__total').childNodes[0].textContent = 'Всего: ' + game.user.totalMem + ' руб'; // изменить счетчик общей
-			// суммы
 		});
 		div.appendChild(btn);
-		div_WinBlock.appendChild(div);
-		main.appendChild(div_WinBlock);
-		if(document.querySelector('.main__win-input')){
-			document.querySelector('.main__win-input').focus();
+		div_messageBlock.appendChild(div);
+		main.appendChild(div_messageBlock);
+		if(document.querySelector('.main__message-input')){
+			document.querySelector('.main__message-input').focus();
 		}
 	},
 
@@ -373,7 +372,7 @@ let game = {
 };
 
 window.onload = function () {
-	let btnStart = document.querySelector('.main__btnStart');
+	let btnStart = document.querySelector('.main-show__control-btnStart');
 	btnStart.addEventListener('click', function() {
 		if (game.user.name === '') { // запрашиваем имя игрока
 			game.message('getName');

@@ -12,7 +12,7 @@ body {
 }
 
 	.main {
-		background: url("images/background.jpg") no-repeat center;
+		background: url("images/Dibrov.png") no-repeat left, url("images/background.jpg") no-repeat center;
 		background-size: contain;
 		align-content: center;
 		display: flex;
@@ -24,6 +24,7 @@ body {
 		width: 800px;
 	}
 
+		/* верхняя панель с информацией для пользователя + подсказки */
 		.user-block {
 			box-sizing: border-box;
 			align-items: center;
@@ -162,36 +163,105 @@ body {
 						width: 60px;
 					}
 
-		.main__btnStart-block {
+		/* центральный блок с таблом для подсказок, кнопок уравления и ведущего с сообщениями */
+		.main__show-block {
 			align-items: center;
 			display: flex;
 			flex: 0 0 75%;
 			flex-flow: row nowrap;
-			justify-content: center;
+			justify-content: space-between;
 			margin-top: 25px;
 		}
 
-			.main__btnStart {
+			/* таблом для подсказок и кнопки "Забрать сумму" */
+			.main__show-btnStart-block {
 				align-items: center;
-				background: url("images/buttonStart.png") no-repeat center #06202a;
-				background-size: contain;
-				border: none;
-				border-radius: 50%;
-				box-shadow: 0 0 25px 10px #06202a;
-				cursor: pointer;
-				flex: 0 0 auto;
-				height: 200px;
-				width: 200px;
-				outline: none;
+				display: flex;
+				flex: 0 0 40%;
+				flex-flow: column nowrap;
+				justify-content: space-between;
+				height: 100%;
 			}
 
-			.main__btnStart:active {
-				box-shadow: 0 0 25px 15px #06202a;
+			.main__show-control {
+				align-items: center;
+				display: flex;
+				flex: 0 0 60%;
+				flex-flow: column nowrap;
+				justify-content: space-between;
+				height: 100%;
 			}
+
+				.main-show__control-message {
+					flex: 0 0 auto;
+					height: 75%;
+				}
+
+				.main-show__control-block {
+					align-self: flex-end;
+					align-items: center;
+					display: flex;
+					flex: 0 0 25%;
+					flex-flow: row nowrap;
+					justify-content: space-around;
+					margin-right: 10px;
+					width: 65%;
+				}
+
+					.main-show__control-btnTakeMoney {
+						align-self: flex-end;
+						background: url("images/buttonTakeMoney.png") no-repeat center;
+						background-size: cover;
+						border: none;
+						border-radius: 15px;
+						color: aliceblue;
+						cursor: pointer;
+						flex: 0 0 auto;
+						font-size: 0.7em;
+						height: 40px;
+						margin: 5px;
+						width: 80px;
+						outline: none;
+					}
+
+						.main-show__control-btnTakeMoney:hover {
+							border-radius: 16px;
+							height: 42px;
+							width: 84px;
+						 }
+
+						.main-show__control-btnTakeMoney:active {
+							border-radius: 15px;
+							height: 40px;
+							width: 80px;
+						}
+
+					.main-show__control-btnStart {
+						background: url("images/buttonStart.png") no-repeat center #06202a;
+						background-size: cover;
+						border: none;
+						border-radius: 50%;
+						cursor: pointer;
+						flex: 0 0 auto;
+						height: 60px;
+						margin: 5px;
+						width: 60px;
+						outline: none;
+					}
+
+						.main-show__control-btnStart:hover {
+							height: 62px;
+							width: 62px;
+						}
+
+						.main-show__control-btnStart:active {
+							height: 60px;
+							width: 60px;
+						}
 
 		.main__sumTable-block {
 			flex: 0 0 25%;
-			margin-top: 25px;
+			margin: 25px 0;
 		}
 				.main__sumTable {
 					border-collapse: collapse;
@@ -214,6 +284,7 @@ body {
 						color: white;
 					}
 
+		/* Блок с вопросами и ответами */
 		.main__quest-block {
 			box-sizing: border-box;
 			align-items: center;
@@ -221,7 +292,7 @@ body {
 			flex: 0 0 100%;
 			flex-flow: row wrap;
 			justify-content: center;
-			padding: 30px 50px 10px;
+			padding: 10px 50px;
 		}
 
 			.main__questBoard {
@@ -274,7 +345,8 @@ body {
 					padding: 0 40px;
 				}
 
-			.main__win-block {
+			/* блок с сообщениями */
+			.main__message-block {
 				align-items: center;
 				background: rgba(6, 32, 41, 0.3);
 				display: flex;
@@ -285,7 +357,7 @@ body {
 			}
 
 			/*  Всплывающее окно с сообщением */
-				.main__win {
+				.main__message {
 					align-items: center;
 					background: #06202a;
 					border: #02020b;
@@ -299,31 +371,31 @@ body {
 					padding: 10px 40px;
 				}
 
-				.main__win-p {
+				.main__message-p {
 					color: #baffff;
 					flex: 0 0 100%;
 					margin-bottom: 20px;
 					text-align: center;
 				}
 
-					.main__win-p .span1 {
+					.main__message-p .span1 {
 						font-size: 0.7em;
 					}
 
-					.main__win-p .span2 {
+					.main__message-p .span2 {
 						font-size: 1.3em;
 					}
 
-				.main__win-input {
+				.main__message-input {
 					flex: 0 0 90%;
 					margin-bottom: 20px;
 				}
 
-				.main__win-input_fail {
+				.main__message-input_fail {
 					background: rgba(227, 0, 20, 0.75);
 				}
 
-				.main__win-button {
+				.main__message-button {
 					border: #02020b;
 					border-radius: 5px;
 					cursor: pointer;
