@@ -50,3 +50,14 @@ div.rightColumn div {
   margin-top: 5px;
   border-bottom: '1px solid grey';
 }
+
+
+
+.black {
+  background-color: #444;
+}
+
+td {
+  width: 100px;
+  height: 100px;
+}
