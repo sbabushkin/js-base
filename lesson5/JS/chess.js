@@ -9,6 +9,7 @@ const boardCell = function () {
     this.cellType = 'none';
     this.figureColor = 'white';
     this.icon = ''; //black/white
+    this.changed = false;
 }
 const chessBoard = [[new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell]
                     , [new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell]
@@ -21,6 +22,7 @@ const chessBoard = [[new boardCell, new boardCell, new boardCell, new boardCell,
 const cellName = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
 function initBoard() {
+    let parentDiv = document.getElementById("sChessBoard");
     let legendXDiv = document.getElementsByClassName('legendX');
     for (let k = 0; k < legendXDiv.length; k++) {
         for (let l = 0; l < chessBoard.length; l++) {
@@ -30,7 +32,7 @@ function initBoard() {
             legendXDiv[k].appendChild(legendNameX);
         }
     }
-    for (let i = 0; i < chessBoard.length; i++) {
+    for (let i = chessBoard.length - 1; i >= 0; i--) {
         //заполняем легендуY
         let legendYDiv = document.getElementsByClassName('legendY');
         if (legendYDiv != null) {
@@ -41,8 +43,9 @@ function initBoard() {
             }
         }
         for (let j = 0; j < chessBoard[i].length; j++) {
-            chessBoard[i][j].cellType = '';
+            chessBoard[i][j].cellType = 'none';
             chessBoard[i][j].figureColor = '';
+            chessBoard[i][j].changed = false;
             if (i == 1) {
                 chessBoard[i][j].cellType = 'PAWN';
                 chessBoard[i][j].figureColor = 'white';
@@ -103,27 +106,6 @@ function initBoard() {
                 chessBoard[i][j].figureColor = 'black';
                 chessBoard[i][j].icon = '&#9818';
             }
-        }
-    }
-    return;
-}
-
-function change(id) {
-    for (let i = 0; i < chessBoard.length; i++) {
-        for (let j = 0; j < chessBoard[i].length; j++) {
-            if (chessBoard[i][j].id === id) {
-                let div = document.getElementById(id);
-                div.style = 'background-color: ' + 'gray';
-            }
-        }
-    }
-    return;
-}
-
-function chess() {
-    let parentDiv = document.getElementById("sChessBoard");
-    for (let i = chessBoard.length - 1; i >= 0; i--) {
-        for (let j = 0; j <= chessBoard[i].length - 1; j++) {
             //Рисуем поле доски
             var div = document.createElement('div');
             div.id = cellName[j] + '' + Number(i + 1);
@@ -141,9 +123,74 @@ function chess() {
                 parentDiv.appendChild(div);
             }
             chessBoard[i][j].id = cellName[j] + '' + Number(i + 1);
-            //      parentDiv.appendChild(div);
         }
     }
+    return;
+}
+
+function change(id) {
+    let turn = false;
+    let posi = 0
+        , posj = 0;
+    for (let i = 0; i < chessBoard.length; i++) {
+        for (let j = 0; j < chessBoard[i].length; j++) {
+            if (chessBoard[i][j].changed === true) {
+                turn = true;
+                posi = i;
+                posj = j;
+                break;
+            }
+        }
+        if (turn === true) {
+            break;
+        }
+    }
+        for (let i = 0; i < chessBoard.length; i++) {
+            for (let j = 0; j < chessBoard[i].length; j++) {
+                let div = document.getElementById(chessBoard[i][j].id);
+                if (turn === false) {
+                    if (chessBoard[i][j].id === id && chessBoard[i][j].cellType !== 'none') {
+                        chessBoard[i][j].cellColor = 'gray';
+                        chessBoard[i][j].changed = true;
+                    }
+                    else if ((i + 1 + j + 1) % 2 == 0) {
+                        chessBoard[i][j].cellColor = 'darkkhaki';
+                    }
+                    else {
+                        chessBoard[i][j].cellColor = 'white';
+                    }
+                } else {
+                    if (chessBoard[i][j].id === id && chessBoard[i][j].cellType == 'none') {
+                        chessBoard[i][j].cellType = chessBoard[posi][posj].cellType;
+                        chessBoard[i][j].figureColor = chessBoard[posi][posj].figureColor;
+                        chessBoard[i][j].icon = chessBoard[posi][posj].icon;
+                        
+                        chessBoard[posi][posj].cellType='none';
+                        chessBoard[posi][posj].figureColor='';
+                        chessBoard[posi][posj].icon='';
+                        chessBoard[posi][posj].changed = false;
+                    }
+                    if ((i + 1 + j + 1) % 2 == 0) {
+                        chessBoard[i][j].cellColor = 'darkkhaki';
+                    }
+                    else {
+                        chessBoard[i][j].cellColor = 'white';
+                    }
+                }
+            }
+        }
+    return refresh();
+}
+
+function refresh() {
+    for (let i = chessBoard.length - 1; i >= 0; i--) {
+        for (let j = 0; j < chessBoard[i].length; j++) {
+            let div = document.getElementById(chessBoard[i][j].id);
+            div.style = 'background-color:' + chessBoard[i][j].cellColor;
+            div.innerHTML = chessBoard[i][j].icon;
+        }
+    }
+    return;
 }
 window.onload = initBoard();
-window.onload = chess();
+//window.onload = chess();
