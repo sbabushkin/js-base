@@ -8,7 +8,8 @@ const boardCell = function () {
     this.width = 20;
     this.cellColor = 'white'; //colors: white/black #000/#FFF
     this.cellType = 'none';
-    this.figureColor = 'white'; //black/white
+    this.figureColor = 'white'; 
+    this.icon='';//black/white
 }
 const chessBoard = [[new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell]
                     , [new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell, new boardCell]
@@ -28,50 +29,62 @@ function initBoard() {
             if (i == 1) {
                 chessBoard[i][j].cellType = 'PAWN';
                 chessBoard[i][j].figureColor = 'white';
+                chessBoard[i][j].icon='&#9817';
             }
             if (i == 6) {
                 chessBoard[i][j].cellType = 'PAWN';
                 chessBoard[i][j].figureColor = 'black';
+                chessBoard[i][j].icon='&#9823';
             }
             if (i == 0 && (j == 0 || j == 7)) {
                 chessBoard[i][j].cellType = 'ROOK';
                 chessBoard[i][j].figureColor = 'white';
+                chessBoard[i][j].icon='&#9814';
             }
             if (i == 7 && (j == 0 || j == 7)) {
                 chessBoard[i][j].cellType = 'ROOK';
                 chessBoard[i][j].figureColor = 'black';
+                chessBoard[i][j].icon='&#9820';
             }
             if (i == 0 && (j == 1 || j == 6)) {
                 chessBoard[i][j].cellType = 'HORSE';
                 chessBoard[i][j].figureColor = 'white';
+                chessBoard[i][j].icon='&#9816';
             }
             if (i == 7 && (j == 1 || j == 6)) {
                 chessBoard[i][j].cellType = 'HORSE';
                 chessBoard[i][j].figureColor = 'black';
+                chessBoard[i][j].icon='&#9822';
             }
             if (i == 0 && (j == 2 || j == 5)) {
                 chessBoard[i][j].cellType = 'BISHOP';
                 chessBoard[i][j].figureColor = 'white';
+                chessBoard[i][j].icon='&#9815';
             }
             if (i == 7 && (j == 2 || j == 5)) {
                 chessBoard[i][j].cellType = 'BISHOP';
                 chessBoard[i][j].figureColor = 'black';
+                chessBoard[i][j].icon='&#9821';
             }
             if (i == 0 && (j == 3)) {
                 chessBoard[i][j].cellType = 'QUEEN';
                 chessBoard[i][j].figureColor = 'white';
+                chessBoard[i][j].icon='&#9813';
             }
             if (i == 7 && (j == 3)) {
                 chessBoard[i][j].cellType = 'QUEEN';
                 chessBoard[i][j].figureColor = 'black';
+                chessBoard[i][j].icon='&#9819';
             }
             if (i == 0 && (j == 4)) {
                 chessBoard[i][j].cellType = 'KING';
                 chessBoard[i][j].figureColor = 'white';
+                chessBoard[i][j].icon='&#9812';
             }
             if (i == 7 && (j == 4)) {
                 chessBoard[i][j].cellType = 'KING';
                 chessBoard[i][j].figureColor = 'black';
+                chessBoard[i][j].icon='&#9818';
             }
         }
     }
@@ -102,18 +115,19 @@ function chess() {
         }
         for (let j = 0; j <= chessBoard[i].length - 1; j++) {
             //Рисуем поле доски
-            var div1 = document.createElement('div');
-            div1.className = 'cell' + String(i) + String(j) + ' cells';
+            var div = document.createElement('div');
+            div.id = cellName[j]+''+Number(i+1);
+            div.className = 'cell' + String(i) + String(j) + ' cells';
             if ((i + 1 + j + 1) % 2 == 0) {
                 chessBoard[i][j].cellColor = 'darkkhaki';
             }
             else {
                 chessBoard[i][j].cellColor = 'white';
             }
-            div1.style = 'background-color:' + chessBoard[i][j].cellColor;
-            div1.innerHTML = String(cellName[j]) + String(i + 1) + ' ' + chessBoard[i][j].cellType + ' ' + chessBoard[i][j].figureColor;
+            div.style = 'background-color:' + chessBoard[i][j].cellColor;
+            div.innerHTML = chessBoard[i][j].icon;
             if (parentDiv != null) {
-                parentDiv.appendChild(div1);
+                parentDiv.appendChild(div);
             }
             //      parentDiv.appendChild(div);
         }

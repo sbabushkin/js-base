@@ -9,11 +9,18 @@
 }
 
 .cells {
-    height: 50px;
-    width: 50px;
-    outline: 1px solid #000;
+    height: 48px;
+    width: 48px;
+    border: 1px solid #000;
     float: left;
-    font-size: 8px;
+    font-size: 40px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.cells:hover {
+        border: 1px solid red;
+    cursor:all-scroll;
 }
 
 .board .legendY {
