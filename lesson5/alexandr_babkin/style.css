@@ -1,0 +1,104 @@
+.main-block {
+
+    width: 560px;
+    height: 560px;
+    margin: 30px auto;
+    border: 1px solid black;
+}
+
+.block {
+    width: 70px;
+    height: 70px;
+    float: left;
+}
+
+.black {
+    background: #000;
+}
+
+.white {
+    background: #fff;
+}
+
+.notation {
+    width: 630px;
+    height: 630px;
+    margin: 30px auto;
+    border: 1px solid black;
+    background: #fff;
+}
+.tableA {
+    display: table;
+    width: 560px;
+    height: 30px;
+    margin-left: 35px;
+    margin-top: 605px;
+    table-layout: auto;
+    position: absolute;
+}
+.tableA-row {
+    display: table-row;
+}
+.tableA-cell {
+    display: table-cell;
+    font-family: "Times New Roman", Georgia, Serif, serif;
+    font-weight: bold;
+    text-align: center;
+}
+.tableB {
+    display: table;
+    width: 560px;
+    height: 30px;
+    margin-left: 35px;
+    margin-top: 10px;
+    table-layout: auto;
+    position: absolute;
+}
+.tableB-row {
+    display: table-row;
+}
+.tableB-cell {
+    display: table-cell;
+    font-family: "Times New Roman", Georgia, Serif, serif;
+    font-weight: bold;
+    text-align: center;
+}
+.tableL {
+    display: table;
+    height: 560px;
+    width: 20px;
+    margin-left: 10px;
+    table-layout: auto;
+    position: absolute;
+}
+.tableL-row {
+    display: table-row;
+    height: 70px;
+
+}
+.tableL-cell {
+    display: table-cell;
+    font-family: "Times New Roman", Georgia, Serif, serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tableR {
+    display: table;
+    height: 560px;
+    width: 20px;
+    margin-left: 600px;
+    table-layout: auto;
+    position: absolute;
+}
+.tableR-row {
+    display: table-row;
+    height: 70px;
+
+}
+.tableR-cell {
+    display: table-cell;
+    font-family: "Times New Roman", Georgia, Serif, serif;
+    font-weight: bold;
+    text-align: center;
+}
