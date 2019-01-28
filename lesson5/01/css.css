@@ -1,12 +1,28 @@
+/* стили для доски */
+
 .chess>table {
 	border: 2px double black;
 	border-collapse: collapse;
 }
 
+.chess>table>tr {
+	align-items: center;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+}
+
+
 .chess>table>tr>td {
+	align-items: center;
 	border: 1px solid black;
-	height: 30px;
-	width: 30px;
+	box-sizing: border-box;
+	display: flex;
+	flex: 0 0 10%;
+	flex-flow: row nowrap;
+	justify-content: center;
+	height: 80px;
+	width: 80px;
 	text-align: center;
 }
 
@@ -49,3 +65,94 @@
 	border-bottom: none;
 	border-top: none;
 }
+
+.chess>table>tr:nth-child(1)>td:nth-child(1) {
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+}
+
+.chess>table>tr:nth-child(1)>td:nth-last-child(1) {
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+}
+
+.chess>table>tr:nth-last-child(1)>td:nth-child(1) {
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.chess>table>tr:nth-last-child(1)>td:nth-last-child(1) {
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+
+/* стили шахматные фигурки */
+.chess__figure {
+	height: 80%;
+	width: 80%;
+}
+
+
+.chess__black-bishop {
+	background: url(chess/black-bishop.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__black-king {
+	background: url(chess/black-king.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__black-knight {
+	background: url(chess/black-knight.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__black-pawn {
+	background: url(chess/black-pawn.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__black-queen {
+	background: url(chess/black-queen.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__black-rook {
+	background: url(chess/black-rook.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__white-bishop {
+	background: url(chess/white-bishop.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__white-king {
+	background: url(chess/white-king.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__white-knight {
+	background: url(chess/white-knight.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__white-pawn {
+	background: url(chess/white-pawn.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__white-queen {
+	background: url(chess/white-queen.png) no-repeat center;
+	background-size: contain;
+}
+
+.chess__white-rook {
+	background: url(chess/white-rook.png) no-repeat center;
+	background-size: contain;
+}
+
+
+
