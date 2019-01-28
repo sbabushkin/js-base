@@ -1,0 +1,40 @@
+.board {
+    width:1000px;
+    height: 1000px;
+}
+
+#sChessBoard {
+    width: 400px;
+    height: 400px;
+}
+
+.cells {
+    height: 50px;
+    width: 50px;
+    outline: 1px solid #000;
+    float: left;
+    font-size: 8px;
+}
+
+.board .legendY {
+    float: left;
+    height: 1000px;
+    width: 50px;
+    line-height: 50px;
+}
+
+.board .legendY:first-child {
+   text-align: right;
+    padding-right: 5px;
+}
+
+.board .legendY:last-child {
+    text-align: left;
+    padding-left: 5px;
+}
+
+.board .boardMain {
+    float: left;
+}
+
+
