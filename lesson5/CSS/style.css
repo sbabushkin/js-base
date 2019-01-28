@@ -17,6 +17,7 @@
 }
 
 .board .legendY {
+    padding-top: 25px;
     float: left;
     height: 1000px;
     width: 50px;
@@ -35,6 +36,20 @@
 
 .board .boardMain {
     float: left;
+}
+
+.cellsname {
+    float: left;
+    height: 25px;
+    width: 50px;
+    text-align: center;
+}
+
+
+
+.legendX {
+    float:none;
+    width: 100%;
 }
 
 
