@@ -1,4 +1,4 @@
-#wrup {
+#wrup, #wrupImg, wrupUnicod {
   width: 1020px;
   display: flex;
   flex-wrap: wrap;
@@ -13,8 +13,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #236;
-  border: 1px solid #236;
+  background-color: #632a00;
+  border: 1px solid #632a00;
 }
 
 .white {
@@ -23,8 +23,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #CCC;
-  border: 1px solid #236;
+  background-color: #f8ebaa;
+  border: 1px solid #632a00;
 }
 
 .text-black {
