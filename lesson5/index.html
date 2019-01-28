@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Урок #5</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" href="https://anatolykulikov.ru/demo/geekbrains/js/lesson_5/script.js">
+<script src="script.js" defer></script>
+</head>
+<body>
+<div class="container" style="padding: 20px 30px;">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4">Урок #5</h1>
+            <p class="lead">Создать функцию, генерирующую шахматную доску. При этом можно использовать любые html-теги по своему желанию.</p>
+            <ol>
+                <li>Доска должна быть разлинована соответствующим образом, т.е. чередовать черные и белые ячейки. Строки должны нумероваться числами от 1 до 8, столбцы – латинскими буквами A, B, C, D, E, F, G, H.</li>
+                <li>Заполнить созданную таблицу буквами, отвечающими за шахматную фигуру, например К-король, Ф – ферзь и тп., причем все фигуры должны стоять на своих местах и быть соответственно черными и белыми.</li>
+                <li>* Заменить буквы, обозначающие фигуры картинками.</li>
+            </ol>
+        </div>
+        <div class="col-12">
+            <button type="button" class="btn btn-primary" onclick="generateChess();">Сгенерировать шахматную доску</button>
+            <div class="chesstable" id="chesstable"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
