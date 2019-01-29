@@ -1,0 +1,66 @@
+.wrapper {
+}
+
+.shop {
+}
+
+.catalog {
+	align-items: stretch;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+	.catalog__item {
+		align-content: space-around;
+		display: flex;
+		flex: 0 0 32%;
+		flex-flow: column nowrap;
+		justify-content: flex-start;
+	}
+
+		.catalog__item-head {
+			box-sizing: border-box;
+			flex: 0 0 auto;
+			width: 100%;
+		}
+
+		.catalog__item-img-block {
+			align-items: center;
+			display: flex;
+			flex: 0 0 auto;
+			flex-flow: row wrap;
+			justify-content: center;
+			height: 50%;
+		}
+
+			.catalog__item-img {
+				max-height: 80%;
+				max-width: 80%;
+			}
+
+		.catalog__item-bay {
+			box-sizing: border-box;
+			flex: 0 0 auto;
+			width: 40%;
+		}
+
+		.catalog__item-table {
+			box-sizing: border-box;
+			flex: 0 0 auto;
+			width: 100%;
+		}
+
+
+/* кнопка показать/скрыть корзину */
+.busket__btn {
+	background: #baffff;
+	border: 1px solid #33424a;
+	border-radius: 15px;
+	outline: none;
+	padding: 3px 5px;
+}
+
+.busket__btn:active {
+	box-shadow: 0 0 2px 2px #4E7C9B;
+}
