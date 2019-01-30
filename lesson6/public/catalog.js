@@ -2,7 +2,8 @@ let catalogDb = {
 	// перечень товаров в категории Items
 	_items: {},
 	idStart: 9990,
-	placeHolderImg: './public/placeholder.jpg',
+	// по-умолчанию, "пустая" картинка
+	placeHolderImg: './public/placeholder.jpg', 
 	// ссылка на items:
 	get items(){
 		return this._items;
@@ -162,43 +163,43 @@ let catalogDb = {
 			return;
 		}
 	},
-	// проверяем, есть ли картинка по ссылке
-	htmlPictureCheck(src, fallback){
+	// create HTML Collection IMG element and проверяем, есть ли картинка по ссылке
+	htmlPictureCreateAndCheck(src){
+ 
+		const ph = this.placeHolderImg; // link to placeholder
+		const newImg = new Image(); // creating new collection element
+		/* checking if file on link exists */
+		newImg.onerror = () => { newImg.src = ph; /*console.log(`picCreate: ${src} failed`)*/} // if failed - putting placeholder pic
+		/* checking if file on link exists */
+		newImg.onload = () => {/*console.log(`picCreate: ${src} OK`)*/}
 
-	    // let img = new Image();
-	    // img.onload = () => {return src}; 
-	    // img.onerror = () => {return fallback};
-	    // img.src = src;
+		newImg.src = src; // putting src
+		newImg.classList.add('galleryImg'); // adding class
 
-
-
-		// let image = new Image();
-		// console.log(src);
-		// image.src = src;
-		// console.log(image.width);
-		// if(image.width === 0){
-		// 	return fallback;
-		// } else {
-		// 	return src;
-		// }
-
+		// console.log(newImg)
+		return newImg;
 	},
-	// в текущей реализации, предполагается, что у меня только 3 картинки на объект, конечно, в реальном мире нужно использовать массив в котором не определенное количество элементов. Функции создания галереи не привязаны к количеству элементов, однако, функция отображения основного изображения, а так же изображения в каталоге нужно будет переделывать.
+	/*
+	в текущей реализации, предполагается, что у меня только 3 картинки на объект, конечно, в реальном мире нужно использовать массив в котором не определенное количество элементов. Функции создания галереи не привязаны к количеству элементов, однако, функция отображения основного изображения, а так же изображения в каталоге нужно будет переделывать.
+	*/
+	// htmlGeneratePreviewGallery - генерит объекты html коллекции IMG
 	htmlGeneratePreviewGallery(id){
 		/*
-			<img class='galleryImg' src='' />
-			<img class='galleryImg' src='' />
-			<img class='galleryImg' src='' />
+			<img class='galleryImg' src='' alt='' />
+			<img class='galleryImg' src='' alt='' />
+			<img class='galleryImg' src='' alt='' />
 		*/
 		const itemLink = this.items[id];
 		// checking if images exist, if not -> putting placeholder img
-		const img1src = itemLink.img;
-		const img2src = itemLink.img2;
-		const img3src = itemLink.img3;
-
-		const result = `<img class='galleryImg' src='${img1src}' alt='img' />
-						<img class='galleryImg' src='${img2src}' alt='img2' />
-						<img class='galleryImg' src='${img3src}' alt='img3' />`;
+		const img = this.htmlPictureCreateAndCheck(itemLink.img);
+		img.alt = 'img';
+		const img2 = this.htmlPictureCreateAndCheck(itemLink.img2);
+		img2.alt = 'img2';
+		const img3 = this.htmlPictureCreateAndCheck(itemLink.img3);
+		img3.alt = 'img3';
+		// array of HTMLCollection objects
+		result = [img, img2, img3];
+		// console.log(result.join(''));
 		return result;
 
 	},
@@ -268,6 +269,8 @@ let catalogDb = {
 			}	
 		}
 
+
+
 		// now cleaning background selection
 
 		/*
@@ -276,13 +279,24 @@ let catalogDb = {
 
 		cdb.htmlCleanPreviewPicturesBack();
 
-		// adding bg to correct elemtn
+		// adding bg to correct element
 		cdb.htmlAddPreviewPicturesBack(newChosenIndex);
+	},
+	// removes elements in picture gallery
+	htmlKillPictureGallery(){
+		const imagesPreviewLink = document.getElementsByClassName('galleryImg');
+		// console.log(imagesPreviewLink);
+		for(let i=imagesPreviewLink.length-1; i>=0; i--){
+			// console.log(`current ${i}`)
+			imagesPreviewLink[i].remove();
+			// console.log(`kill ${imagesPreviewLink[i]}`);
+		}
 	},
 	htmlPictureModule(id){
 		/*
 			NOTE that in order to compare images i use ALT attribute of IMG tag
 		*/
+		
 
 		// Get the modal
 		const modal = document.getElementById('myModal');
@@ -309,6 +323,8 @@ let catalogDb = {
 			// When the user clicks on <span> (x), close the modal
 			closeSpan.onclick = () => { 
 			  modal.style.display = "none";
+			  /* ON CLOSE - REMOVES items in gallery */
+			  this.htmlKillPictureGallery();
 			}
 		
 			/* putting previev gallery */
@@ -316,7 +332,13 @@ let catalogDb = {
 					/* putting previev gallery */
 			const previewLink = document.getElementById('preview');
 
-			this.htmlEdit(previewLink, this.htmlGeneratePreviewGallery(id));
+			/* вот тут жесть : ) */
+			// htmlGeneratePreviewGallery - генерит объекты html коллекции IMG
+			const previewItems = this.htmlGeneratePreviewGallery(id);
+			// console.log(previewItems);
+			for(let i=0;i<previewItems.length;i++){
+				this.htmlAppend(previewLink, previewItems[i]);
+			}
 
 			// adding event listener on images click
 			const imagesPreviewLink = document.getElementsByClassName('galleryImg');
@@ -341,7 +363,7 @@ let catalogDb = {
 			document.getElementById('arrowRight').addEventListener('click', this.htmlArrowFunction);
 			document.getElementById('arrowLeft').addEventListener('click', this.htmlArrowFunction);
 
-			// func(arrow)
+
 
 
 			return;	
@@ -352,7 +374,7 @@ let catalogDb = {
 const cdb = catalogDb; // link to main obj
 
 /* Добавляем предметы в БД */
-cdb.addItem('Грелка', 50, 'KKG-001', './public/1.jpg', './public/2.jpg', './public/3.jpg', 'Описание продукта – это главное основание для покупки. От того, сможете ли вы убедить посетителя в потребности в вашем товаре зависит купит он его или нет. Страничка товара — это последний пункт в воронке продаж перед тем, как пользователь нажмет «оформить заказ».');
+cdb.addItem('Грелка', 50, 'KKG-001', './public/1.jpg', './public/22.jpg', './public/3.jpg', 'Описание продукта – это главное основание для покупки. От того, сможете ли вы убедить посетителя в потребности в вашем товаре зависит купит он его или нет. Страничка товара — это последний пункт в воронке продаж перед тем, как пользователь нажмет «оформить заказ».');
 cdb.addItem('Утюг', 100,'Samsung G433', './public/1.jpg', './public/2.jpg', './public/3.jpg', 'Описание продукта – это главное основание для покупки. От того, сможете ли вы убедить посетителя в потребности в вашем товаре зависит купит он его или нет. Страничка товара — это последний пункт в воронке продаж перед тем, как пользователь нажмет «оформить заказ».');
 cdb.addItem('Кофеварка', 50, 'Bork F123', './public/1.jpg', './public/2.jpg', './public/3.jpg', 'Описание продукта – это главное основание для покупки. От того, сможете ли вы убедить посетителя в потребности в вашем товаре зависит купит он его или нет. Страничка товара — это последний пункт в воронке продаж перед тем, как пользователь нажмет «оформить заказ».');
 cdb.addItem('Пылесос', 250, 'Dison J21', './public/1.jpg', './public/2.jpg', './public/3.jpg', 'Описание продукта – это главное основание для покупки. От того, сможете ли вы убедить посетителя в потребности в вашем товаре зависит купит он его или нет. Страничка товара — это последний пункт в воронке продаж перед тем, как пользователь нажмет «оформить заказ».');
