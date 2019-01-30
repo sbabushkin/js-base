@@ -33,6 +33,12 @@
 							<li>
 								Реализовать функционал перехода между картинками внутри модального окна.
 							</li>
+							<li>
+								Доработать функцию замены картинки в галерее таким образом, чтобы она проверяла наличие картинки по указанному в src адресу.
+							</li>
+							<li>
+								* Добавить в галерею функцию перехода к следующему изображению. По сторонам от большой картинки должны быть стрелки “вперед” и “назад”, по нажатию на которые происходит замена изображения на следующее или предыдущее.
+							</li>
 						</ul>
 					</li>
 				</ol>
@@ -48,8 +54,10 @@
 		<!-- The Close Button -->
 		<span class="close">&times;</span>
 
+		<img id='arrowLeft' class='arrow left' src="./public/arrow.png">
 		<!-- Modal Content (The Image) -->
-		<img class="modal-content" id="img01">
+		<img class="modal-content" id="modalImage">
+		<img id='arrowRight' class='arrow' src="./public/arrow.png">
 
 		<!-- Modal Caption (Image Text) -->
 		<div id="caption"></div>
