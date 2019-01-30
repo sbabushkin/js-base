@@ -68,18 +68,23 @@ function generateChess() {
 
     document.getElementById('chesstable').style.padding = '10px';
     setColName();
-    for (let i = 1; i < 9; i++) {
+
+    // В нижеследующем цикле объявляем две переменные, которые нам помогут правильно сгенерировать шахматную доску
+    for (let strokeWatch = 1; strokeWatch < 9; strokeWatch++) {
+        // Переменная strokeWatch отвечает за текущую строку и ограничивает их количество (всего 8 строк)
         setStrokeName(stroke);
-        for (let j = 1; j < 9; j++) {
+        
+        for (let cellToggler = 1; cellToggler < 9; cellToggler++) {
+            // Переменная cellToggler введена для того, устанавливать порядок расставления белых/черных ячеек (сравнивая остатки от деления на 2 cellToggler и strokeWatch)
             let cell = document.createElement("div");
     
-            if (i%2 == j%2) {
+            if (strokeWatch % 2 == cellToggler % 2) {
                 cell.className = "chess_cell animated fadeIn";
-                cell.id = colNames[j-1] + '-' + stroke;
+                cell.id = colNames[cellToggler-1] + '-' + stroke;
                 document.getElementById('chesstable').appendChild(cell);
             } else {
                 cell.className = "chess_cell cell-black animated fadeIn";
-                cell.id = colNames[j-1] + '-' + stroke;
+                cell.id = colNames[cellToggler-1] + '-' + stroke;
                 document.getElementById('chesstable').appendChild(cell);
             }
         }
@@ -100,4 +105,12 @@ function generateChess() {
 
     buildOn = false;
 }
+function deleteChess () {
+    document.getElementById('chesstable').innerHTML = "";
+    document.getElementById('chesstable').style.padding = '0px';
+    buildOn = true;
+    cellsnumbers = 1;
+    stroke = 8;
+}
+
 Window.onload = generateChess;

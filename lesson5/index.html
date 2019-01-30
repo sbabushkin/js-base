@@ -5,7 +5,7 @@
 <title>Урок #5</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-<link rel="stylesheet" href="https://anatolykulikov.ru/demo/geekbrains/js/lesson_5/script.js">
+<link rel="stylesheet" href="https://anatolykulikov.ru/demo/geekbrains/js/lesson_5/style.css">
 <script src="script.js" defer></script>
 </head>
 <body>
@@ -21,7 +21,10 @@
             </ol>
         </div>
         <div class="col-12">
-            <button type="button" class="btn btn-primary" onclick="generateChess();">Сгенерировать шахматную доску</button>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary" onclick="generateChess();">Сгенерировать шахматную доску</button>
+                <button type="button" class="btn btn-outline-danger" onclick="deleteChess();">Удалить шахматную доску</button>
+            </div>
             <div class="chesstable" id="chesstable"></div>
         </div>
     </div>
