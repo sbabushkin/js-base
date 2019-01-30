@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Урок #6</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<div class="wrapper">
+    <main>
+        <div class="goods">
+            <h2>Товар</h2>
+            <p>700</p>
+            <button data-name="Товар" data-cost="700" onclick="buy(event)">Купить</button>
+        </div>
+        <div class="goods">
+            <h2>Товар 2</h2>
+            <p>1200</p>
+            <button data-name="Товар 2" data-cost="1200" onclick="buy(event)">Купить</button>
+        </div>
+        <div class="goods">
+            <h2>Товар 3</h2>
+            <p>784</p>
+            <button data-name="Товар 3" data-cost="784" onclick="buy(event)">Купить</button>
+        </div>
+        <div class="goods">
+            <h2>Товар 4</h2>
+            <p>549</p>
+            <button data-name="Товар 4" data-cost="549" onclick="buy(event)">Купить</button>
+        </div>
+    </main>
+    <aside id="aside">
+        <div class="basket_stroke">
+            <div class="basket_stroke_title">Общая стоимость</div>
+            <div class="basket_stroke_price" id="total"></div>
+        </div>
+    </aside>
+</div>
+</body>
+</html>

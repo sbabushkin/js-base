@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: flex-start;
+    width: 80%;
+    margin: 0 auto;
+}
+
+main {
+    display: block;
+    width: 60%;
+    background: #ECEFF1;
+}
+aside {
+    display: block;
+    width: 38%;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin-left: 2%;
+    background: #fafafa;
+}
+.goods {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: #90A4AE solid 1px;
+}
+.goods:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0px;
+}
+.goods button {
+    padding: 4px 6px;
+}
+.basket_stroke {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+}
+.basket_stroke_title {
+    display: block;
+    width: 70%;
+    font-weight: 700;
+}
+.basket_stroke_price {
+    display: block;
+    width: 30%;
+}
