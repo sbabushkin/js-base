@@ -103,6 +103,7 @@ let itemsDatabaseObj = {
 	},
 	// возвращет массив html с контентом корзины
 	htmlGenerateBasket(){
+		let result = [];
 		// проверяет, есть ли товары в корзине
 		if(!this.checkEmptyBasket()){
 			/*
@@ -126,16 +127,18 @@ let itemsDatabaseObj = {
 				</div>
 			</div>
 			*/
-			let result = []
 			for (items in this.basket){
 				result.push(`<div class='item-wrap'><div class='item-desc'>${this.basket[items].name}</div><div class='item-stats'><div class='item-plus' onclick='db.htmlPlusItem("${this.basket[items].name}")'><img src="./public/plus.png" /></div><div class='item-count' data-name='${this.basket[items].name}'>${this.basket[items].count}</div><div class='item-minus' onclick='db.htmlMinusItem("${this.basket[items].name}")'><img src="./public/minus.png" /></div><div class='items-sum' data-name='${this.basket[items].name}'>${this.calculateItemsCost(items)}  rub</div></div></div>`);			
 			}
-			result.push(`<div class='basket-footer'><div class='total-sum'>${this.calculateBasketCost()} rub</div><div class='next-button'><p>Далее</p></div></div>`)
-			return result.join('');
 		// если корзина пустая:
 		} else {
-			return 'Корзина пуста';
+			result.push(`<div class='item-wrap'><div class='item-desc'><p>Корзина пустая</p></div></div>`);
 		}
+
+		// Footer here
+		result.push(`<div class='basket-footer'><div class='total-sum'>${this.calculateBasketCost()} rub</div><div class='next-button'><p>Далее</p></div></div>`)
+
+		return result.join('');
 	},
 	htmlPlusItem(name){	
 		console.log(`Plus item ${name}`);
@@ -166,7 +169,15 @@ let itemsDatabaseObj = {
 
 		if(this.basket[name].count === 0){
 			delete this.basket[name];
+			/* В момент, когда в корзине ничего нет, вновь вызываем функции создания корзины и снова вешаем Event Listener на кнопки */
 			this.htmlEdit(basketDivLink, this.htmlGenerateBasket());
+
+			/* Функционал СТРЕЛОЧКА */
+			db.htmlAnimationArrow();
+
+			/* Функционал ДАЛЕЕ */
+			db.htmlAnimationNextButton();
+
 			return;
 		}
 		// putting count number in item's innerHTML
