@@ -1,0 +1,31 @@
+li {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+ul {
+    margin-left: 0;
+    padding-bottom: 500px;
+    padding-left: 0;
+}
+
+.block {
+    float: left;
+    margin-right: 5%;
+    padding: 20px;
+    width: 40%;
+    height: 400px;
+    size: 400px;
+
+}
+
+table {
+    border-collapse: collapse;
+    background: #6ecedd;
+    width: 100%;
+}
+
+td, th {
+    padding: 5px;
+    border: 2px solid #801f6f;
+}

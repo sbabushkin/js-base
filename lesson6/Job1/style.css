@@ -1,0 +1,41 @@
+.main{
+    width: 800px;
+    height: 100%;
+    border: 1px #111 solid;
+    margin: 100px auto;
+}
+
+.Img{
+    width: 800px;
+    height: 600px;
+    border-bottom: solid 1px #111;
+    display: flex;
+    align-items: center;
+
+}
+
+.Img img{
+    width: 100%;
+}
+
+.first{
+    font-size: 50px;
+    text-align: center;
+    margin-left: 152px;
+}
+
+.smallImg{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.image{
+    height: 90px;
+    border: 1px solid #fe9420;
+}
+.image:hover{
+    border: solid 1px blue;
+}
