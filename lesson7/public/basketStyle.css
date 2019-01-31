@@ -1,0 +1,200 @@
+html {
+	background-color: rgb(36,36,36);
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	box-sizing: border-box;
+	color: rgb(69,174,214);
+	font-family: 'Roboto Slab', serif;
+	font-size: 16px;
+}
+p {
+	margin: 0;
+}
+.hidden{
+	display: none;
+
+}
+/* основной враппер */
+.wrap {
+	width: 90%;
+	margin: 0 auto;
+	
+}
+/* wraps */
+.contain-wrap, .address-wrap, .comments-wrap{
+	margin: 5px auto;
+	width: 90%;
+	margin: 5px auto;
+	background-color: rgb(245,245,245);
+	border-radius: 25px;
+	min-height: 25px;
+}
+/* Корзина враппер */
+.contain-wrap{
+
+}
+/* Логотипы */
+.contain-logo, .address-logo, .comments-logo{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	
+}
+.logo {
+	text-align: right;
+	min-width: 100px;
+	padding: 0 25px;
+	vertical-align: middle;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.logo p{
+	text-align: left;
+}
+.logo img{
+	display: block;
+}
+
+/* ARROW Rotation */
+.arrow {
+	height: 25px;
+}
+.up {
+	transform: rotate(-90deg);
+	-webkit-transition: all .3s linear 0s;
+	transition: all .3s linear 0s;
+}
+.down{
+	transform: rotate(90deg);
+	-webkit-transition: all .3s linear 0s;
+	transition: all .3s linear 0s;
+}
+
+/* Корзина состав */
+#contain-div{
+	min-height: 100px;
+
+}
+
+/* полоса товара */
+.item-wrap{
+	width: 100%;
+	border-bottom: 1px dotted blue;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.items-sum{
+	width: 100%;
+}
+.item-desc{
+	min-width: 150px;
+	color: black;
+	font-size: 20px;
+	text-align: left;
+	padding-left: 15px;
+}
+/* +\- количество сумма */
+.item-stats{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+
+}
+.item-plus, .item-count, .item-minus, .items-sum{
+	text-align: center;
+}
+/* кнопки */
+.item-plus, .item-minus{
+	width: 30px;
+	height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.item-plus img, .item-minus img{
+	height: 90%;
+}
+
+/* количество и сумма */
+.item-count{
+	width: 50px;
+}
+.items-sum{
+	width: 75px;
+}
+/* общая сумма */
+.basket-footer{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.basket-footer .total-sum{
+	width: 100%;
+}
+
+/* Кнопка ДАЛЕЕ */
+.next-button{
+	color: black;
+	font-size: 20px;
+	font-weight: 600;	
+	text-align: center;
+	margin: 0 25px 0 auto;
+	width: 100px;
+	border-radius: 25px;
+	padding-bottom: 3px;
+}
+.next-button:active{
+	background-color: yellow;
+
+}
+.next-button:hover{
+cursor: pointer;
+}
+
+/* Address */
+
+
+/* MEDIA */
+@media (max-width: 405px){
+	.contain-logo, .address-logo, .comments-logo{
+		justify-content: center;
+	}
+	.logo{
+		justify-content: center;
+	}
+	.logo, .logo p {
+	text-align: center;
+
+	}
+	.item-wrap{
+		justify-content: center;
+	}
+	.item-desc{
+		text-align: center;
+		padding: 0;
+	}
+	.item-stats{
+		width:100%;
+		justify-content: center;
+	}
+	.item-desc, .item-stats{
+		margin: 5px auto;
+	}
+	.next-button{
+		margin: 0 auto;
+	}
+}
+@media (min-width: 700px){
+	#wrap {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+}

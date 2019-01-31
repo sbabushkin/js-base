@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lesson 7</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="public/style.css">
+</head>
+<body>
+	<div id='wrap' class="wrap">
+		<div class="console">
+			<div class="mini">
+				<h1>Домашнее задание к уроку 7</h1>
+			</div>
+		</div>
+		<div id='description' class="description">
+			<div class="mini">
+				<ol>
+					<li>Реализовать страницу корзины:
+						<ul>
+							<li>
+								Добавить возможность не только смотреть состав корзины, но и редактировать его, обновляя общую стоимость или выводя сообщение «Корзина пуста».
+							</li>
+						</ul>
+					</li>
+					<li>На странице корзины:
+						<ul>
+							<li>
+								Сделать отдельные блоки «Состав корзины», «Адрес доставки», «Комментарий»;
+							</li>
+							<li>
+								Сделать эти поля сворачиваемыми;
+							</li>
+							<li>
+								Заполнять поля по очереди, то есть давать посмотреть состав корзины, внизу которого есть кнопка «Далее». Если нажать ее, сворачивается «Состав корзины» и открывается «Адрес доставки» и так далее.
+							</li>
+						</ul>
+					</li>
+					<li>
+						* Убрать границы поля: пересекая их, змейка должна появляться с противоположной стороны.
+					</li>
+					<li>
+						* Для задачи со звездочкой из шестого урока реализовать функционал переключения между картинками по стрелкам на клавиатуре.
+					</li>											
+				</ol>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="public/links.js"></script>
+</div>
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- The Close Button -->
+		<span class="close">&times;</span>
+
+		<img id='arrowLeft' class='arrow left' src="./public/arrow.png">
+		<!-- Modal Content (The Image) -->
+		<img class="modal-content" id="modalImage">
+		<img id='arrowRight' class='arrow' src="./public/arrow.png">
+
+		<!-- Modal Caption (Image Text) -->
+		<div id="caption"></div>
+
+		<!-- preview window -->
+		<div id="preview"></div>
+	</div>
+
+</body>
+</html>
