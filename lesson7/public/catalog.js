@@ -218,72 +218,75 @@ let catalogDb = {
 		};
 	},
 	htmlArrowFunction(event){
-		/*
-			NOTE that in order to compare images i use ALT attribute of IMG tag
-		*/
 		const tarLink = event.target; // link to target
 		// right or left arrow? 
 		const arrowDirection = tarLink.id;
-		// getting content of modal window
-		const modalImg = document.getElementById("modalImage");		
-		const imagesPreviewLink = document.getElementsByClassName('galleryImg');
-		// getting pic index in array and amount of pics in gallery
-		let picsIndexes = [];
-		let chosenIndex;
 
-		for(let i=0; i < imagesPreviewLink.length; i++){
-			// getting amount of pics
-			picsIndexes.push(i);
-			// getting current pic index using alt attribute
-			if(modalImg.alt === imagesPreviewLink[i].alt){
-				chosenIndex = i;
+		if(!(arrowDirection === 'arrowRight'|| event.keyCode === 39 || arrowDirection === 'arrowLeft' || event.keyCode === 37)){
+			/* do nothing */
+		} else {
+			/*
+				NOTE that in order to compare images i use ALT attribute of IMG tag
+			*/
+			// getting content of modal window
+			const modalImg = document.getElementById("modalImage");		
+			const imagesPreviewLink = document.getElementsByClassName('galleryImg');
+			// getting pic index in array and amount of pics in gallery
+			let picsIndexes = [];
+			let chosenIndex;
+
+			for(let i=0; i < imagesPreviewLink.length; i++){
+				// getting amount of pics
+				picsIndexes.push(i);
+				// getting current pic index using alt attribute
+				if(modalImg.alt === imagesPreviewLink[i].alt){
+					chosenIndex = i;
+				}
 			}
-		}
 
-		// replacing image in preview modal window:
-		let newChosenIndex;
+			// replacing image in preview modal window:
+			let newChosenIndex;
 
-		// event.keyCode === 39
-			// plus ARROW KEY functions!!
-		if(arrowDirection === 'arrowRight'|| event.keyCode === 39){
-			// if our image at the end of array
-			if(chosenIndex === picsIndexes.length-1){
-				modalImg.src = imagesPreviewLink[0].src;
-				modalImg.alt = imagesPreviewLink[0].alt;
-				newChosenIndex = 0;
-			} else {
-				modalImg.src = imagesPreviewLink[chosenIndex+1].src;
-				modalImg.alt = imagesPreviewLink[chosenIndex+1].alt;
-				newChosenIndex = chosenIndex+1;
+			// event.keyCode === 39
+				// plus ARROW KEY functions!!
+			if(arrowDirection === 'arrowRight'|| event.keyCode === 39){
+				// if our image at the end of array
+				if(chosenIndex === picsIndexes.length-1){
+					modalImg.src = imagesPreviewLink[0].src;
+					modalImg.alt = imagesPreviewLink[0].alt;
+					newChosenIndex = 0;
+				} else {
+					modalImg.src = imagesPreviewLink[chosenIndex+1].src;
+					modalImg.alt = imagesPreviewLink[chosenIndex+1].alt;
+					newChosenIndex = chosenIndex+1;
+				}
+			} 
+			// event.keyCode === 37
+				// plus ARROW KEY functions!!
+			if(arrowDirection === 'arrowLeft' || event.keyCode === 37) {
+				// if our image at the start of array
+				if(chosenIndex === 0){
+					modalImg.src = imagesPreviewLink[picsIndexes.length-1].src;
+					modalImg.alt = imagesPreviewLink[picsIndexes.length-1].alt;
+					newChosenIndex = picsIndexes.length-1;
+				} else {
+					modalImg.src = imagesPreviewLink[chosenIndex-1].src;
+					modalImg.alt = imagesPreviewLink[chosenIndex-1].alt;
+					newChosenIndex = chosenIndex-1;
+				}	
 			}
-		} 
-		// event.keyCode === 37
-			// plus ARROW KEY functions!!
-		if(arrowDirection === 'arrowLeft' || event.keyCode === 37) {
-			// if our image at the start of array
-			if(chosenIndex === 0){
-				modalImg.src = imagesPreviewLink[picsIndexes.length-1].src;
-				modalImg.alt = imagesPreviewLink[picsIndexes.length-1].alt;
-				newChosenIndex = picsIndexes.length-1;
-			} else {
-				modalImg.src = imagesPreviewLink[chosenIndex-1].src;
-				modalImg.alt = imagesPreviewLink[chosenIndex-1].alt;
-				newChosenIndex = chosenIndex-1;
-			}	
-		}
 
+			// now cleaning background selection
 
+			/*
+				since this is EVENT function i have to use GLOBAL link to object fucntions
+			*/
 
-		// now cleaning background selection
+			cdb.htmlCleanPreviewPicturesBack();
 
-		/*
-			since this is EVENT function i have to use GLOBAL link to object fucntions
-		*/
-
-		cdb.htmlCleanPreviewPicturesBack();
-
-		// adding bg to correct element
-		cdb.htmlAddPreviewPicturesBack(newChosenIndex);
+			// adding bg to correct element
+			cdb.htmlAddPreviewPicturesBack(newChosenIndex);
+		}	
 	},
 	// removes elements in picture gallery
 	htmlKillPictureGallery(){
