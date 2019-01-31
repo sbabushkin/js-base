@@ -1,0 +1,85 @@
+h1 {
+  color: red;
+}
+
+/*корзина--------------------------------*/
+#basket {
+}
+
+.products {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid gray;
+  background-color: white;
+  padding: 15px;
+}
+
+.imgs {
+  width: 50px;
+  height: 50px;
+  background-color: brown;
+}
+
+.products-caption {
+  width: 250px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.products-desc {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  width: 90%;
+}
+
+.products-btn {
+  display: block;
+  border-radius: 15px;
+  background-color: black;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: white;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  padding: 5px 10px 5px 10px;
+  margin: 0 5px 10px 0;
+}
+
+.products-btn:hover {
+  background-color: rgb(100, 100, 100);
+}
+
+.products-price {
+  display: block;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+/*    каталог-----------------------------*/
+#katalog {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.imgs-katalog {
+  width: 200px;
+  height: 200px;
+  background-color: brown;
+}
+
+.katalog {
+  width: 30%;
+  box-sizing: border-box;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid gray;
+  background-color: white;
+}
+
+.katalog-h {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  width: 100%;
+}
