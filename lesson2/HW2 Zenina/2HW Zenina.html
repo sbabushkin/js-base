@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>HW2</title>
+</head>
+
+<body>
+    <h2>Задание 1</h2>
+    <div class="d1">
+        <p>var a = 1, b = 1, c, d; <br />
+            c = ++a; //<i> a =a+1=2; потом c = 2;<br /></i>
+            d = b++; //<i>d = b; потом b = b+1 = 2;</i><br />
+            c = (2+ ++a); // <i>a = 1+a = 3; потом c = 2+3 = 5;</i><br />
+            d = (2+ b++); // <i>d = 2+2; потом b = b+1 = 3; </i><br />
+            alert(a); // <i>a = 3</i><br />
+            alert(b); // <i>b = 3</i></p>
+    </div>
+
+    <h2>Задание 2</h2>
+    <div class="d1">
+        <p>var a = 2;<br />
+            var x = 1 + (a *= 2); // <i>a = a*2 = 4; потом x = 1+4 = 5</i><br />
+            <i>Ответ x=5</i>
+        </p>
+
+    </div>
+
+    <h2>Задание 3</h2>
+    <div class="d1">
+        a = <input type="number" value="0" id="a"> <br>
+        b = <input type="number" value="0" id="b"> <br>
+        <input type="submit" value="Решить" onclick="task3()">
+        <p id="t3">Результат: </p>
+    </div>
+
+    <h2>Задание 4</h2>
+    <div class="d1">
+        <input type="submit" value="Решить" onclick="task4()">
+        <p id="t41">a = </p>
+        <p id="t42">Вывод: </p>
+
+    </div>
+
+    <h2>Задание 5</h2>
+    <div class="d1">
+        Первое число = <input type="number" value="0" id="x"> <br>
+        Второе число = <input type="number" value="0" id="y"> <br>
+        <input type="submit" value="Сумма" onclick="Myadd('x','y','t5')">
+        <input type="submit" value="Разность" onclick="Mysub('x','y','t5')">
+        <input type="submit" value="Произведение" onclick="Mymult('x','y','t5')">
+        <input type="submit" value="Частное" onclick="Mydiv('x','y','t5')">
+        <p id="t5">Результат: </p>
+    </div>
+    <h2>Задание 6</h2>
+    <div class="d1">
+        Первое число = <input type="number" value="0" id="x6"> <br>
+        Второе число = <input type="number" value="0" id="y6"> <br>
+        Операция <input type="text" placeholder=" add sub div mult" id="op"> <br>
+        <input type="submit" value="Решить" onclick="mathOperation('x6','y6','t6','op')">
+        <p id="t6">Результат: </p>
+    </div>
+    <h2>Задание 7</h2>
+    <div class="d1">
+        <input type="submit" value="Сравнить null и 0" onclick="task7()">
+        <p id="t7">Результат: </p>
+    </div>
+
+    <h2>Задание 8</h2>
+    <div class="d1">
+        число = <input type="number" value="0" id="x8"> <br>
+        степень = <input type="number" value="0" id="y8"> <br>
+        <input type="submit" value="Решить" onclick="Mypower('x8','y8')">
+        <p id="t8">Результат: </p>
+    </div>
+</body>
+
+</html>
