@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>GOALKEEPER</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+
+  <div class="main">
+    <div class="header">
+      <h1>Goalkeeper</h1>
+    </div>
+    <div class="content">
+      <div class="column leftColumn">
+        <div class="row">
+          <div id="sector-topleft" onclick="round('topleft')" class="sector">1</div>
+          <div id="sector-top" onclick="round('top')" class="sector">2</div>
+          <div id="sector-topright" onclick="round('topright')" class="sector">3</div>
+        </div>
+
+        <div class="row">
+          <div id="sector-left" onclick="round('left')" class="sector">4</div>
+          <div id="sector-center" onclick="round('center')" class="sector">5</div>
+          <div id="sector-right" onclick="round('right')" class="sector">6</div>
+        </div>
+
+        <div class="row">
+          <div id="sector-bottomleft" onclick="round('bottomleft')" class="sector">7</div>
+          <div id="sector-bottom" onclick="round('bottom')" class="sector">8</div>
+          <div id="sector-bottomright" onclick="round('bottomright')" class="sector">9</div>
+        </div>
+      </div>
+      <div class="column rightColumn" id="logger"></div>
+    </div>
+
+
+  </div>
+</body>
+
+</html>

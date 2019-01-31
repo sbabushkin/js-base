@@ -95,15 +95,15 @@ function ex2() {
     },
   };
 
-  let keeperWins = false; //голкипер не победил
-  let attackerWins = false; //атакер не победил
-  let numberOfSteps = 0; //количество шагов
+  let keeperWins = false; // голкипер не победил
+  let attackerWins = false; // атакер не победил
+  let numberOfSteps = 0; // количество шагов
 
-  //проверка на верность введенных данных
+  // проверка на верность введенных данных
   do {
     let currentAttacksector;
     do {
-      //получаем данные от пользователя
+      // получаем данные от пользователя
       currentAttacksector = prompt('Choose sector to attack ( ' + sectors.join(', ') + ' )');
     } while (!attacker.init(currentAttacksector));
 
@@ -111,122 +111,122 @@ function ex2() {
     attacker.attack(goalKeeper);
     numberOfSteps++;
 
-    //вызаваються проверки на победу
+    // вызаваються проверки на победу
     keeperWins = goalKeeper.checkWin();
     attackerWins = attacker.checkWin();
-  } while (!keeperWins && !attackerWins); //когда ктнибудь выйграл то игра оконсена
+  } while (!keeperWins && !attackerWins); // когда ктнибудь выйграл то игра оконсена
 }
 
 
 function ex3() {
   const questions = [
-    { //1
+    { // 1
       question: 'Как правильно закончить пословицу: «Не откладывай на завтра то, что можно…»?',
       answer1: 'сделать сегодня',
       answer2: 'сделать послезавтра',
       answer3: 'сделать через месяц',
       answer4: 'никогда не делать',
       answerTrue: 'сделать сегодня',
-      cost: 500
+      cost: 500,
     },
-    { //2
+    { // 2
       question: 'Что говорит человек, когда замечает нечто необычное?',
       answer1: 'попало в лоб',
       answer2: 'залетело в рот',
       answer3: 'накапало в уши',
       answer4: 'бросилось в глаза',
       answerTrue: 'бросилось в глаза',
-      cost: 1000
+      cost: 1000,
     },
-    { //3
+    { // 3
       question: 'Что помогает туристу ориентироваться в незнакомом городе?',
       answer1: 'путепровод',
       answer2: 'путеукладчик',
       answer3: 'путеводитель',
       answer4: 'путеводная звезда',
       answerTrue: 'путеводитель',
-      cost: 2000
+      cost: 2000,
     },
-    { //4
+    { // 4
       question: 'Какой наряд прославил баснописец Крылов?',
       answer1: 'тришкин кафтан',
       answer2: 'ивашкин армяк',
       answer3: 'прошкин зипун',
       answer4: 'машкин сарафан',
       answerTrue: 'тришкин кафтан',
-      cost: 3000
+      cost: 3000,
     },
-    {//5
+    {// 5
       question: 'Как звали старшую сестру императора Петра Первого?',
       answer1: 'Вера',
       answer2: 'Надежда',
       answer3: 'Любовь',
       answer4: 'Софья',
       answerTrue: 'Софья',
-      cost: 5000
+      cost: 5000,
     },
-    {//6
+    {// 6
       question: 'Что не бывает морским?',
       answer1: 'рельс',
       answer2: 'огурец',
       answer3: 'гребешок',
       answer4: 'узел',
       answerTrue: 'рельс',
-      cost: 10000
+      cost: 10000,
     },
-    {//7
+    {// 7
       question: 'Кого с большим основанием можно назвать островитянами?',
       answer1: 'алеутов',
       answer2: 'эвенков',
       answer3: 'чукчей',
       answer4: 'якутов',
       answerTrue: 'алеутов',
-      cost: 15000
+      cost: 15000,
     },
-    {//8
+    {// 8
       question: 'В какой стране появилась мандолина?',
       answer1: 'Испания',
       answer2: 'Италия',
       answer3: 'Венгрия',
       answer4: 'Греция',
       answerTrue: 'Италия',
-      cost: 25000
+      cost: 25000,
     },
-    {//9
+    {// 9
       question: 'Как жители Лондона прозвали небоскреб Мэри-Экс, спроектированный Норманом Фостером?',
       answer1: 'корнишон',
       answer2: 'баклажан',
       answer3: 'кабачок',
       answer4: 'патиссон',
       answerTrue: 'корнишон',
-      cost: 50000
+      cost: 50000,
     },
-    {//10
+    {// 10
       question: 'Какой врач первым в истории русской медицины применил гипсовую повязку?',
       answer1: 'Субботин',
       answer2: 'Пирогов',
       answer3: 'Боткин',
       answer4: 'Склифосовский',
       answerTrue: 'Пирогов',
-      cost: 100000
+      cost: 100000,
     },
-    {//11
+    {// 11
       question: 'Где в Древней Греции можно было увидеть надпись: «Здесь живут мертвые и говорят немые»?',
       answer1: 'на кладбищах',
       answer2: 'в больницах',
       answer3: 'в библиотеках',
       answer4: 'в тюрьмах',
       answerTrue: 'в библиотеках',
-      cost: 200000
+      cost: 200000,
     },
-    {//12
+    {// 12
       question: 'Кто был одним из авторов сценария фильма «Музыкальная история» с Сергеем Лемешевым в главной роли?',
       answer1: 'Илья Ильф',
       answer2: 'Евгений Петров',
       answer3: 'Михаил Зощенко',
       answer4: 'Аркадий Аверченко',
       answerTrue: 'Евгений Петров',
-      cost: 400000
+      cost: 400000,
     },
     {
       question: 'С чем часто охотятся на рыбу протоптера между сезонами дождей?',
@@ -235,7 +235,7 @@ function ex3() {
       answer3: 'с ружьями',
       answer4: 'с лопатами',
       answerTrue: 'с лопатами',
-      cost: 800000
+      cost: 800000,
     },
     {
       question: 'Каким видом спорта серьезно увлекался французский летчик Ролан Гаррос?',
@@ -244,7 +244,7 @@ function ex3() {
       answer3: 'гольфом',
       answer4: 'регби',
       answerTrue: 'регби',
-      cost: 1500000
+      cost: 1500000,
     },
     {
       question: 'Что такое лобогрейка?',
@@ -253,19 +253,19 @@ function ex3() {
       answer3: 'болезнь',
       answer4: 'печка',
       answerTrue: 'жнейка',
-      cost: 3000000
-    }
-];
+      cost: 3000000,
+    },
+  ];
   let priorityOfQuestions = 0;
   let minWinnings = 0;
 
   for (priorityOfQuestions = 0; priorityOfQuestions < 15; priorityOfQuestions++) {
     alert(questions[priorityOfQuestions].question);
-    let ans = prompt('Выберите ответ: ' +
-      questions[priorityOfQuestions].answer1 + ', ' +
-      questions[priorityOfQuestions].answer2 + ', ' +
-      questions[priorityOfQuestions].answer3 + ', ' +
-      questions[priorityOfQuestions].answer4);
+    const ans = prompt('Выберите ответ: '
+      + questions[priorityOfQuestions].answer1 + ', '
+      + questions[priorityOfQuestions].answer2 + ', '
+      + questions[priorityOfQuestions].answer3 + ', '
+      + questions[priorityOfQuestions].answer4);
     if (ans === questions[priorityOfQuestions].answerTrue) {
       alert('Вы ответили верно! И заработали ' + questions[priorityOfQuestions].cost + ' рублей');
       if (priorityOfQuestions === 4) {
