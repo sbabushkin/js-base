@@ -1,0 +1,125 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+.wrapper {
+
+}
+
+.shop {
+	min-width: 400px;
+	max-width: 1200px;
+}
+
+	.catalog {
+		align-items: stretch;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-around;
+	}
+
+		.catalog__item {
+			align-content: space-around;
+			border: 1px solid #bfbfbf;
+			border-radius: 15px;
+			box-sizing: border-box;
+			display: flex;
+			flex: 0 0 32%;
+			flex-flow: column nowrap;
+			justify-content: flex-start;
+			padding: 10px;
+		}
+
+			.catalog__item-head {
+				align-self: center;
+				flex: 0 0 auto;
+				font-size: 2rem;
+				font-weight: bold;
+				width: 100%;
+				text-align: center;
+			}
+
+			.catalog__item-img-block {
+				align-items: center;
+				display: flex;
+				flex: 0 0 auto;
+				flex-flow: row wrap;
+				justify-content: center;
+				height: 50%;
+			}
+
+				.catalog__item-img {
+					max-height: 80%;
+					max-width: 80%;
+				}
+
+			.catalog__item-bay {
+				align-self: flex-end;
+				background: #ffd88d;
+				border: 3px inset #ffb717;
+				box-sizing: border-box;
+				border-radius: 15px;
+				cursor: pointer;
+				flex: 0 0 auto;
+				height: 30px;
+				margin: 10px 0;
+				outline: none;
+				width: 40%;
+			}
+
+				.catalog__item-bay:active {
+					border: 2px outset #ffb717;
+				}
+
+			.catalog__item-table {
+				border-collapse: collapse;
+				box-sizing: border-box;
+				flex: 0 0 auto;
+				text-align: left;
+				width: 100%;
+			}
+
+				.catalog__item-table>tr:nth-last-child(2)>th {
+					padding-top: 5px;
+				}
+
+
+	/* кнопка показать/скрыть корзину */
+		.shop__busket {
+			align-items: center;
+			display: flex;
+			flex: 0 0 100%;
+			flex-flow: row wrap;
+			justify-content: center;
+		}
+
+			.shop__busket-btn-block {
+				align-items: center;
+				display: flex;
+				flex: 0 0 100%;
+				flex-flow: row nowrap;
+				justify-content: flex-end;
+				margin: 20px 0;
+			}
+
+				.shop__busket-btn {
+					background: #ffd88d;
+					border: 3px inset #ffb717;
+					box-sizing: border-box;
+					border-radius: 15px;
+					cursor: pointer;
+					font-weight: bold;
+					height: 30px;
+					outline: none;
+					padding: 0 20px;
+				}
+
+				.shop__busket-btn:active {
+					border: 2px outset #ffb717;
+				}
+
+		.shop__busket-table {
+			flex: 0 0 100%;
+		}

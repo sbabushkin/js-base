@@ -15,6 +15,7 @@ function PRODUCT (id, category, name, description, produccer, price, count, disc
 const shop = {
 	catalog: {
 		items: {},
+
 		show: function () {
 			try {
 				let div_Catalog = document.querySelector('#catalog');
@@ -61,9 +62,15 @@ const shop = {
 
 								// кнопка добавить в корзину
 								let btnBay = document.createElement('button');
-								btnBay.setAttribute('id', 'catalog__item-bay');
 								btnBay.setAttribute('class', 'catalog__item-bay');
 								btnBay.textContent = 'В корзину';
+								btnBay.addEventListener('click', () => {
+									shop.busket.add(shop.catalog.items[val].id);
+									if (document.querySelector('.shop__busket-table')){
+										shop.busket.close();
+										shop.busket.open();
+									}
+								});
 								div_Item.appendChild(btnBay);
 
 								// заполняем первую таблицу
@@ -143,7 +150,9 @@ const shop = {
 								th.textContent = 'Описание';
 								tr.appendChild(th);
 								table.appendChild(tr);
+								tr = document.createElement('tr');
 								td = document.createElement('td');
+								td.setAttribute('colspan', '2');
 								td.textContent = shop.catalog.items[val].description;
 								tr.appendChild(td);
 								table.appendChild(tr);
@@ -168,14 +177,32 @@ const shop = {
 	},
 
 	busket: {
-		Count: function () {
+		items: {},
+
+		add: function (id) { // добавляет товар в корзину
+			for (let val in shop.busket.items){ // если товар уже существуе то добавляем +1 к количеству
+				if (shop.busket.items[val].id === id){
+					shop.busket.items[val].usercount++;
+					return;
+				}
+			}
+			let i = shop.busket.count()+1; // если товара еще нет, то обновляем корзину
+			shop.busket.items['pos'+i] = {
+				id: id,
+				number: i,
+				name: shop.catalog.items['pos'+id].name,
+				price: shop.catalog.items['pos'+id].price,
+				discount: shop.catalog.items['pos'+id].discount,
+				usercount: 1
+			};
+		},
+
+		count: function () { // количество товаров в корзине
 			try{
 				let count = 0;
-				for (let val in this) {
-					if (typeof this[val] === 'object'){
-						if (this[val].constructor.name === 'PRODUCT') {
-							count++;
-						}
+				for (let val in shop.busket.items) {
+					if (typeof shop.busket.items[val] === 'object'){
+						count++;
 					}
 				}
 				return count;
@@ -184,17 +211,17 @@ const shop = {
 			}
 		},
 	
-		CostById: function (id) { //метод вычисляет стоимость по конкретному id товара, возвращает строку со стоимостью до 2х знаков полсе запятой
+		costById: function (id) { //метод вычисляет стоимость по конкретному id товара, возвращает строку со стоимостью до 2х знаков полсе запятой
 			try {
 				if (arguments.length === 1){
 					if (typeof id === 'number'){
-						for (let val in this) {
-							if (typeof this[val] === 'object') {
-								if (this[val].hasOwnProperty('id') && this[val].id === id) {
-									if (this[val].hasOwnProperty('usercount') && !isNaN(this[val].usercount)) {
-										if (this[val].hasOwnProperty('price') && !isNaN(this[val].price)) {
-											if (this[val].hasOwnProperty('discount') && !isNaN(this[val].discount)) {
-												return (Math.round(this[val].usercount * this[val].price * (1 - this[val].discount) * 100) / 100).toFixed(2);
+						for (let val in shop.busket.items) {
+							if (typeof shop.busket.items[val] === 'object') {
+								if (shop.busket.items[val].hasOwnProperty('id') && shop.busket.items[val].id === id) {
+									if (shop.busket.items[val].hasOwnProperty('usercount') && !isNaN(shop.busket.items[val].usercount)) {
+										if (shop.busket.items[val].hasOwnProperty('price') && !isNaN(shop.busket.items[val].price)) {
+											if (shop.busket.items[val].hasOwnProperty('discount') && !isNaN(shop.busket.items[val].discount)) {
+												return (Math.round(shop.busket.items[val].usercount * shop.busket.items[val].price * (1 - shop.busket.items[val].discount) * 100) / 100).toFixed(2);
 											} else {
 												throw new Error('Cost of product' + id + ' cannot be calculated. Discount error.');
 											}
@@ -219,15 +246,15 @@ const shop = {
 			}
 		},
 	
-		Cost: function () { // метод считает общую стоимость корзины, возвращает строку со стоимостью до 2х знаков полсе запятой
+		cost: function () { // метод считает общую стоимость корзины, возвращает строку со стоимостью до 2х знаков полсе запятой
 			try{
 				let cost = 0;
-				for (let val in this) {
-					if (typeof this[val] === 'object'){
-						if (this[val].hasOwnProperty('usercount') && !isNaN(this[val].usercount)) {
-							if (this[val].hasOwnProperty('price') && !isNaN(this[val].price)) {
-								if (this[val].hasOwnProperty('discount') && !isNaN(this[val].discount)) {
-									cost += Math.round(this[val].usercount * this[val].price * (1-this[val].discount)*100)/100;
+				for (let val in shop.busket.items) {
+					if (typeof shop.busket.items[val] === 'object'){
+						if (shop.busket.items[val].hasOwnProperty('usercount') && !isNaN(shop.busket.items[val].usercount)) {
+							if (shop.busket.items[val].hasOwnProperty('price') && !isNaN(shop.busket.items[val].price)) {
+								if (shop.busket.items[val].hasOwnProperty('discount') && !isNaN(shop.busket.items[val].discount)) {
+									cost += Math.round(shop.busket.items[val].usercount * shop.busket.items[val].price * (1-shop.busket.items[val].discount)*100)/100;
 								} else {
 									throw new Error('Cost cannot be calculated. Discount error.');
 								}
@@ -247,22 +274,15 @@ const shop = {
 	
 		open: function () {
 			try {
-				let div_shop = document.querySelector('#shop');
-				let boo_IsProduct = false; //проверяем, есть ли в корзине хотя бы один товар
-				for (let val in shop){
-					if (typeof shop[val] === 'object'){
-						if (shop[val].constructor.name === 'PRODUCT') {
-							boo_IsProduct = true;
-							break;
-						}
-					}
-				}
-	
-				if (boo_IsProduct) { //если есть хотя бы один товар
+				let divShop = document.querySelector('.shop__busket');
+				let divBusket = document.createElement('div');
+				divBusket.setAttribute('class', 'shop__busket-table');
+				if (shop.busket.count()>0){ //проверяем, есть ли в корзине хотя бы один товар
+					
 					let p = document.createElement('p');
-					p.setAttribute('class', 'shop__head');
+					p.setAttribute('class', 'shop__busket-table-head');
 					p.textContent = 'Ваши товары';
-					div_shop.appendChild(p);
+					divBusket.appendChild(p);
 	
 					let table = document.createElement('table');
 					table.setAttribute('class', 'shop__table');
@@ -290,30 +310,30 @@ const shop = {
 					table.appendChild(tr);
 	
 					//заполняем таблицу данными из shop
-					for (let val in shop){
-						if (typeof shop[val] === 'object') {
-							if (shop[val].hasOwnProperty('id') && shop[val].id)	{
-								if (shop[val].hasOwnProperty('name') && shop[val].name) {
-									if (shop[val].hasOwnProperty('price') && shop[val].price) {
-										if (shop[val].hasOwnProperty('usercount') && shop[val].usercount) {
+					for (let val in shop.busket.items){
+						if (typeof shop.busket.items[val] === 'object') {
+							if (shop.busket.items[val].hasOwnProperty('id') && shop.busket.items[val].number)	{
+								if (shop.busket.items[val].hasOwnProperty('name') && shop.busket.items[val].name) {
+									if (shop.busket.items[val].hasOwnProperty('price') && shop.busket.items[val].price) {
+										if (shop.busket.items[val].hasOwnProperty('usercount') && shop.busket.items[val].usercount) {
 											tr = document.createElement('tr');
 											td = document.createElement('td');
-											td.textContent = shop[val].id;
+											td.textContent = shop.busket.items[val].number;
 											tr.appendChild(td);
 											td = document.createElement('td');
-											td.textContent = shop[val].name;
+											td.textContent = shop.busket.items[val].name;
 											tr.appendChild(td);
 											td = document.createElement('td');
-											td.textContent = shop[val].price + ' руб.';
+											td.textContent = shop.busket.items[val].price + ' руб.';
 											tr.appendChild(td);
 											td = document.createElement('td');
-											td.textContent = shop[val].discount*100 + '%';
+											td.textContent = shop.busket.items[val].discount*100 + '%';
 											tr.appendChild(td);
 											td = document.createElement('td');
-											td.textContent = shop[val].usercount;
+											td.textContent = shop.busket.items[val].usercount;
 											tr.appendChild(td);
 											td = document.createElement('td');
-											td.textContent = shop.CostById(shop[val].id) + ' руб.';
+											td.textContent = shop.busket.costById(shop.busket.items[val].id) + ' руб.';
 											tr.appendChild(td);
 											table.appendChild(tr);
 										} else {
@@ -330,47 +350,42 @@ const shop = {
 							}
 						}
 					}
-					div_shop.appendChild(table);
+					divBusket.appendChild(table);
 	
 					// строка с общей суммой
 					p = document.createElement('p');
 					p.setAttribute('class', 'shop__footer');
-					p.textContent = 'Итого: Товаров '+ shop.Count() + ' на сумму ' + shop.Cost() + ' руб';
+					p.textContent = 'Итого: Товаров '+ shop.busket.count() + ' на сумму ' + shop.busket.cost() + ' руб';
 	
-					div_shop.appendChild(p);
+					divBusket.appendChild(p);
+					divShop.appendChild(divBusket);
 				} else { // если товара нет
 					let p = document.createElement('p');
-					p.setAttribute('class', 'shop__head');
+					p.setAttribute('class', 'shop__busket-table-head');
 					p.textContent = 'Корзина пуста';
 	
-					div_shop.appendChild(p);
+					divBusket.appendChild(p);
+					divShop.appendChild(divBusket);
 				}
 	
-				let btn_shop = document.querySelector('#btn_shop');
-				btn_shop.textContent = 'Закрыть корзину';
-				btn_shop.removeEventListener('click', shop.open);
-				btn_shop.addEventListener('click', shop.close);
+				let btnShop = document.querySelector('#shop__busket-btn');
+				btnShop.textContent = 'Закрыть корзину';
+				btnShop.removeEventListener('click', shop.busket.open);
+				btnShop.addEventListener('click', shop.busket.close);
 			} catch (e) {
 				console.log(e);
 			}
 		},
 	
 		close: function () {
-			let div_shop = document.querySelector('#shop');
-			let p = document.querySelector('.shop__head');
-			div_shop.removeChild(p);
-			let table = document.querySelector('.shop__table');
-			if (table) {
-				div_shop.removeChild(table);
-			}
-			p = document.querySelector('.shop__footer');
-			if (table) {
-				div_shop.removeChild(p);
-			}
-			let btn_shop = document.querySelector('#btn_shop');
-			btn_shop.textContent = 'Открыть корзину';
-			btn_shop.removeEventListener('click', shop.close);
-			btn_shop.addEventListener('click', shop.open);
+			let divShop = document.querySelector('.shop__busket');
+			let divBuskete = document.querySelector('.shop__busket-table');
+			divShop.removeChild(divBuskete);
+
+			let btnShop = document.querySelector('#shop__busket-btn');
+			btnShop.textContent = 'Открыть корзину';
+			btnShop.removeEventListener('click', shop.busket.close);
+			btnShop.addEventListener('click', shop.busket.open);
 		}
 	}
 };
@@ -388,8 +403,7 @@ shop.catalog.items.pos3.images = ['images/mentos1.jpg', 'images/mentos2.jpg', 'i
 
 window.onload = function () {
 	shop.catalog.show();
-	let btn_shop = document.querySelector('#busket__btn');
-	btn_shop.addEventListener('click', () => {
-		shop.busket.open();
-	});
+	let btnShop = document.querySelector('#shop__busket-btn');
+	btnShop.addEventListener('click', shop.busket.open);
+	galleryVAK.create(shop.catalog.items.pos3.images); // вызов галлереи с изображениями
 };
