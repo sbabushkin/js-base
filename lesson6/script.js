@@ -58,20 +58,22 @@ function myProcessor() {
     function showBig(event) {
         const element = event.target;
         const src = element.getAttribute('data-big-src');
-        
+        const bigElement = document.getElementById('bigPicture');
+
         // Проверяем наличие тега для большого изображения
         if(src !== null) {
             // Проверяем наличие ссылки на изображение
             if(src !== '') {
-                const bigElement = document.getElementById('bigPicture');
                 bigElement.style.backgroundImage = 'url(' + src + ')';
             } else {
                 console.log('Ошибка: большое изображение не найдено!');
                 element.removeEventListener('click', showBig);
+                bigElement.style.backgroundImage = 'url(img/fail.jpg)';
             }
         } else {
             console.log('Ошибка: тег не определён!');
             element.removeEventListener('click', showBig);
+            bigElement.style.backgroundImage = 'url(img/fail.jpg)';
         }
     }
   
