@@ -1,0 +1,37 @@
+body {
+    text-align: center;
+}
+
+img {
+    cursor: pointer;
+}
+
+#big_picture {
+    width: 256px;
+    height: 256px;
+    border: 1px solid gray;
+}
+
+.left-arrow, .right-arrow {
+    width: 64px;
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+}
+
+.left-arrow:hover, .right-arrow:hover {
+    background-color: silver;
+    cursor: pointer;
+}
+
+.left-arrow {
+    background-image: url('../img/left.png');
+}
+
+.right-arrow {
+    background-image: url('../img/right.png');
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
