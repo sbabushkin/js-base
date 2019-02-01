@@ -1,9 +1,9 @@
-var product = [{
+const product = [{
   name: "Гуппи",
   cost: 30,
   shortDescription: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam accusamus iste veniam provident temporibus minus ea dolorem debitis voluptas officiis, fugiat non, nesciunt voluptatibus! Harum illo veniam optio aspernatur iusto.", //короткое аписание
   fullDescription: "https://ru.wikipedia.org/wiki/%D0%93%D1%83%D0%BF%D0%BF%D0%B8", //полное описание
-  imgURL: "img/gupimin.jpg"
+  imgURL: "gupimin.jpg"
     }, {
   name: "Петушки",
   cost: 700,
@@ -14,30 +14,31 @@ var product = [{
   name: "Золотая рыбка",
   cost: 450,
   shortDescription: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam accusamus iste veniam provident temporibus minus ea dolorem debitis voluptas officiis, fugiat non, nesciunt voluptatibus! Harum illo veniam optio aspernatur iusto.", //короткое аписание
-  fullDescription: "", //полное описание
-  imgURL: ""
+  fullDescription: "https://ru.wikipedia.org/wiki/%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%B0%D1%8F_%D1%80%D1%8B%D0%B1%D0%BA%D0%B0", //полное описание
+  imgURL: "goldfishmin.jpg"
     }, {
-  name: "Альтернантера",
+  name: "Афиохаракс Наттерера",
   cost: 300,
   shortDescription: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam accusamus iste veniam provident temporibus minus ea dolorem debitis voluptas officiis, fugiat non, nesciunt voluptatibus! Harum illo veniam optio aspernatur iusto.", //короткое аписание
-  fullDescription: "", //полное описание
-  imgURL: ""
+  fullDescription: "https://ru.wikipedia.org/wiki/%D0%A5%D0%B0%D1%80%D0%B0%D1%86%D0%B8%D0%BD%D0%BE%D0%B2%D1%8B%D0%B5", //полное описание
+  imgURL: "aphyocharaxnattererimin.jpg"
     }, {
-  name: "Анубиас",
+  name: "Афиосемион Огове",
   cost: 600,
   shortDescription: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam accusamus iste veniam provident temporibus minus ea dolorem debitis voluptas officiis, fugiat non, nesciunt voluptatibus! Harum illo veniam optio aspernatur iusto.", //короткое аписание
-  fullDescription: "", //полное описание
-  imgURL: ""
+  fullDescription: "https://ru.wikipedia.org/wiki/%D0%AE%D0%B6%D0%BD%D1%8B%D0%B9_%D0%B0%D1%84%D0%B8%D0%BE%D1%81%D0%B5%D0%BC%D0%B8%D0%BE%D0%BD", //полное описание
+  imgURL: "aphyosemionogoensemin.jpg"
     }];
 
 //Каталог-----------------------------------
-function creatingKatalog(name, desc, namber, details, price) {
+function creatingKatalog(srcImg, name, desc, namber, details, price) {
   var div = document.createElement('div');
   div.className = 'katalog';
   katalog.appendChild(div);
-  var divIner = document.createElement('div');
-  divIner.className = 'imgs-katalog';
-  div.appendChild(divIner);
+  var img = document.createElement('img');
+  img.className = 'imgs-katalog';
+  img.setAttribute('src', srcImg);
+  div.appendChild(img);
   var h3 = document.createElement('h3');
   h3.className = 'katalog-h';
   h3.innerHTML = name;
@@ -67,7 +68,7 @@ function creatingKatalog(name, desc, namber, details, price) {
 }
 //name, desc, namber, details, price
 for (let i = 0; i < product.length; i++) {
-  creatingKatalog(product[i].name, product[i].shortDescription, i, product[i].fullDescription, product[i].cost + ' RUB');
+  creatingKatalog('img/' + product[i].imgURL, product[i].name, product[i].shortDescription, i, product[i].fullDescription, product[i].cost + ' RUB');
 }
 // корзина-----------------------------
 function creatingBasket(name, desc, price) {
@@ -122,6 +123,7 @@ function сonclusionBasket() {
     countPrice += productBasket[i].cost;
   }
   let p = document.createElement('p');
+  p.className = 'prise';
   p.innerHTML = 'В корзине: ' + productBasket.length + ' товар(ов) на сумму ' + countPrice + ' рублей.';
   textId.appendChild(p);
   //console.log(textId.childNodes.length);
