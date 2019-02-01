@@ -82,3 +82,32 @@ h1 {
 .prise {
   font-size: 24px;
 }
+#bigElement {
+
+}
+#bigElement img {
+  position: fixed;
+  z-index: 2;
+  left: 50vw;
+  right: 50%;
+  margin-left: -25vw;
+  box-shadow: 5px 10px 18px #000, 0px 0px 0px 1000px rgba(0,0,0,.7);
+}
+.close {
+  position: fixed;
+  right: 150px;
+  z-index: 3;
+  width: 80px;
+  height: 8px;
+  background-color: #fff;
+  display: block;
+  transform: rotate(45deg);
+}
+.close:after {
+  content: " ";
+  width: 80px;
+  height: 8px;
+  background-color: #fff;
+  display: block;
+  transform: rotate(90deg);
+}

@@ -19,8 +19,11 @@ div.icons {
   width: 50px;
   display: block;
   position: absolute;
-  border: 3px solid #000;
+  border: 3px solid #555;
   transform: rotate(45deg);
+}
+.control:hover {
+  border: 3px solid #000;
 }
 #left {
   left: 0;
