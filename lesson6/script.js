@@ -27,15 +27,11 @@ window.onload = function sss() {
     const images = document.getElementsByTagName('img');
     let pictSrc = [];
     for(let z = 0; z<images.length;z++) {
-        pictSrc.push(images[z])
+        pictSrc.push(images[z].src)
     }
+    console.log(pictSrc);
     
     for(let i = 0; i < pictSrc.length; i++) {
-      if(pictSrc[i]) {
-          console.log("Картинка существует")
-      }
-      else {
-          console.log("Картинка несуществует")
-      }
+      pictSrc[i] ? console.log("Картинка существует"): console.log("Картинка не существует")
     }
 }
