@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>lesson6</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="lesson.js"></script>
+  </head>
+
+  <body>
+    <!-- В этот момент функция myClick уже должна быть определена -->
+    <div class="galery">
+      <div class="left" onclick="clickSide(-1)">&#9668;</div>
+      <div class="big" id="bigPicture" onclick="myClick()"></div>
+      <div class="right" onclick="clickSide(1)">&#9658;</div>
+    </div>
+
+    <div class="icons">
+      <img width="100" data-big-src="img/big/photo1.jpg" src="img/small/photo1.jpg" />
+      <img width="100" data-big-src="img/big/photo2.jpg" src="img/small/photo2.jpg" />
+      <img width="100" data-big-src="img/big/photo3.jpg" src="img/small/photo3.jpg" />
+      <img width="100" data-big-src="img/big/photo4.jpg" src="img/small/photo4.jpg" />
+      <img width="100" data-big-src="img/big/photo5.jpg" src="img/small/photo5.jpg" />
+    </div>
+  </body>
+
+</html>
