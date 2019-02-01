@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Корзина</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="item_box">
+			<h2 class="item_title">Плед1</h2>
+			<img src="img/1.jpg" alt="img">
+			<p>Цена: <span class="item_price">100</span> &#8372;</p>
+			<button class="btn add_item" data-id="1">Купить</button>
+		</div>
+		<div class="item_box">
+			<h2 class="item_title">Плед2</h2>
+			<img src="img/2.jpg" alt="img">
+			<p>Цена: <span class="item_price">200</span> &#8372;</p>
+			<button class="btn add_item" data-id="2">Купить</button>
+		</div>
+		<div class="item_box">
+			<h2 class="item_title">Плед3</h2>
+			<img src="img/3.jpg" alt="img">
+			<p>Цена: <span class="item_price">300</span> &#8372;</p>
+			<button class="btn add_item" data-id="3">Купить</button>
+		</div>
+	</div>
+	<div class="btn-checkout">
+		<button class="btn" id="checkout">Оформить заказ</button>
+		<button class="btn" id="clear_cart">Очистить корзину</button>
+	</div>
+	<div id="cart_content"></div>
+	<div>
+		<hr>
+		<span class="itogo" id="head-cart" style="display: none">К оплате: </span>
+	</div>
+	<script src="script.js"></script>
+
+</body>
+
+</html>
