@@ -1,0 +1,19 @@
+html, body, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+#gallery {
+    width: 860px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#gallery .photos img {
+    width: 100%;
+    display: none;
+}
+
+#gallery .photos img:first-child {
+    display: block;
+}
