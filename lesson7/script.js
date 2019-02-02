@@ -261,15 +261,12 @@ function changeDirection(evt) {
   }
 }
 
-var gameWidth = document.getElementsByTagName('body')[0].offsetWidth,
-    gameHeight = document.getElementsByTagName('body')[0].clientHeight;
+var gameWidth = document.getElementById('app').clientWidth,
+    gameHeight = document.getElementById('app').clientHeight;
 
 // Строим игровое поле
 function makeGameField() {
     console.log("Размер игрового поля " + gameWidth + "x" + gameHeight + " пикселей");
-    if(gameWidth == 0 || gameHeight == 0) {
-      makeGameField();
-    }
 
     let gamePanel = document.createElement("div");
     gamePanel.className = 'panel';
