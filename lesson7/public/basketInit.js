@@ -128,15 +128,19 @@ let itemsDatabaseObj = {
 			</div>
 			*/
 			for (items in this.basket){
-				result.push(`<div class='item-wrap'><div class='item-desc'>${this.basket[items].name}</div><div class='item-stats'><div class='item-plus' onclick='db.htmlPlusItem("${this.basket[items].name}")'><img src="./public/plus.png" /></div><div class='item-count' data-name='${this.basket[items].name}'>${this.basket[items].count}</div><div class='item-minus' onclick='db.htmlMinusItem("${this.basket[items].name}")'><img src="./public/minus.png" /></div><div class='items-sum' data-name='${this.basket[items].name}'>${this.calculateItemsCost(items)}  rub</div></div></div>`);			
+				result.push(`<div class='item-wrap' data-name='${this.basket[items].name}'><div class='item-desc'>${this.basket[items].name}</div><div class='item-stats'><div class='item-plus' onclick='db.htmlPlusItem("${this.basket[items].name}")'><img src="./public/plus.png" /></div><div class='item-count' data-name='${this.basket[items].name}'>${this.basket[items].count}</div><div class='item-minus' onclick='db.htmlMinusItem("${this.basket[items].name}")'><img src="./public/minus.png" /></div><div class='items-sum' data-name='${this.basket[items].name}'>${this.calculateItemsCost(items)}rub</div></div></div>`);			
 			}
 		// если корзина пустая:
 		} else {
-			result.push(`<div class='item-wrap'><div class='item-desc'><p>Корзина пустая</p></div></div>`);
+			result.push(`<div class='item-wrap'><div class='item-desc'><p>Корзина пустая</p></div><div class='item-stats'></div></div>`);
+		}
+		const checkBasket = document.getElementById('checkBasket');
+		// check if basket exists
+		if(!checkBasket){
+			// Footer here
+			result.push(`<div class='basket-footer'><div id="checkBasket" class='total-sum'>${this.calculateBasketCost()} rub</div><div class='next-button'><p>Далее</p></div></div>`)
 		}
 
-		// Footer here
-		result.push(`<div class='basket-footer'><div class='total-sum'>${this.calculateBasketCost()} rub</div><div class='next-button'><p>Далее</p></div></div>`)
 
 		return result.join('');
 	},
@@ -168,17 +172,23 @@ let itemsDatabaseObj = {
 		this.basket[name].count--;
 
 		if(this.basket[name].count === 0){
+			// const basketInner = document.getElementById
 			delete this.basket[name];
 			/* В момент, когда в корзине ничего нет, вновь вызываем функции создания корзины и снова вешаем Event Listener на кнопки */
-			this.htmlEdit(basketDivLink, this.htmlGenerateBasket());
+			const cleanItems = document.getElementsByClassName('item-wrap');
+			for (let i=0; i<cleanItems.length;i++){
+				if(cleanItems[i].dataset.name === name){
+					cleanItems[i].remove();
+				}
+			}
 
-			/* Функционал СТРЕЛОЧКА */
-			db.htmlAnimationArrow();
-
-			/* Функционал ДАЛЕЕ */
-			db.htmlAnimationNextButton();
-
-			return;
+			if(Object.keys(this.basket).length === 0){
+				const emptyBasketDiv = document.createElement('div')
+				emptyBasketDiv.classList.add('item-wrap');
+				const emptyBasketContent = `<div class='item-desc'><p>Корзина пустая</p></div><div class='item-stats'></div>`;
+				this.htmlEdit(emptyBasketDiv, emptyBasketContent);
+				basketDivLink.insertBefore(emptyBasketDiv, basketDivLink.firstChild);
+			}
 		}
 		// putting count number in item's innerHTML
 		const countLink = document.getElementsByClassName('item-count');
