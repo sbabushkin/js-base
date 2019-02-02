@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    display: block;
+    width: 100%;
+    height: 100vh;
+}
+canvas {
+    display: block;
+    margin: 0 auto;
+    background: white;
+}
+.panel {
+    z-index: 0;
+    position: fixed;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 8vh;
+    padding: 0 8vh;
+    background: rgba(240,240,240,.25);
+    box-shadow: #E0E0E0 2px 0px 10px;
+}
+.panel_logo {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-size: 5vh;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+.panel_logo > img {
+    display: block;
+    width: 4vw;
+    height: 5vh;
+    margin-right: 1vw;
+}
+
+.panel_info {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+}
+.gamescore {
+    display: flex;
+    margin-right: 1vw;
+    font-size: 5vh;
+    font-family: 'Roboto', sans-serif;
+}
+.gamescore::before {
+    content: '';
+    display: inline-block;
+    position: relative;
+    left: 0.5vw;
+    top: 0.15vh;
+    width: 4.5vw;
+    height: 4.5vh;
+    background: url(img/apple.svg) center no-repeat;
+    background-size: contain;
+}
+.gamelives {
+    display: flex;
+    font-size: 5vh;
+    font-family: 'Roboto', sans-serif;
+}
+.gamelives::before {
+    content: '';
+    display: inline-block;
+    position: relative;
+    top: 0.75vh;
+    left: 0.5vw;
+    width: 4vw;
+    height: 4vh;
+    background: url(img/lives.svg) center no-repeat;
+    background-size: contain;
+}
+
+.gameover {
+    position: fixed;
+    top: 25vh;
+    left: 30%;
+    z-index: 2;
+    display: block;
+    width: 40%;
+    height: auto;
+    margin: 0 auto;
+    padding: 4vh 2vw;
+    background: #fff;
+    box-shadow: #E0E0E0 0px 0px 10px;
+}
+.gameover_image {
+    display: block;
+    width: 15vh;
+    height: 15vh;
+    margin: 0 auto 2vh;
+    background: url(img/snake.svg) center no-repeat;
+    background-size: contain;
+}
+.gameover > h2 {
+    display: block;
+    width: 100%;
+    margin-bottom: 2vh;
+    text-align: center;
+    font-size: 5vh;
+    font-family: 'Roboto', sans-serif;
+}
+.gameover_score {
+    display: block;
+    width: 100%;
+    margin-bottom: 2vh;
+    text-align: center;
+    font-size: 3vh;
+    font-family: 'Roboto', sans-serif;
+}
+.gameover > img {
+    position: relative;
+    bottom: 10px;
+    display: block;
+    width: 4vw;
+    height: auto;
+    margin: 0 auto;
+}
