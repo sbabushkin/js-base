@@ -139,9 +139,17 @@ function сonclusionBasket() {
   for (var i = 0; i < productBasket.length; i++) {
     countPrice += productBasket[i].cost;
   }
+  let tovar = '';
+  if (i == 1) {
+    tovar = ' товар ';
+  } else if (i > 1 && i < 5) {
+    tovar = ' товара ';
+  } else {
+    tovar = ' товаров ';
+  }
   let p = document.createElement('p');
   p.className = 'prise';
-  p.innerHTML = 'В корзине: ' + productBasket.length + ' товар(ов) на сумму ' + countPrice + ' рублей.';
+  p.innerHTML = 'В корзине: ' + productBasket.length + tovar + 'на сумму ' + countPrice + ' рублей.';
   textId.appendChild(p);
   //console.log(textId.childNodes.length);
   //если в textId больне 1 элемента удали первый элемент
