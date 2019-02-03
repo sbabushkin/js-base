@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title> Image Gallery </title>
+	<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+	
+	<div class="slider" id="gallery">
+		<div class="item">
+			<img width='300' id="image_1" src="img/1.jpg" onload="alert('Файл-1 существует!');" onerror="alert('Файл-1 не найден');">
+		</div>
+		<div class="item">
+			<img width='300' id="image_2" src="img/2.jpg" onload="alert('Файл-2 существует!');" onerror="alert('Файл-2 не найден');">
+		</div>
+		<div class="item">
+			<img width='300' id="image_3" src="img/3.jpg" onload="alert('Файл-3 существует!');" onerror="alert('Файл-3 не найден');">
+		</div>
+		<a class="prev" onclick="minusSlide()">&#10094;</a>
+		<a class="next" onclick="plusSlide()">&#10095;</a>
+	</div>
+	<div class="big" id="big_picture"></div>
+
+
+	<script src="script.js"></script>
+</body>
+
+</html>
