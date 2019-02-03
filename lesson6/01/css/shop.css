@@ -15,9 +15,11 @@
 
 	.catalog {
 		align-items: stretch;
+		box-sizing: border-box;
 		display: flex;
 		flex-flow: row wrap;
-		justify-content: space-around;
+		justify-content: space-between;
+		padding: 0 20px;
 	}
 
 		.catalog__item {
@@ -44,6 +46,7 @@
 			.catalog__item-img-block {
 				align-items: center;
 				display: flex;
+				cursor: pointer;
 				flex: 0 0 auto;
 				flex-flow: row wrap;
 				justify-content: center;
@@ -89,10 +92,12 @@
 	/* кнопка показать/скрыть корзину */
 		.shop__busket {
 			align-items: center;
+			box-sizing: border-box;
 			display: flex;
 			flex: 0 0 100%;
 			flex-flow: row wrap;
 			justify-content: center;
+			padding: 0 20px;
 		}
 
 			.shop__busket-btn-block {
@@ -121,5 +126,39 @@
 				}
 
 		.shop__busket-table {
+			align-items: center;
+			border: 1px solid #bfbfbf;
+			border-radius: 15px;
+			display: flex;
 			flex: 0 0 100%;
+			flex-flow: column nowrap;
+			justify-content: space-between;
+			padding: 10px 0;
 		}
+
+			.shop__busket-table-head {
+				flex: 0 0 100%;
+				font-size: 1.5rem;
+				margin-bottom: 10px;
+			}
+
+			.shop__busket-table>table {
+				border-collapse: collapse;
+				margin-bottom: 10px;
+			}
+
+			.shop__busket-table>table tr{
+				padding: 3px;
+			}
+
+			.shop__busket-table>table th{
+				padding: 0 5px;
+				text-align: center;
+			}
+
+			.shop__busket-table>table td{
+				border: 1px solid #bfbfbf;
+				padding: 0 5px;
+			}
+
+

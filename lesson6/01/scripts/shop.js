@@ -55,7 +55,7 @@ const shop = {
 									img.setAttribute('src', shop.catalog.items[val].images[0]);
 									img.setAttribute('class', 'catalog__item-img');
 									img.addEventListener('click', () => {
-
+										galleryVAK(shop.catalog.items[val].images); // вызов галлереи с изображениями
 									});
 									imgBlock.appendChild(img);
 								div_Item.appendChild(imgBlock);
@@ -67,8 +67,8 @@ const shop = {
 								btnBay.addEventListener('click', () => {
 									shop.busket.add(shop.catalog.items[val].id);
 									if (document.querySelector('.shop__busket-table')){
-										shop.busket.close();
-										shop.busket.open();
+										shop.busket.hide();
+										shop.busket.show();
 									}
 								});
 								div_Item.appendChild(btnBay);
@@ -272,7 +272,7 @@ const shop = {
 			}
 		},
 	
-		open: function () {
+		show: function () {
 			try {
 				let divShop = document.querySelector('.shop__busket');
 				let divBusket = document.createElement('div');
@@ -370,22 +370,22 @@ const shop = {
 	
 				let btnShop = document.querySelector('#shop__busket-btn');
 				btnShop.textContent = 'Закрыть корзину';
-				btnShop.removeEventListener('click', shop.busket.open);
-				btnShop.addEventListener('click', shop.busket.close);
+				btnShop.removeEventListener('click', shop.busket.show);
+				btnShop.addEventListener('click', shop.busket.hide);
 			} catch (e) {
 				console.log(e);
 			}
 		},
 	
-		close: function () {
+		hide: function () {
 			let divShop = document.querySelector('.shop__busket');
 			let divBuskete = document.querySelector('.shop__busket-table');
 			divShop.removeChild(divBuskete);
 
 			let btnShop = document.querySelector('#shop__busket-btn');
 			btnShop.textContent = 'Открыть корзину';
-			btnShop.removeEventListener('click', shop.busket.close);
-			btnShop.addEventListener('click', shop.busket.open);
+			btnShop.removeEventListener('click', shop.busket.hide);
+			btnShop.addEventListener('click', shop.busket.show);
 		}
 	}
 };
@@ -404,6 +404,5 @@ shop.catalog.items.pos3.images = ['images/mentos1.jpg', 'images/mentos2.jpg', 'i
 window.onload = function () {
 	shop.catalog.show();
 	let btnShop = document.querySelector('#shop__busket-btn');
-	btnShop.addEventListener('click', shop.busket.open);
-	galleryVAK.create(shop.catalog.items.pos3.images); // вызов галлереи с изображениями
+	btnShop.addEventListener('click', shop.busket.show);
 };
