@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lesson3</title>
+</head>
+<body>
+<div style="width: 50%">
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        С помощью цикла while вывести все простые числа в промежутке от 0 до 100<br>
+        <input type="button" onclick="part1()" value="Поехали">
+    </div>
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        С помощью цикла do…while написать функцию для вывода чисел от 0 до 10, чтобы результат выглядел так:<br>
+        0 – это ноль<br>
+        1 – нечетное число<br>
+        2 – четное число<br>
+        3 – нечетное число<br>
+        <input type="button" onclick="part2()" value="Поехали">
+    </div>
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        * Вывести с помощью цикла for числа от 0 до 9, НЕ используя тело цикла. То есть выглядеть должно вот так:<br>
+        for(…){// здесь пусто}<br>
+        *Смотреть в консоль* <input type="button" onclick="part3()" value="Поехали">
+    </div>
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        * Нарисовать пирамиду с помощью console.log, как показано на рисунке, только у вашей пирамиды должно быть 20 рядов, а не <br>
+        x<br>
+        xx<br>
+        xxx<br>
+        xxxx<br>
+        xxxxx<br>
+        *Смотреть в консоль* <input type="button" onclick="part4()" value="Поехали">
+    </div>
+</div>
+
+<script type="text/javascript">
+    function part1() {
+        let result = new Array();
+        let isPrime = function(num) {
+            for (let i = 2; i*i <= num; i++ ){
+                if (num%i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        let n = 2;
+        while (n <= 100) {
+            if (isPrime(n)) result.push(n);
+            n++;
+        }
+        alert(result.toString());
+    }
+    function part2() {
+        let result = '';
+        let n = 0;
+        do{
+            if (n == 0) result += '0 - это ноль\n';
+            else if (n%2 == 0) result += n + ' - четное\n';
+            else result += n + ' - не четное\n';
+            n++;
+        } while (n <= 10);
+        alert(result);
+    }
+    function part3() {
+        for (let i = 0; i < 10; console.log(i++));
+    }
+    function part4() {
+        let x = '';
+        for (let i = 0; i < 20; i++){
+            x += 'x';
+            console.log(x);
+        }
+    }
+</script>
+</body>
+</html>

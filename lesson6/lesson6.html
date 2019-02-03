@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lesson6</title>
+    <style>
+        div {
+            border: 1px solid grey;
+            position: relative;
+            width: 30%;
+            margin: 15px;
+            padding: 15px;
+            float: left;
+        }
+        #bigImg,#basketItems{
+            float:none;
+            width: 90%;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="gallery">
+    <div id="bigImg"><img src="big/3.jpg" style="visibility: hidden" alt=""></div>
+    <div class="smallImg" onclick="getFullScreen('Images/king.png', 'King')"><img src="Images/king.png" alt="King"></div>
+    <div class="smallImg" onclick="getFullScreen('Images/queen.png', 'Queen')"><img src="Images/queen.png" alt="Queen"></div>
+    <div class="smallImg" onclick="getFullScreen('Images/knight.png', 'Knight')"><img src="Images/knight.png" alt="Knight"></div>
+</div>
+<div id="shop">
+    <div id="p1" data-price="200">Товар 1<img src="Images/king.png" alt="King"> <button onclick="addProduct('p1')">Купить</button> 200 руб</div>
+
+    <div id="p2" data-price="150">Товар 2<img src="Images/queen.png" alt="Queen"> <button onclick="addProduct('p2')">Купить</button> 150 руб</div>
+
+    <div id="p3" data-price="100">Товар 3<img src="Images/knight.png" alt="Knight"> <button onclick="addProduct('p3')">Купить</button> 100 руб</div>
+</div>
+<div id="basket">
+    <p>Корзина:</p>
+    <div id="basketItems"></div>
+    <div style="border: none; float: right">Сумма: <span id="sum">0</span></div>
+</div>
+</body>
+<script type="text/javascript">
+    function getFullScreen(src, alt) {
+        var img = new Image();
+        img.src = src;
+        img.onload = function () {
+            alert('Картинка найдене')
+        };
+        img.onerror = function () {
+            alert('Картинка не найдена')
+        };
+        document.getElementById("bigImg").innerHTML = '<img src="' + src + '" alt="' + alt + '">';
+    }
+
+    function addProduct(Id) {
+        const product = document.getElementById(Id);
+        let sum = parseInt(document.getElementById("sum").innerHTML);
+
+        document.getElementById('basketItems').innerHTML += '<p>Товар' + product.innerHTML[5] + ' ' + product.dataset.price + ' руб' + '</p>';
+        sum += parseInt(product.dataset.price);
+        document.getElementById("sum").innerHTML = sum;
+    }
+</script>
+</html>
