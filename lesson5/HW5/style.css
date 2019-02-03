@@ -1,0 +1,32 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.num,
+.square {
+    border: 1px solid grey;
+    float: left;
+    width: 38px;
+    height: 38px;
+    text-align: center;
+}
+
+.num {
+    background-color: antiquewhite;
+}
+
+
+#field {
+    border: 1px solid grey;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -200px;
+
+}
