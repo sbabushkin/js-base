@@ -335,13 +335,17 @@ console.log(cdb.items);
 
 /* получаем информацию из ссылки */
 const basketInitParams = decodeURI(location.toString()); // getting params from url
-const params2 = basketInitParams.split('?'); // splitting into array before and after '?'
-const params1 = params2[1].split('&'); // splitting each param
-const paramObj = {}; //creating object, that will hold our params
-for (keys in params1){
-	let split = params1[keys].split('=');
-	db.addBasket(split[0],split[1]);
+console.log(basketInitParams)
+if(basketInitParams.includes('?')){
+	const params2 = basketInitParams.split('?'); // splitting into array before and after '?'
+	const params1 = params2[1].split('&'); // splitting each param
+	const paramObj = {}; //creating object, that will hold our params
+	for (keys in params1){
+		let split = params1[keys].split('=');
+		db.addBasket(split[0],split[1]);
+	}
 }
+
 
 db.getBasketInfoConsole();
 
