@@ -6,8 +6,119 @@ div.big {
   margin: 0 auto;
 }
 
+.scroller>div {
+    display: inline-block;
+}
+
+.scroller {
+    min-height: 200px;
+    width: 470px;
+    margin: 0 auto;
+}
+
+.left-scroll,
+.right-scroll {
+  height: 200px;
+  line-height: 200px;
+}
+
+.left-scroll img,
+.right-scroll img {
+    width: 30px;
+    height: 100%;
+    transform: scaleY(0.2);   
+}
+
+.left-scroll img {
+    transform: rotate(180deg) scaleY(0.2);
+}
+
+.left-scroll:hover,
+.right-scroll:hover {
+    background-color: azure;  
+}
+
 div.icons {
   text-align: center;
   width: 500px;
   margin: 0 auto;
+  clear: both;
 }
+
+.header {
+    width: 100%;
+    height: 69;
+    text-align: left;
+    font-size: 50;
+
+}
+
+.header img {
+    width: 100;
+    height: 69;
+}
+
+.header span {
+    display: inline-block;
+    height: 100%
+}
+
+.shop .content {
+    margin-top: 50px;
+}
+
+.shop .content .things {
+    height: 300px;
+    width: 200px;
+    outline: 2px solid black;
+    text-align: center;
+    padding-top: 20px;
+    float: left;
+    margin-right: 10px
+}
+
+.shop .content .things>div:first-child {
+    height: 200px;
+    line-height: 200px;
+}
+
+.shop .content .things>div:first-child img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.shop .content .things .timg {
+    height: 200px;
+    line-height: 200px;
+}
+
+.shop .content .things .tname {
+    height: 30px;
+    font-size: 20px;
+}
+
+.shop .content .things .tcost {
+    height: 30px;
+    text-align: left;
+    font-size: 25px;
+}
+
+.shop .content .things .tbuy {
+    height: 100%;
+    margin-top: 5px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.shop .content .things .tbuy span {
+    display: block;
+    margin: 0 auto;
+    width: 90px;
+    height: 30px;
+    border: 1px solid black;
+    background-color:darksalmon;
+    text-decoration: none;
+    
+}
+
+
