@@ -1,0 +1,238 @@
+html{
+	background-color: rgb(36,36,36);
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	box-sizing: border-box;
+}
+/* === Picture Module === */
+#pictureModule{
+	position: absolute;
+	background-color: black;
+	opacity: 0.6;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+/* ======= Main ======= */
+.wrap, .console, .button, .description{
+
+}
+.wrap{
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.console, .button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.console {
+	color: rgb(69,174,214);
+	width: 90%;
+	min-height: 100px;
+}
+.button,  {
+	color: rgb(200,58,192);
+	border: 1px dotted red;
+	width: 150px;
+	min-height: 75px;
+}
+.button:hover, .buy:hover, #buyButton:hover {
+	background-color: black;
+	cursor: pointer;
+}
+.buy:active, #buyButton:active{
+	background-color: red;
+	color: black;
+}
+.clicked, .clicked:hover {
+	background-color: black;
+	cursor: no-drop;
+}
+.description {
+	border: 1px dotted darkgrey;
+	padding: 10px 15px;
+	margin: 20px 0px 10px 0px;
+	color: rgb(69,174,214);
+	width: 90%;
+	text-align: left;
+}
+/* ======= END Main ======= */
+@media (min-width: 650px){
+	.wrap{
+		width: 580px;
+	}
+}
+
+/* ======= Basket ======= */
+#basketWrap{
+	border: 1px dotted darkgrey;
+	padding: 10px 15px;
+	margin: 10px 0px;
+	color: rgb(69,174,214);
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+#basket{
+	width: 90%;
+}
+#buyButton{
+	
+	border: 1px dotted darkgrey;
+}
+
+/* ======= Catalog ======= */
+#catalogWrap{
+	padding: 10px 15px;
+	margin: 10px 0px;
+	color: rgb(69,174,214);
+	width: 90%;
+}
+.catalog{
+	border: 1px dotted darkgrey;
+}
+.catalog .img{
+	width: 100px;
+	display: inline-block;
+	vertical-align: middle;
+	width: 32%;
+	min-width: 100px;
+ 	margin: 0 auto;
+}
+.catalog .img:hover{
+	opacity: 0.7;
+	transition: 0.3s;
+}
+.catalog img {
+	width: 100%;
+	height: auto;
+}
+.catalog .desc{
+	display: inline-block;
+	vertical-align: middle;
+	margin: -1% auto;
+ 	padding: 2%;
+ 	width: 60%;
+ 	text-align: left;
+}
+.catalog .desc h3, .catalog .desc h4, .catalog .desc h5, .catalog .desc p{
+	margin: 5px 0px;
+	padding: 0;
+}
+.buy{
+
+	border: 1px dotted darkgrey;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: inline-block;
+  max-width: 700px;
+  min-height: 200px;
+  vertical-align: middle;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 50px;
+}
+
+.arrow {
+	height: 100px;
+	width: auto;
+	margin: auto;
+  	display: inline-block;
+  	vertical-align: middle;
+  	border-radius: 50px;
+}
+.arrow:active{
+	background-color: white;
+}
+.left {
+	transform: rotate(180deg);
+}
+
+/* preview window */
+#preview .galleryImg{
+	margin: auto 2.5px;
+	background-color: rgb(82,82,82);
+	border-radius: 25px;
+	display: inline-block;
+	max-width: 300px;
+	max-height: 150px;
+	text-align: center;
+	color: #ccc;
+	padding: 5px 5px;
+}
+
+#preview .chosenImg {
+	background-color: yellow;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption { 
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
