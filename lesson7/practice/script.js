@@ -17,6 +17,8 @@ let doc_lives;
 const SNAKE_COLOR_ODD = 'blue';
 const SNAKE_COLOR_EVEN = 'yellow';
 const APPLE_COLOR = 'green';
+const FAKE_APPLE_COLOR = 'red';
+const MAX_COUNT_FAKE_APPLES = 5;
 
 // game started && first key pressed (initialization states)
 const gs = false;
@@ -36,6 +38,8 @@ const aw = 20;
 const ah = 20;
 // apples list
 const apples = [];
+//fake apples list
+const fakeApples = [];
 // tail elements list (aka tailPieces)
 const tailPieces = [];
 // tail size (1 for 10)
@@ -49,7 +53,7 @@ const cooldown = false;
 let score = 0; // current score
 
 //Жизни
-let lives = 5;
+let lives = 3;
 
 
 // функция рисования яблока
@@ -61,6 +65,8 @@ function spawnApple() {
             color: APPLE_COLOR,
         };
 
+    let checkPosition = true;
+
     // проверка что яблоко не попало на хвост
     for (let i = 0; i < tailSize.length; i++) {
         if (
@@ -69,13 +75,71 @@ function spawnApple() {
             newApple.y < (tailPieces[i].y + ph) &&
             newApple.y + ah > tailPieces[i].y
         ) {
-            spawnApple();
-            return;
+            checkPosition = false;
+        }
+    }
+    //проверка чтобы яблоко не попало на фейковое
+    for (let a = 0; a < fakeApples.length; a++) {
+        if (
+            newApple.x < (fakeApples[a].x + aw) &&
+            newApple.x + aw > fakeApples[a].x &&
+            newApple.y < (fakeApples[a].y + ah) &&
+            newApple.y + ah > fakeApples[a].y
+        ) {
+            checkPosition = false;
         }
     }
 
-    apples.push(newApple);
+    if (checkPosition == true) {
+        apples.push(newApple);
+    } else {
+        spawnApple();
+        return;
+    }
 }
+
+// функция рисования гнилого яблока
+function spawnFakeApple() {
+    const
+        newFakeApple = {
+            x: ~~(Math.random() * canv.width - 2 * aw) + aw,
+            y: ~~(Math.random() * canv.height - 2 * ah) + ah,
+            color: FAKE_APPLE_COLOR,
+        };
+    let checkPosition = true;
+
+    // проверка что яблоко не попало на хвост
+    for (let i = 0; i < tailSize.length; i++) {
+        if (
+            newFakeApple.x < (tailPieces[i].x + pw) &&
+            newFakeApple.x + aw > tailPieces[i].x &&
+            newFakeApple.y < (tailPieces[i].y + ph) &&
+            newFakeApple.y + ah > tailPieces[i].y
+        ) {
+            checkPosition = false;
+        }
+    }
+    // check for fake apple collisions with apples
+    for (let a = 0; a < apples.length; a++) {
+        if (
+            newFakeApple.x < (apples[a].x + aw) &&
+            newFakeApple.x + aw > apples[a].x &&
+            newFakeApple.y < (apples[a].y + ah) &&
+            newFakeApple.y + ah > apples[a].y
+        ) {
+            checkPosition = false;
+        }
+    }
+
+
+    if (checkPosition == true) {
+        fakeApples.push(newFakeApple);
+    } else {
+        spawnFakeApple();
+        return;
+    }
+}
+
 
 // итерация рисования экрана
 function loop() {
@@ -120,7 +184,7 @@ function loop() {
     }
 
     // проверка что врезались в себя
-    if (fkp && tailPieces.length!=tailSizeMin) {
+    if (fkp && tailPieces.length != tailSizeMin) {
         for (let i = tailPieces.length - tailSizeMin; i >= 0; i--) {
             if (
                 px < (tailPieces[i].x + pw) &&
@@ -132,10 +196,13 @@ function loop() {
                 tailSize = tailSizeMin; // cut the tailSize
                 speed = baseSpeed; // cut the speed (flash nomore lol xD)
                 lives--;
+                tailPieces.length = 0;
                 doc_lives.innerHTML = 'Осталось попыток: ' + lives;
                 if (lives === 0) {
+                    pause();
                     init();
                 }
+                break;
             }
         }
     }
@@ -144,6 +211,12 @@ function loop() {
     for (let a = 0; a < apples.length; a++) {
         ctx.fillStyle = apples[a].color;
         ctx.fillRect(apples[a].x, apples[a].y, aw, ah);
+    }
+
+    // paint fake apples
+    for (let a = 0; a < fakeApples.length; a++) {
+        ctx.fillStyle = fakeApples[a].color;
+        ctx.fillRect(fakeApples[a].x, fakeApples[a].y, aw, ah);
     }
 
     // check for snake head collisions with apples
@@ -160,13 +233,48 @@ function loop() {
             speed += 0.3; // add some speed
             spawnApple(); // spawn another apple(-s)
             score++;
+            if (score % 3 == 0) {
+                fakeApples.length = 0;
+                for (let a = 0; a <= ~~(Math.random() * MAX_COUNT_FAKE_APPLES);a++) {
+                    spawnFakeApple();
+                }
+            }
             doc_score.innerHTML = "Счет яблок: " + score;
+            break;
+        }
+    }
+
+    // check for snake head collisions with fakeApples
+    for (let a = 0; a < fakeApples.length; a++) {
+        if (
+            px < (fakeApples[a].x + pw) &&
+            px + pw > fakeApples[a].x &&
+            py < (fakeApples[a].y + ph) &&
+            py + ph > fakeApples[a].y
+        ) {
+            // got collision with apple
+            fakeApples.length = 0; // remove this apple from the apples list
+            tailSize = tailSizeMin; // cut the tailSize
+            speed = baseSpeed; // cut the speed (flash nomore lol xD)
+            lives--;
+            tailPieces.length = 0;
+            doc_lives.innerHTML = 'Осталось попыток: ' + lives;
+            if (lives === 0) {
+                pause();
+                start();
+            }
             break;
         }
     }
 }
 
 function start() {
+    score = 0;
+    lives = 3;
+    doc_score = document.getElementById('game_score');
+    doc_score.innerHTML = 'Счет яблок: ' + score;
+    doc_lives = document.getElementById('game_lives');
+    doc_lives.innerHTML = 'Осталось попыток: ' + lives;
     interval = setInterval(loop, 1000 / 50); // 50 FPS
 }
 
@@ -214,12 +322,6 @@ function changeDirection(evt) {
 }
 
 function init() {
-    score = 0;
-    lives = 5;
-    doc_score = document.getElementById('game_score');
-    doc_score.innerHTML = 'Счет яблок: ' + score;
-    doc_lives = document.getElementById('game_lives');
-    doc_lives.innerHTML = 'Осталось попыток: ' + lives;
     canv = document.getElementById('mc');
     ctx = canv.getContext('2d');
     px = ~~(canv.width) / 2;
