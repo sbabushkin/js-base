@@ -1,0 +1,13 @@
+html, body {padding: 0;margin: 0;}
+* {box-sizing: border-box;}
+body {background: #ddd; padding: 50px;}
+canvas {
+  background: black;
+  margin: 0 auto;
+  display: block;
+}
+#score {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
