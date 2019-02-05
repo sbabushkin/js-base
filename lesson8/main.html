@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>lesson 8</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <script type="text/javascript">
+    // 1. Для практикума из занятия 7 продумать, где можно применить замыкания
+    /* 
+        На сколько я понял, замыкания полезно применять в больших библиотеках как, например, jQuery, чтобы переменные не "засоряли" глобальное пространство и были видны только функциям самой библиотеки.     
+    */    
+    // 2. Не выполняя кода, ответить, что выведет браузер и почему
+        if (!("a" in window)) {
+            var a = 1; // var a - продекларирует переменную во время работы интерпретатора, то есть "a" in window = true
+        }
+        alert(a); // undefined, потому что по условию if переменная не будет объявлена
+
+        var b = function a(x) {
+            x && a(--x);
+        };
+        alert(a); // undefined
+
+        function a(x) {
+            return x * 2;
+        }
+        var a;
+        alert(a); // [Function: a]
+
+        function b(x, y, a) {
+            arguments[2] = 10;
+            alert(a);
+        }
+        b(1, 2, 3); // «псевдо-массив» arguments. 'arguments' is an Array-like object accessible inside functions that contains the values of the arguments passed to that function.
+
+        function a() {
+            alert(this);
+        }
+        a.call(null);  // [object Window] - видимо, null является свойством Window, который передает this  
+    </script>
+</body>
+</html>
