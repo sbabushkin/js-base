@@ -93,7 +93,7 @@ function move() {
             newUnit = document.getElementsByClassName('cell-' + (coordY) + '-' + (coordX + (FIELD_SIZE_X - 1)))[0];
         }
     }
-   // через стенку
+    // через стенку
     else if (direction == 'x+') {
         newUnit = document.getElementsByClassName('cell-' + (coordY) + '-' + (coordX + 1))[0];
         if (snakeCoords[2] == (FIELD_SIZE_X - 1)) {
@@ -113,7 +113,7 @@ function move() {
         }
     }
 
-  //проверки
+    //проверки
     if (!isSnakeUnit(newUnit) && newUnit !== undefined) {
         newUnit.setAttribute('class', newUnit.getAttribute('class') + ' snake-unit');
         snake.push(newUnit);
@@ -159,7 +159,7 @@ function haveFood(unit) {
 }
 
 
- // Создание еды
+// Создание еды
 
 function createFood() {
     let foodCreated = false;
@@ -186,11 +186,10 @@ function createFood() {
 }
 
 
- // препятствия
+// препятствия
 
 function createBlockage() {
     let blockCreated = false;
-
 
 
     while (!blockCreated) {

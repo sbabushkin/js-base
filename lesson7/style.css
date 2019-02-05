@@ -1,7 +1,8 @@
-#snake-field{
+#snake-field {
     display: inline-block;
 }
-#snake-renew,#snake-start{
+
+#snake-renew, #snake-start {
     width: 150px;
     padding: 15px;
     color: #f1f926;
@@ -11,28 +12,35 @@
     float: left;
     margin-right: 10px;
 }
-.game-table{
+
+.game-table {
     border-collapse: collapse;
     background-color: #0d0d0d;
 }
-td.game-table-cell{
+
+td.game-table-cell {
     width: 15px;
     height: 15px;
     border: 1px dotted #3c68ee;
 }
-.snake-unit{
+
+.snake-unit {
     background-color: #33ff1f;
 }
-.food-unit{
+
+.food-unit {
     background-color: #b3101b;
 }
-.block-unit{
+
+.block-unit {
     background-color: #fffaf8;
 }
-.button{
+
+.button {
     display: inline-block;
 }
-.main{
+
+.main {
     margin: 30px auto 0;
     text-align: center;
 }
