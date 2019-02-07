@@ -4,10 +4,36 @@ div.big {
   border: 1px solid grey;
   text-align: center;
   margin: 0 auto;
+  
 }
 
 div.icons {
   text-align: center;
   width: 500px;
   margin: 0 auto;
+  position: relative;
+}
+
+.control {
+  height: 50px;
+  width: 50px;
+  display: block;
+  position: absolute;
+  border: 3px solid #555;
+  transform: rotate(45deg);
+}
+.control:hover {
+  border: 3px solid #000;
+}
+#left {
+  left: 0;
+  top: -120px;
+  border-top: none;
+  border-right: none;
+}
+#right {
+  right: 0;
+  top: -120px;
+  border-bottom: none;
+  border-left: none;
 }

@@ -1,52 +1,56 @@
 function partitionOfNumbers() {
-  const namber = prompt('Введите число от 0 до 999: ', 275);
+  const namber = prompt("Введите число от 0 до 999: ", 275);
   if (namber > 0 && namber <= 999) {
-    const units = namber % 10; // находим единицы
-    const ten = namber % 100 - units; // находим десятки
-    const hundreds = namber - units - ten; // находим сотни
-    const objectNamber = {
-      units,
+    const units = namber % 10; //находим единицы
+    const ten = namber % 100 - units; //находим десятки
+    const hundreds = namber - units - ten; //находим сотни
+    objectNamber = {
+      units: units,
       ten: ten / 10,
-      hundreds: hundreds / 100,
-    };
-    alert('Единицы: ' + objectNamber.units + ', Десятки: ' + objectNamber.ten + ', Сотни: ' + objectNamber.hundreds);
+      hundreds: hundreds / 100
+    }
+    console.log(objectNamber);
+    alert("Единицы: " + objectNamber.units + ", Десятки: " + objectNamber.ten + ", Сотни: " + objectNamber.hundreds);
+  } else if (namber > 999) {
+    console.log(objectNamber = {});
+    alert('Вы ввели число больше 999');
   } else {
-    alert('Ваше число "' + namber + '" должно быть в от 0 до 999');
+    alert('Вы ввели "' + namber + '", а должна быть цифра от 0 до 999');
   }
-}
+};
 
 function ex2() {
   const sectors = [
-    'topleft',
-    'top',
-    'topright',
-    'left',
-    'center',
-    'right',
-    'bottomleft',
-    'bottom',
-    'bottomright',
-  ];
+  'topleft',
+  'top',
+  'topright',
+  'left',
+  'center',
+  'right',
+  'bottomleft',
+  'bottom',
+  'bottomright',
+];
 
   const goalKeeper = {
-    defendSector: null, // сектор который мы защещаем
-    savesToWin: 2, // количество голов для победы
-    saves: 0, // количество количество отбитых голов
+    defendSector: null, //сектор который мы защещаем
+    savesToWin: 2, //количество голов для победы
+    saves: 0, //количество количество отбитых голов
     init() {
       console.log('HERE');
-      // Номер сектора от 0до 8
+      //Номер сектора от 0до 8
       const sectorNum = Math.trunc(Math.random() * 9);
-      // куда вратарь стал
+      //куда вратарь стал
       this.defendSector = sectors[sectorNum];
       console.log(this.defendSector);
     },
-    // проверка победили мы или нет
+    //проверка победили мы или нет
     checkWin() {
       if (this.saves === this.savesToWin) {
         console.log('Goalkeeper wins!!!' + ' In ' + numberOfSteps + ' steps');
         return true;
       }
-      // голкиперу нужно для победы
+      //голкиперу нужно для победы
       console.log('Goalkeeper need ' + (this.savesToWin - this.saves) + ' more saves');
       return false;
     },
@@ -58,8 +62,8 @@ function ex2() {
     sectorToAttack: null,
     goals: 0,
     goalsToWin: 10,
-    // сектор который мы атакуем
-    // если введенные данные верны вернет правда
+    //сектор который мы атакуем
+    //если введенные данные верны вернет правда
     init(sector) {
       if (sectors.indexOf(sector) >= 0) {
         this.sectorToAttack = sector;
@@ -67,20 +71,20 @@ function ex2() {
       }
       return false;
     },
-    // в нем есть голкипер
+    //в нем есть голкипер
     attack(keeper) {
       console.log(keeper.defendSector, this.sectorToAttack);
-      // если у голкипера и у атакера савпали зоны
+      //если у голкипера и у атакера савпали зоны
       if (keeper.defendSector === this.sectorToAttack) {
-        console.log('SAVE!!!'); // мяч отбит
+        console.log('SAVE!!!'); //мяч отбит
         keeper.saves++;
         return false;
       }
-      console.log('GOAL!!!'); // иначе гол
-      this.goals++; // прибовляем гол атакеру
+      console.log('GOAL!!!'); //иначе гол
+      this.goals++; //прибовляем гол атакеру
       return true;
     },
-    // проверка на победу
+    //проверка на победу
     checkWin() {
       if (this.goals === this.goalsToWin) {
         console.log('Attacker wins!!!' + ' In ' + numberOfSteps + ' steps');

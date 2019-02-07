@@ -1,104 +1,81 @@
-/* 1.) С помощью цикла while вывести все простые числа в промежутке от 0 до 100 */
-
-const checkSimpleNum = (num) => {
-  // функция на проверку простого числа, чтобы можно было в основной функции прерывать цикл
-  for (let i = 2; i < num; i++) {
-    if (num % i === 0) return false;
+/*
+Задание 1
+*/
+function ex1() {
+  //пустой масив
+  var arr = [];
+  //длинна масива
+  const n = 100;
+  for (let i = 0; i < n; i++) {
+    //создаем масив из n элементов
+    arr.push(i);
   }
-  return true;
-};
+  //объявляем переменныe
+  let p = 2;
+  let j = 2;
+  /*
+  Для нахождения всех простых чисел не больше заданного числа n, следуя методу Эратосфена, нужно выполнить следующие шаги:
 
-const simpleNumArray = (num) => {
-  const arr = [];
-  let i = 2;
-  while (i <= num) {
-    if (checkSimpleNum(i)) { // на каждой итерации проверяем через функцию на true false;
-      arr.push(i);
+  1) Выписать подряд все целые числа от двух до n (2, 3, 4, …, n).
+  2) Пусть переменная p изначально равна двум — первому простому числу.
+  3) Зачеркнуть в списке числа от 2p до n считая шагами по p (это будут числа кратные p: 2p, 3p, 4p, …).
+  4) Найти первое незачёркнутое число в списке, большее чем p, и присвоить значению переменной p это число.
+  5) Повторять шаги 3 и 4, пока возможно.
+  */
+  while (j < n) {
+    while (p < n) {
+      p += j;
+      delete arr[p];
     }
-    i++;
+    j++;
+    p = j;
   }
-  return arr;
-};
-
-console.log('Вывод массива простых чисел от 0 до 100: ' + simpleNumArray(100));
+  delete arr[0];
+  delete arr[1];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== undefined) {
+      alert(arr[i]);
+    }
+  }
+}
 
 /*
-2) С помощью цикла do…while написать функцию для вывода чисел от 0 до 10, чтобы результат выглядел так:
-0 – это ноль
-1 – нечетное число
-2 – четное число
-3 – нечетное число
-…
-10 – четное число
+Задание 2
 */
-
-const numDisplay = () => {
-  let count = 0;
-  const countMax = 10;
+function ex2() {
+  const n = 10;
+  let i = 0;
   do {
-    if (count === 0) {
-      console.log(count + ' - это ноль');
-    } else if (count % 2 === 0) {
-      console.log(count + ' - это четное число');
+    if (i === 0) {
+      alert(i + ' - это ноль');
     } else {
-      console.log(count + ' - это не четное число');
+      let d = (i % 2) ? alert(i + ' - нечетное число') : alert(i + ' - четное число');
     }
-    count++;
-  } while (count <= 10);
-};
+    i++;
+  } while (i <= n);
+}
+/*
+Задание 3
+*/
+function ex3() {
+  for (let i = 0; i < 10; alert(i++));
+}
+/*
+Задание 4
+*/
+console.log("Задание 4.");
+let star = "*";
+for (let i = 1; i < 20; i++) {
+  star += "*";
+  console.log(star);
+}
 
-numDisplay();
+/*
+Доп. задание
+*/
+console.log("Доп. задание");
+const array1 = [1, 2, 10, 3, 4].reduce(function (previousValue, currentValue, index, array) {
+  return Math.max.apply(null, array);
+});
 
-/* 2. Начиная с этого урока, мы начинаем работать с функционалом интернет-магазина.
-Предположим, что у нас есть сущность корзины. Нужно реализовать функционал подсчета
-стоимости корзины в зависимости от находящихся в ней товаров. Товары в корзине хранятся в
-массиве.
-2.1. Организуйте такой массив для хранения товаров в корзине
-2.2. Организуйте функцию countBasketPrice, которая будет считать стоимость корзины. */
-
-const basketItems = ['Утюг', 'Утюг', 'Кофеварка', 'Пылесос'];
-const ItemsCost = [['Утюг', 100], ['Кофеварка', 50], ['Пылесос', 250]];
-
-// функция возврата стоимости конкретного товара.
-const getItemPrice = (item, array) => {
-  const items = [];
-  const costs = [];
-  // предполагаем, что мы знаем структуру массива со стоимостями товара, поэтому разбиваем его на 2 одномерных массива
-  for (let i = 0; i < array.length; i++) {
-    items.push(array[i][0]);
-    costs.push(array[i][1]);
-  }
-  // используя метод .indexOf получаем индекс товара в массиве с названиями товаров и возвращаем стоимость по этому индексу из массива цен
-  return costs[items.indexOf(item)];
-};
-
-const countBasketPrice = (basketArr, costArr) => {
-  let totalCost = 0;
-  for (let i = 0; i < basketArr.length; i++) {
-    // на каждой итерации обхода массива корзины обращаемся к функции получения стоимости единицы товара.
-    totalCost += getItemPrice(basketArr[i], costArr);
-  }
-  return totalCost;
-};
-console.log('Массив корзины: ' + basketItems);
-console.log('Массив стоимости каждого товара: ' + ItemsCost);
-console.log('Вывод полной стоимости корзины: ' + countBasketPrice(basketItems, ItemsCost));
-
-/* 3. *Вывести с помощью цикла for числа от 0 до 9, НЕ используя тело цикла. То есть
-выглядеть должно вот так:
-for(…){// здесь пусто} */
-
-for (let i = 0; i <= 9; console.log('Цикл без тела {}: ' + i++)) { /* пусто */ }
-
-/* 4. * Нарисовать пирамиду с помощью console.log, как показано на рисунке, только у вашей
-© geekbrains.ru 7
-пирамиды должно быть 20 рядов, а не 5: */
-
-const pyramidScheme = (rows, symbol) => {
-  let picture = '';
-  for (let i = 1; i <= rows; i++) {
-    console.log(picture += symbol);
-  }
-};
-
-pyramidScheme(20, 'x');
+console.log(array1);

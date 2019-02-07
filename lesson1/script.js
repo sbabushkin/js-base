@@ -23,17 +23,12 @@ function converter() { /* eslint no-unused-vars: 0 */
  * Записать в name строку "Василий";
  * Скопировать значение из name в admin. Вывести admin (должно вывести «Василий»).
  */
-function showAdmin() {
-  const name = 'Василий';
-  const admin = name;
+function admin() {
+  var admin;
+  var name;
+  name = "Василий";
+  admin = name;
   alert(admin);
-}
-
-function setStyle(element) { /* eslint no-param-reassign: 0 */
-  element.style.padding = '5px';
-  element.style.border = '2px solid gray';
-  element.style.borderRadius = '5px';
-  element.style.marginTop = '10px';
 }
 
 /**
