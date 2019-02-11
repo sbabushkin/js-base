@@ -17,7 +17,6 @@ class UNAVAILABLESECTOR {
 	}
 }
 
-
 const game = {
 	unavailableSector: {
 		state: [],
@@ -42,6 +41,12 @@ const game = {
 	keyboard: {
 		pause: {
 			down: document.addEventListener('keydown', () => {
+				game.keyboard.pause.pauseFunction();
+			}),
+
+			state: true,
+
+			pauseFunction: () => {
 				if (event.keyCode === 32) {
 					if (game.keyboard.pause.state) {
 						clearInterval(snakeDraw.animation.timerStep);
@@ -54,37 +59,45 @@ const game = {
 						snakeDraw.animation.init();
 					}
 				}
-			}),
-
-			state: true,
+			}
 		},
 
 		changeDirect: document.addEventListener('keydown', () => {
 			if (game.keyboard.state){
 				switch (event.keyCode) {
 					case 38:
-						game.settings.direct = 'top';
-						game.settings.vx = 0;
-						game.settings.vy = -1;
+						if (game.settings.direct !== 'bottom') {
+							game.settings.direct = 'top';
+							game.settings.vx = 0;
+							game.settings.vy = -1;
+						}
 						break;
 					case 37:
-						game.settings.direct = 'left';
-						game.settings.vx = -1;
-						game.settings.vy = 0;
+						if (game.settings.direct !== 'right') {
+							game.settings.direct = 'left';
+							game.settings.vx = -1;
+							game.settings.vy = 0;
+						}
 						break;
 					case 40:
-						game.settings.direct = 'bottom';
-						game.settings.vx = 0;
-						game.settings.vy = 1;
+						if (game.settings.direct !== 'top') {
+							game.settings.direct = 'bottom';
+							game.settings.vx = 0;
+							game.settings.vy = 1;
+						}
 						break;
 					case 39:
-						game.settings.direct = 'right';
-						game.settings.vx = 1;
-						game.settings.vy = 0;
+						if (game.settings.direct !== 'left') {
+							game.settings.direct = 'right';
+							game.settings.vx = 1;
+							game.settings.vy = 0;
+						}
 						break;
 				}
 			}
 		}),
+
+		start: undefined,
 
 		state: true,
 	},
@@ -94,6 +107,7 @@ const game = {
 		vy: -1,
 		direct: 'top',
 		score: 0,
+		lives: 3
 	},
 
 	snake: {

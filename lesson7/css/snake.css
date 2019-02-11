@@ -1,9 +1,13 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
 body {
 	align-items: center;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
-	margin: 0;
 	height: 100vh;
 }
 
@@ -25,11 +29,82 @@ body {
 }
 
 .snake-block__HUD {
+	align-items: center;
 	background: black;
 	border: 1px solid #000000;
 	box-sizing: border-box;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-around;
 	float: left;
 	margin: 20px 20px 20px 0;
 	height: 500px;
+	padding: 20px;
 	width: 200px;
 }
+
+	.snake-block__HUD-lives {
+		align-items: center;
+		display: flex;
+		flex: 0 0 auto;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+		height: 40px;
+	}
+
+		.snake-block__HUD-lives-img {
+			background: url(../images/heart.png) no-repeat;
+			background-size: contain;
+			height: 35px;
+			width: 35px;
+		}
+
+		.snake-block__HUD-lives-number {
+			color: #ffffff;
+			height: 80%;
+			font-size: 2rem;
+			margin-left: 10px;
+			text-align: left;
+		}
+
+	.snake-block__HUD-score {
+		color: #ffffff;
+		flex: 0 0 auto;
+		font-size: 2rem;
+		height: 40px;
+		text-align: center;
+		width: 100%;
+	}
+
+	.snake-block__HUD-level {
+		color: #ffffff;
+		flex: 0 0 auto;
+		font-size: 2rem;
+		height: 40px;
+		text-align: center;
+		width: 100%;
+	}
+
+	.snake-block__HUD-btn {
+		background: #142c3a; /* Old browsers */
+		background: -moz-radial-gradient(center, ellipse cover, #142c3a 10%, #28343b 40%, #444a4c 70%, #828c95 96%, #b5bdc8 100%);
+		background: -webkit-radial-gradient(center, ellipse cover, #142c3a 10%,#28343b 40%,#444a4c 70%,#828c95 96%,#b5bdc8 100%);
+		background: radial-gradient(ellipse at center, #142c3a 10%,#28343b 40%,#444a4c 70%,#828c95 96%,#b5bdc8 100%);
+		border: 1px solid #b5bdc8;
+		border-radius: 20px;
+		color: #ffffff;
+		cursor: pointer;
+		flex: 0 0 auto;
+		font-size: 1rem;
+		height: 40px;
+		outline: none;
+		width: 100%;
+	}
+
+	.snake-block__HUD-btn:active {
+		background: #142c3a;
+		background: -moz-radial-gradient(center, ellipse cover, #142c3a 10%, #28343b 30%, #444a4c 60%, #828c95 80%, #50535e 100%);
+		background: -webkit-radial-gradient(center, ellipse cover, #142c3a 10%,#28343b 30%,#444a4c 60%,#828c95 80%,#50535e 100%);
+		background: radial-gradient(ellipse at center, #142c3a 10%,#28343b 30%,#444a4c 60%,#828c95 80%,#50535e 100%);
+		border: 1px solid #8f97a2;
+	}

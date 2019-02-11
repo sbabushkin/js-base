@@ -108,15 +108,77 @@ const snakeDraw = {
 		divSnakeBlock.appendChild(snakeDraw.canvas);
 		const divHUD = document.createElement('div');
 		divHUD.setAttribute('class', 'snake-block__HUD');
+
+		const divLives = document.createElement('div');
+		divLives.setAttribute('class', 'snake-block__HUD-lives');
+		const divLivesImg = document.createElement('div');
+		divLivesImg.setAttribute('class', 'snake-block__HUD-lives-img');
+		divLives.appendChild(divLivesImg);
+		const divLivesNumber = document.createElement('p');
+		divLivesNumber.setAttribute('class', 'snake-block__HUD-lives-number');
+		divLivesNumber.textContent = '3';
+		divLives.appendChild(divLivesNumber);
+		divHUD.appendChild(divLives);
+
+		const divScore = document.createElement('p');
+		divScore.setAttribute('class', 'snake-block__HUD-score');
+		divScore.textContent = 'Score 0';
+		divHUD.appendChild(divScore);
+
+		const divLevel = document.createElement('p');
+		divLevel.setAttribute('class', 'snake-block__HUD-level');
+		divLevel.textContent = 'Level 1';
+		divHUD.appendChild(divLevel);
+
+		const btnStart = document.createElement('button');
+		btnStart.setAttribute('id', 'snake-block__HUD-btn-start');
+		btnStart.setAttribute('class', 'snake-block__HUD-btn');
+		btnStart.textContent = 'Start (F2)';
+		btnStart.addEventListener('click', startGame);
+		divHUD.appendChild(btnStart);
+
+		const btnPause = document.createElement('button');
+		btnPause.setAttribute('id', 'snake-block__HUD-btn-pause');
+		btnPause.setAttribute('class', 'snake-block__HUD-btn');
+		btnPause.textContent = 'Pause (Space)';
+		btnPause.addEventListener('click', game.keyboard.pause.pauseFunction);
+		divHUD.appendChild(btnPause);
+
 		divSnakeBlock.appendChild(divHUD);
 		divBody.appendChild(divSnakeBlock);
 	},
 
+	createSettings: () => { // задаются вычисляемые свойства объектов
+		snakeDraw.canvas.height = 500;
+		snakeDraw.canvas.width = 500;
+
+		snakeDraw.ctx = snakeDraw.canvas.getContext('2d');
+
+		snakeDraw.greed.maxCellX = Math.floor(snakeDraw.canvas.width / snakeDraw.greed.cutX);
+		snakeDraw.greed.maxCellY = Math.floor(snakeDraw.canvas.width / snakeDraw.greed.cutY);
+
+		snakeDraw.mainSprait = new Image();
+		snakeDraw.mainSprait.onload = () => {
+			game.keyboard.start = document.addEventListener('keydown', () => {
+				if (event.keyCode === 113) {
+					startGame();
+				}
+			});
+		};
+		snakeDraw.mainSprait.src = 'images/mainSprait.png';
+	},
+
 	animation: {
 		init: () => {
+			if (snakeDraw.animation.timerStep) {
+				clearInterval(snakeDraw.animation.timerStep);
+			}
 			snakeDraw.animation.timerStep = setInterval(() => {
 				game.nextFame();
 			}, 200);
+			if (snakeDraw.animation.request) {
+				cancelAnimationFrame(snakeDraw.animation.request);
+			}
 			snakeDraw.animation.loopDraw();
 		},
 
@@ -144,28 +206,22 @@ const snakeDraw = {
 	},
 };
 
-const createSettings = () => { // задаются вычисляемые свойства объектов
-	snakeDraw.canvas.height = 500;
-	snakeDraw.canvas.width = 500;
-
-	snakeDraw.ctx = snakeDraw.canvas.getContext('2d');
-
-	snakeDraw.mainSprait = new Image();
-	snakeDraw.mainSprait.src = 'images/mainSprait.png';
-
-	snakeDraw.greed.maxCellX = Math.floor(snakeDraw.canvas.width / snakeDraw.greed.cutX);
-	snakeDraw.greed.maxCellY = Math.floor(snakeDraw.canvas.width / snakeDraw.greed.cutY);
+const startGame = () => {
+	game.settings.vx = 0;
+	game.settings.vy = -1;
+	game.settings.direct = 'top';
+	game.settings.score = 0;
+	game.settings.lives = 3;
+	game.mouse.state = [];
+	game.keyboard.state = true;
+	game.keyboard.pause.state = true;
+	game.snake.startState(); // задаем стартовое положение змейки по центру экрана
+	game.mouse.startState(); // задаем стартовое положение мышки рандомно
+	snakeDraw.animation.init(); // запускаем анимацию
+	document.querySelector('body').focus();
 };
 
 window.onload = () => {
-	createSettings();
-
+	snakeDraw.createSettings();
 	snakeDraw.createInterface();
-
-	game.snake.startState(); // задаем стартовое положение змейки по центру экрана
-	game.mouse.startState(); // задаем стартовое положение мышки рандомно
-
-	snakeDraw.mainSprait.onload = () => { // запускаем анимацию
-		snakeDraw.animation.init();
-	};
 };
