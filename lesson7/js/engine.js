@@ -64,6 +64,7 @@ const game = {
 
 		changeDirect: document.addEventListener('keydown', () => {
 			if (game.keyboard.state){
+				game.keyboard.state = false;
 				switch (event.keyCode) {
 					case 38:
 						if (game.settings.direct !== 'bottom') {
@@ -107,7 +108,8 @@ const game = {
 		vy: -1,
 		direct: 'top',
 		score: 0,
-		lives: 3
+		lives: 3,
+		level: 1
 	},
 
 	snake: {
@@ -327,10 +329,6 @@ const game = {
 		}
 	},
 
-	wall: {
-
-	},
-
 	nextFame: () => {
 		for (let i in game.unavailableSector.state){
 			if (game.snake.state[0].posX + game.settings.vx === game.unavailableSector.state[i].posX
@@ -339,12 +337,19 @@ const game = {
 					case 'body':
 					case 'bend':
 					case 'tail':
-					case 'wall':
-						const gameOver = true;
+						if (--game.settings.lives === 0) {
+							startGame('gameOver');
+						} else {
+							startGame('minusLive');
+						}
 						break;
 
 					case 'mouse':
-						game.settings.score++;
+						if (++game.settings.score === 30) {
+							startGame('nextLevel');
+							return;
+						}
+						snakeDraw.score.textContent = 'Score ' + game.settings.score;
 						game.snake.addBlock();
 						game.mouse.removeState();
 						break;

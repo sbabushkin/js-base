@@ -12,6 +12,12 @@ const snakeDraw = {
 		maxCelly: undefined, // количество ячеек задается в createSettings()
 	},
 
+	lives: document.createElement('p'),
+
+	score: document.createElement('p'),
+
+	level: document.createElement('p'),
+
 	object: {
 		snake: {
 			head: (dx, dy, direct) => {
@@ -114,21 +120,19 @@ const snakeDraw = {
 		const divLivesImg = document.createElement('div');
 		divLivesImg.setAttribute('class', 'snake-block__HUD-lives-img');
 		divLives.appendChild(divLivesImg);
-		const divLivesNumber = document.createElement('p');
-		divLivesNumber.setAttribute('class', 'snake-block__HUD-lives-number');
-		divLivesNumber.textContent = '3';
-		divLives.appendChild(divLivesNumber);
+
+		snakeDraw.lives.setAttribute('class', 'snake-block__HUD-lives-number');
+		snakeDraw.lives.textContent = '3';
+		divLives.appendChild(snakeDraw.lives);
 		divHUD.appendChild(divLives);
 
-		const divScore = document.createElement('p');
-		divScore.setAttribute('class', 'snake-block__HUD-score');
-		divScore.textContent = 'Score 0';
-		divHUD.appendChild(divScore);
+		snakeDraw.score.setAttribute('class', 'snake-block__HUD-score');
+		snakeDraw.score.textContent = 'Score ' + game.settings.score;
+		divHUD.appendChild(snakeDraw.score);
 
-		const divLevel = document.createElement('p');
-		divLevel.setAttribute('class', 'snake-block__HUD-level');
-		divLevel.textContent = 'Level 1';
-		divHUD.appendChild(divLevel);
+		snakeDraw.level.setAttribute('class', 'snake-block__HUD-level');
+		snakeDraw.level.textContent = 'Level 1';
+		divHUD.appendChild(snakeDraw.level);
 
 		const btnStart = document.createElement('button');
 		btnStart.setAttribute('id', 'snake-block__HUD-btn-start');
@@ -175,7 +179,8 @@ const snakeDraw = {
 			}
 			snakeDraw.animation.timerStep = setInterval(() => {
 				game.nextFame();
-			}, 200);
+				game.keyboard.state = true;
+			}, 200*(1-Math.log10(game.settings.level)/5));
 			if (snakeDraw.animation.request) {
 				cancelAnimationFrame(snakeDraw.animation.request);
 			}
@@ -206,19 +211,37 @@ const snakeDraw = {
 	},
 };
 
-const startGame = () => {
+const startGame = (set) => {
 	game.settings.vx = 0;
 	game.settings.vy = -1;
 	game.settings.direct = 'top';
 	game.settings.score = 0;
-	game.settings.lives = 3;
-	game.mouse.state = [];
-	game.keyboard.state = true;
-	game.keyboard.pause.state = true;
-	game.snake.startState(); // задаем стартовое положение змейки по центру экрана
-	game.mouse.startState(); // задаем стартовое положение мышки рандомно
-	snakeDraw.animation.init(); // запускаем анимацию
+	snakeDraw.score.textContent = 'Score ' + game.settings.score;
+	if (set === 'nextLevel'){
+		game.settings.level++;
+		snakeDraw.level.textContent = 'Level ' + game.settings.level;
+	} else if (set === 'minusLive') {
+		snakeDraw.lives.textContent = game.settings.lives;
+	} else if (!set) {
+		game.settings.lives = 3;
+		snakeDraw.lives.textContent = game.settings.lives;
+		game.settings.level = 1;
+		snakeDraw.level.textContent = 'Level ' + game.settings.level;
+	}
+	if (set !== 'gameOver'){
+		game.mouse.state = [];
+		game.keyboard.state = true;
+		game.keyboard.pause.state = true;
+		game.snake.startState(); // задаем стартовое положение змейки по центру экрана
+		game.mouse.startState(); // задаем стартовое положение мышки рандомно
+		snakeDraw.animation.init(); // запускаем анимацию
+	} else {
+		snakeDraw.lives.textContent = game.settings.lives;
+		clearInterval(snakeDraw.animation.timerStep);
+		cancelAnimationFrame(snakeDraw.animation.request);
+	}
 	document.querySelector('body').focus();
+
 };
 
 window.onload = () => {
