@@ -274,11 +274,13 @@ body {
 
 					.main-show__control-block {
 						align-items: flex-end;
+						box-sizing: border-box;
 						display: flex;
 						flex: 0 0 25%;
 						flex-flow: row nowrap;
 						justify-content: flex-end;
 						margin-right: 20px;
+						padding-bottom: 10px;
 						width: 65%;
 					}
 
@@ -310,8 +312,8 @@ body {
 
 		/* блок с таблицей выйгрыша */
 		.main__sumTable-block {
-			flex: 0 0 25%;
-			margin: 25px 0;
+			flex: 0 0 22%;
+			margin: 25px 0 25px 3%;
 		}
 				.main__sumTable {
 					border-collapse: collapse;

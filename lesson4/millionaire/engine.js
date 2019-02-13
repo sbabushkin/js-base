@@ -2,20 +2,34 @@
 game = {
 	--- свойства ---
 	control {}				// кнопки
-		friend				// доступность звонок другу true/false
-		fifty				// доступность 50/50 true/false
-		hall				// доступность помощи зала true/false
-		start				// состояние кнопки начала игры 'start', 'takeMoney'
+		startListener{}			// обработчик событий кнопки "Старт"
+			handler ()				// обработчик событий
+			state					// состояние кнопки начала игры 'start', 'takeMoney'
 		varListener {}			// добавляет/удаляет обработчик событий на кнопки с вариантами ответов параметры: add, remove
-			add ()					//добавляет обработчики событий на кнопки с вариантами ответов
-			remove ()				//удаляет обработчики событий с кнопок с вариантами ответов
-			varListenerHandler ()	//обработчик событий
+			add ()					// добавляет обработчики событий на кнопки с вариантами ответов
+			remove ()				// удаляет обработчики событий с кнопок с вариантами ответов
+			handler ()				// обработчик событий
+		hallListener{}			// обработчик событий кнопки "Помощь зала"
+			handler ()				// обработчик событий
+			on ()					// включает функцию
+			off()					// выключает функцию
+			state					// доступность помощи зала true/false
+		friendListener{}		// обработчик событий кнопки "Помощь друга"
+			handler ()				// обработчик событий
+			on ()					// включает функцию
+			off()					// выключает функцию
+			state					// доступность звонок другу true/false
+		fiftyListener{}			// обработчик событий кнопки "Помощь друга"
+			handler ()				// обработчик событий
+			on ()					// включает функцию
+			off()					// выключает функцию
+			state					// доступность 50/50 true/false
 	message {}				// выводит сообщение с уведомлением
 		clean ()				// очищает поле сообщений
 		gameOver ()				// сообщение об окончании игры параметры 'fail' , 'win'
 		getName ()				// сообщение на запрос имени игрока параметры 'friend', 'user'
 		nofire ()				// сообщение о первой несгораемой сумме параметры 'first', 'second'
-		welscome ()				// приветственное сообщение вначале каждого раунда
+		welcome ()				// приветственное сообщение вначале каждого раунда
 	questionNumber 	 		// номер текущего вопроса
 	questions		 		// массив вопросов для текущей викторины элемены массива object {text, variants, answer, sum}
 	user {}					// данные игрока
@@ -31,48 +45,64 @@ game = {
 	reload ()				// перезагрузка игры
 	showQuestion ()			// показывает новый вопрос в интерфейсе
 	sumTable (clean)		// показывает сумму текущего вопроса параметр clean true/false - чистая таблица при перезагрузке игры
-	varListenerHandler ()	// обработчик событий для varListener
 	win ()					// победа или забрали сумму выводим сообщение
  }
 
  */
 
-let game = {
+const game = {
 	control: {  // кнопки
-		friend: true, // доступность 50/50 true/false
-		fifty: true, // доступность 50/50 true/false
-		hall: true, // доступность помощи зала true/false
-		start: 'start', // состояние кнопки начала игры 'start', 'takeMoney'
+		startListener: { // обработчик событий кнопки "Старт"
+			handler: () => { //обработчик событий
+				if (game.control.startListener.state === 'start'){
+					if (game.user.name === '') { // запрашиваем имя игрока
+						game.message.getName('user');
+					} else {
+						game.init(); // создаем новую викторину
+						game.control.startListener.state = 'takeMoney'; // заменяем кнопку 'старт' на кнопку 'забрать деньги'
+						document.querySelector('.main-show__control-btnStart').textContent = 'Забрать выйгрыш';
+					}
+				} else if (game.control.startListener.state === 'takeMoney'){
+					game.win();
+					game.control.varListener.remove();
+					game.control.fiftyListener.off();
+					game.control.hallListener.off();
+					game.control.friendListener.off();
+				}
+			},
+			state: 'start', // состояние кнопки начала игры 'start', 'takeMoney'
+		},
+
 		varListener: { //добавляет/удаляет обработчики событий на кнопки с вариантами ответов
-			add: function () {//добавляет обработчики событий на кнопки с вариантами ответов
-				let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
+			add: () => { // добавляет обработчики событий на кнопки с вариантами ответов
+				const variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
 				for (let j = 0; j < 4; j++) {
 					variant[j].setAttribute('class', 'main__questVar main__questVar_bgBlue main__questVar_clickable'); // добавляем свойство cursor:
 					// pointer и background
-					variant[j].addEventListener('click', game.control.varListener.varListenerHandler);
+					variant[j].addEventListener('click', game.control.varListener.handler);
 				}
 			},
 
-			remove: function () {//удаляет обработчики событий с кнопок с вариантами ответов
-				let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
+			remove: () => { // удаляет обработчики событий с кнопок с вариантами ответов
+				const variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
 				for (let j = 0; j < 4; j++) {
 					variant[j].setAttribute('class', 'main__questVar main__questVar_bgBlue');
-					variant[j].removeEventListener('click', game.control.varListener.varListenerHandler);
+					variant[j].removeEventListener('click', game.control.varListener.handler);
 				}
 			},
 
-			varListenerHandler: function () { //обработчик событий
+			handler: function() { // обработчик событий
 				this.setAttribute('class', 'main__questVar main__questVar_bgYellow main__questVar_clickable'); //меняем бакграунд выбранного ответа
 				let mod = true;
-				let timer = setTimeout(function () { // таймер для задержки проверки ответа для анимации
-					let variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
+				let timer = setTimeout(() => { // таймер для задержки проверки ответа для анимации
+					const variant = document.querySelectorAll('.main__questVar'); //назначаем события на кнопки ответов
 					for (let j = 0; j < 4; j++) {
 						if (variant[j].textContent.substring(3) === game.questions[game.questionNumber].answer){ // анимация верного ответа
-							let variantClass = variant[j].getAttribute('class'); // запоминаем предыдущий класс
+							const variantClass = variant[j].getAttribute('class'); // запоминаем предыдущий класс
 							variant[j].setAttribute('class', 'main__questVar main__questVar_bgGreen main__questVar_clickable'); //меняем бакграунд
 							// выбранного
 							// ответа
-							let timer2 = setInterval(function (){
+							const timer2 = setInterval(() => {
 								if (mod) {
 									variant[j].setAttribute('class', variantClass);
 									mod = false;
@@ -81,37 +111,111 @@ let game = {
 									mod = true;
 								}
 							}, 500, mod);
-							let timer2Stop = setInterval(function() {clearInterval(timer2)}, 1000);
+							const timer2Stop = setInterval(() => {clearInterval(timer2)}, 1000);
 						}
 					}
 				}, 1500);
-				let thisVar = this;
-				timer = setTimeout (function () {
-					game.checkAnswer(thisVar.textContent.substring(3)); // здесь thisVar ссылается на ивент обработчика событий 'click'
+				timer = setTimeout (() => {
+					game.checkAnswer(this.textContent.substring(3)); // здесь thisVar ссылается на ивент обработчика событий 'click'
 				}, 3000);
 			},
 
 		},
+
+		hallListener: { // обработчик событий кнопки "Помощь зала"
+			handler: () => { // обработчик событий
+
+			},
+
+			on: () => {
+				game.control.hallListener.state = true;
+				document.querySelector('.user__hint-hall').setAttribute('class', 'user__hint-hall user__hint-hall_no-used');
+			},
+
+			off: () => {
+				game.control.hallListener.state = false;
+				document.querySelector('.user__hint-hall').setAttribute('class', 'user__hint-hall user__hint-hall_used');
+			},
+
+			state: false, // доступность помощи зала true/false
+		},
+
+		friendListener: { // обработчик событий кнопки "Помощь друга"
+			handler: () => {
+
+			},
+
+			on: () => {
+				game.control.friendListener.state = true;
+				document.querySelector('.user__hint-friend').setAttribute('class', 'user__hint-friend user__hint-friend_no-used');
+			},
+
+			off: () => {
+				game.control.friendListener.state = false;
+				document.querySelector('.user__hint-friend').setAttribute('class', 'user__hint-friend user__hint-friend_used');
+			},
+
+			state: false, // доступность звонок другу true/false
+		},
+
+		fiftyListener: { // обработчик событий кнопки "Помощь друга"
+			handler: () => { // обработчик событий
+				if (game.control.fiftyListener.state) {
+					const variant = document.querySelectorAll('.main__questVar');
+					const arr_i = [0,1,2,3]; // ответы добавляются в рандомном порядке
+					let check = 0;
+					do {
+						arr_i.sort((a,b) => {return Math.random()-0.5});
+						if (variant[arr_i[0]].childNodes[0].textContent.substring(3) !== game.questions[game.questionNumber].answer) {
+							variant[arr_i[0]].removeChild(variant[arr_i[0]].childNodes[0]);
+							variant[arr_i[0]].setAttribute('class', 'main__questVar main__questVar_bgBlue');
+							variant[arr_i[0]].removeEventListener('click', game.control.varListener.handler);
+							check++;
+						}
+						arr_i.shift();
+					} while (check < 2);
+					game.control.fiftyListener.off();
+				}
+			},
+
+			on: () => {
+				game.control.fiftyListener.state = true;
+				document.querySelector('.user__hint-fifty').setAttribute('class', 'user__hint-fifty user__hint-fifty_no-used');
+			},
+
+			off: () => {
+				game.control.fiftyListener.state = false;
+				document.querySelector('.user__hint-fifty').setAttribute('class', 'user__hint-fifty user__hint-fifty_used');
+			},
+
+			state: false, // доступность 50/50 true/false
+		}
 	},
 
 	message: {
-		clean: function () { // очищает поле сообщений
-			let main = document.querySelector('.main-show__control-message');
+		clean: () => { // очищает поле сообщений
+			const main = document.querySelector('.main-show__control-message');
 			while(main.childNodes.length){
 				main.removeChild(main.childNodes[0]);
 			}
 		},
 
-		gameOver: function (parametr) { // сообщение об окончании игры параметры 'fail' , 'win'
+		gameOver: (parametr) => { // сообщение об окончании игры параметры 'fail' , 'win'
 			game.message.clean();
-			let main = document.querySelector('.main-show__control-message');
+			game.control.startListener.state = '';
 
-			let p = document.createElement('p'); // текст сообщения
+			const main = document.querySelector('.main-show__control-message');
+
+			const p = document.createElement('p'); // текст сообщения
 			p.setAttribute('class', 'main-show-control-message__p');
 			switch (parametr) {
 				case 'win':
-					p.innerHTML = 'Поздравляем, вы выйграли </br></br></br><span class="span2">'+ game.questions[game.questionNumber-1].sum + ' руб.</span>';
-					game.user.totalMem += game.questions[game.questionNumber-1].sum;
+					if (game.questionNumber > 0){
+						p.innerHTML = 'Поздравляем, вы выйграли </br></br></br><span class="span2">'+ game.questions[game.questionNumber-1].sum + ' руб.</span>';
+						game.user.totalMem += game.questions[game.questionNumber-1].sum;
+					} else {
+						p.innerHTML = 'Поздравляем, вы выйграли </br></br><span class="span2">0 руб.</span>';
+					}
 					break;
 				case 'fail':
 					if (game.questionNumber-1 < 4) { // выйгрыш несгораемой суммы
@@ -127,39 +231,40 @@ let game = {
 			}
 			main.appendChild(p);
 
-			let div = document.createElement('div'); // создаем блок с кнопками
+			const div = document.createElement('div'); // создаем блок с кнопками
 			div.setAttribute('class', 'main-show-control-message__button-block');
 
-			let btn = document.createElement('button'); // кнопка ОК
+			const btn = document.createElement('button'); // кнопка ОК
 			btn.setAttribute('class', 'main-show-control-message__button');
 			btn.textContent = 'OK';
-			btn.addEventListener('click', function () { //нажатие на кнопку ОК
+			btn.addEventListener('click', () => { //нажатие на кнопку ОК
 				game.reload(); // перезапуск игры
 				document.querySelector('.user__total').childNodes[0].textContent = 'Всего: ' + game.user.totalMem + ' руб'; // изменить счетчик общей
 				// суммы
-				game.control.start = 'start'; // заменяем кнопку 'старт' на кнопку 'забрать деньги'
+				game.control.startListener.state = 'start'; // заменяем кнопку 'старт' на кнопку 'забрать деньги'
 				document.querySelector('.main-show__control-btnStart').textContent = 'Начать игру';
 			});
 			div.appendChild(btn);
 			main.appendChild(div);
 		},
 
-		getName: function(parametr) { // сообщение на запрос имени игрока
+		getName: (parametr) => { // сообщение на запрос имени игрока
 			game.message.clean();
-			let main = document.querySelector('.main-show__control-message');
-			let p = document.createElement('p'); // текст сообщения
+			const main = document.querySelector('.main-show__control-message');
+			const p = document.createElement('p'); // текст сообщения
 			p.setAttribute('class', 'main-show-control-message__p');
 			switch (parametr) {
 				case 'friend':
-					p.innerHTML = 'Кому будем звонить?.</br></br><span class="span1">(Используйте английские буквы и цифры, минимум три символа.)</span>';
+					p.innerHTML = 'Кому будем звонить?.</br></br><span class="span1">(Используйте английские / русские буквы и цифры, минимум три' +
+						' символа.)</span>';
 					break;
 				case 'user':
-					p.innerHTML = 'Введите Ваше имя.</br></br><span class="span1">(Используйте английские буквы и цифры, минимум три символа.)</span>';
+					p.innerHTML = 'Введите Ваше имя.</br></br><span class="span1">(Используйте английские / русские буквы и цифры, минимум три символа.)</span>';
 					break;
 			}
 			main.appendChild(p);
 
-			let input = document.createElement('input'); // создае поле для ввода name
+			const input = document.createElement('input'); // создае поле для ввода name
 			input.setAttribute('type', 'text');
 			input.setAttribute('maxlength', 20);
 			input.setAttribute('class', 'main-show-control-message__input');
@@ -167,9 +272,8 @@ let game = {
 				if (!this.value.match(/^[a-zA-Z0-9а-яА-Я]{0,20}$/)){ // ограничение на вводимые символы
 					this.setAttribute('class', 'main-show-control-message__input main-show-control-message__input_fail');
 					this.value = this.value.substr(0, this.value.length-1); // удаляем последний введенный символ
-					let thisInput = this;
-					let timer = setTimeout(function () { // анимация неверно использованных символов
-						thisInput.setAttribute('class', 'main-show-control-message__input');
+					let timer = setTimeout(() => { // анимация неверно использованных символов
+						this.setAttribute('class', 'main-show-control-message__input');
 					}, 500);
 				} else {
 					this.setAttribute('class', 'main-show-control-message__input');
@@ -177,21 +281,21 @@ let game = {
 			});
 			main.appendChild(input);
 
-			let div = document.createElement('div'); // создаем блок с кнопками
+			const div = document.createElement('div'); // создаем блок с кнопками
 			div.setAttribute('class', 'main-show-control-message__button-block');
 
 			let btn = document.createElement('button'); // кнопка ОК
 			btn.setAttribute('class', 'main-show-control-message__button');
 			btn.textContent = 'OK';
-			btn.addEventListener('click', function () { //нажатие на кнопку ОК
-				let input = document.querySelector('.main-show-control-message__input');
+			btn.addEventListener('click', () => { //нажатие на кнопку ОК
+				const input = document.querySelector('.main-show-control-message__input');
 				if (input.value.length >2) { //имя минимум 3 символа
 					game.user.name = input.value;
 					document.querySelector('.user__name').childNodes[0].textContent = game.user.name;
 					game.init(); // создаем новую викторину
 				} else {
 					input.setAttribute('class', 'main-show-control-message__input main-show-control-message__input_fail');
-					let timer = setTimeout(function () { // анимация неверно использованных символов
+					const timer = setTimeout(() => { // анимация неверно использованных символов
 						input.setAttribute('class', 'main-show-control-message__input');
 					}, 500);
 					input.focus(); // даем фокус на инпут и ставим каретку в конец
@@ -200,7 +304,7 @@ let game = {
 					return; // мессадж очищать не нужно
 				}
 				game.message.clean(); // очищаем поле сообщений
-				game.control.start = 'takeMoney'; // заменяем кнопку 'старт' на кнопку 'забрать деньги'
+				game.control.startListener.state = 'takeMoney'; // заменяем кнопку 'старт' на кнопку 'забрать деньги'
 				document.querySelector('.main-show__control-btnStart').textContent = 'Забрать выйгрыш';
 			});
 			div.appendChild(btn);
@@ -208,20 +312,22 @@ let game = {
 			btn = document.createElement('button'); // кнопка отмена
 			btn.setAttribute('class', 'main-show-control-message__button');
 			btn.textContent = 'Отмена';
-			btn.addEventListener('click', function () { //нажатие на кнопку Отмена
+			btn.addEventListener('click', () => { //нажатие на кнопку Отмена
 				game.message.clean(); // очищаем поле сообщений
-				game.message.welcome();
+				game.message.welcome('startGame');
 			});
 			div.appendChild(btn);
 			main.appendChild(div);
 			document.querySelector('.main-show-control-message__input').focus();
 		},
 
-		nofire: function(parametr) { // сообщение о первой несгораемой сумме параметры 'first', 'second'
-			game.message.clean();
-			let main = document.querySelector('.main-show__control-message');
+		hall: () => {},
 
-			let p = document.createElement('p'); // текст сообщения
+		nofire: (parametr) => { // сообщение о первой несгораемой сумме параметры 'first', 'second'
+			game.message.clean();
+			const main = document.querySelector('.main-show__control-message');
+
+			const p = document.createElement('p'); // текст сообщения
 			p.setAttribute('class', 'main-show-control-message__p');
 			switch (parametr){
 				case 'first':
@@ -233,25 +339,29 @@ let game = {
 			}
 			main.appendChild(p);
 
-			let div = document.createElement('div');
+			const div = document.createElement('div');
 			div.setAttribute('class', 'main-show-control-message__button-block');
-			let btn = document.createElement('button');
+			const btn = document.createElement('button');
 			btn.setAttribute('class', 'main-show-control-message__button');
 			btn.textContent = 'OK';
-			btn.addEventListener('click', function () { //нажатие на кнопку ОК
+			btn.addEventListener('click', () => { //нажатие на кнопку ОК
 				game.message.clean(); // очищаем поле сообщений
 			});
 			div.appendChild(btn);
 			main.appendChild(div);
 		},
 
-		welcome: function () { // приветственное сообщение вначале каждого раунда
+		welcome: (parametr) => { // приветственное сообщение вначале каждого раунда
 			game.message.clean();
-			let main = document.querySelector('.main-show__control-message');
+			const main = document.querySelector('.main-show__control-message');
 
-			let p = document.createElement('p'); // текст сообщения
+			const p = document.createElement('p'); // текст сообщения
 			p.setAttribute('class', 'main-show-control-message__p');
-			p.innerHTML = 'Попробуем еще раз? </br></br>Если вы готовы, то начинаем!';
+			if (parametr === 'startGame'){
+				p.innerHTML = 'Добро пожаловать на викторину </br></br><span>"Кто хочет стать миллионером?"</span></br></br>Если вы готовы, то начинаем!'
+			} else if (parametr === 'newGame'){
+				p.innerHTML = 'Попробуем еще раз? </br></br>Если вы готовы, то начинаем!';
+			}
 			main.appendChild(p);
 		}
 	},
@@ -266,43 +376,48 @@ let game = {
 		totalMem: 0
 	},
 
-	checkAnswer: function (answer) { // проверяем правильность выбранного ответа
-		if (answer === this.questions[this.questionNumber].answer){ // если ответ верный
-			if (this.questions[this.questionNumber].sum > this.user.score) { // увеличение счетчика максимальной суммы
-				this.user.score = this.questions[this.questionNumber].sum;
-				document.querySelector('.user__score').childNodes[0].textContent = 'Макс. счет: ' + this.user.score + ' руб';
+	checkAnswer: (answer) => { // проверяем правильность выбранного ответа
+		game.message.clean();
+		if (answer === game.questions[game.questionNumber].answer){ // если ответ верный
+			if (game.questions[game.questionNumber].sum > game.user.score) { // увеличение счетчика максимальной суммы
+				game.user.score = game.questions[game.questionNumber].sum;
+				document.querySelector('.user__score').childNodes[0].textContent = 'Макс. счет: ' + game.user.score + ' руб';
 			}
-			document.querySelector('.user__total').childNodes[0].textContent = 'Всего: ' + (this.user.totalMem + this.questions[this.questionNumber].sum) + ' руб'; // увеличение счетчика общей суммы
-			if (this.questionNumber++ === 14){ //переходим к следующему вопросу и проверяем  его номер
-				this.win(); // победа
+			document.querySelector('.user__total').childNodes[0].textContent = 'Всего: ' + (game.user.totalMem + game.questions[game.questionNumber].sum) + ' руб'; // увеличение счетчика общей суммы
+			if (game.questionNumber++ === 14){ //переходим к следующему вопросу и проверяем  его номер
+				game.win(); // победа
 			} else {
-				if (this.questionNumber === 5) this.message.nofire('first');
-				if (this.questionNumber === 10) this.message.nofire('second');
-				this.showQuestion(); // показываем следующий вопрос
+				if (game.questionNumber === 5) game.message.nofire('first');
+				if (game.questionNumber === 10) game.message.nofire('second');
+				game.showQuestion(); // показываем следующий вопрос
 			}
 		} else {
-			this.fail();
+			game.fail();
 		}
-		this.sumTable(false); // обновляем таблицу выйгрыша
+		game.sumTable(false); // обновляем таблицу выйгрыша
 	},
 
-	fail: function () { // проигрыш
-		this.message.gameOver('fail')
+	fail: () => { // проигрыш
+		game.message.gameOver('fail')
 	},
 
-	init: function () { // начало новой игры
-		this.questions = []; // очищаем массив вопросов. если он не пуст
+	init: () => { // начало новой игры
+		game.questions = []; // очищаем массив вопросов. если он не пуст
 		if (questionBase && questionBase.low.length > 4 && questionBase.middle.length > 4 && questionBase.high.length > 4){
-			this.questionNumber = 0;  // сбрасываем счетчик вопросов
-			this.questionGenerator(); // генерируется массив с вопросами
-			this.showQuestion(); // показывается первый вопрос
-			this.sumTable(false); // обновляем таблицу выйгрыша
-			this.control.varListener.add(); // добавляет обработчик событий на кнопки с вариантами ответов
+			game.questionNumber = 0;  // сбрасываем счетчик вопросов
+			game.questionGenerator(); // генерируется массив с вопросами
+			game.showQuestion(); // показывается первый вопрос
+			game.sumTable(false); // обновляем таблицу выйгрыша
+			game.control.varListener.add(); // добавляет обработчик событий на кнопки с вариантами ответов
+			game.message.clean(); // очищает поле сообщений
+			game.control.fiftyListener.on();
+			game.control.hallListener.on();
+			game.control.friendListener.on();
 		}
 	},
 
-	questionGenerator: function () { // генерация вопросов
-		let arr_questions = Array();
+	questionGenerator: () => { // генерация вопросов
+		const arr_questions = Array();
 		let arr_used = Array();
 		let level = 'low';
 		for (let k = 0; k < 3; k++){
@@ -310,7 +425,7 @@ let game = {
 			let i;
 			do {
 				i = Math.round(Math.random() * (questionBase[level].length-1)); // выбирает случайный вопрос по сложности
-				if (!arr_used.some(function(elem){return elem === i;})){ // если такой вопрос еще не выбран
+				if (!arr_used.some((elem) => {return elem === i;})){ // если такой вопрос еще не выбран
 					arr_questions.push(questionBase[level][i]);
 					arr_used.push(i); // запоминаем выбранный вопрос
 					switch (arr_questions.length) {
@@ -366,12 +481,12 @@ let game = {
 			level = k !== 1 ? 'middle':'high';
 			arr_used = [];
 		}
-		this.questions=arr_questions;
+		game.questions=arr_questions;
 	},
 
-	reload: function () { //перезагрузка игры
+	reload: () => { //перезагрузка игры
 		document.querySelector('.main-questBoard__question').textContent = ''; // удаляем вопрос
-		let variant = document.querySelectorAll('.main__questVar'); // удаляем ответы
+		const variant = document.querySelectorAll('.main__questVar'); // удаляем ответы
 		for (let j = 0; j<variant.length; j++){
 			if (variant[j].hasChildNodes()){
 				for (let i=0; i < variant[j].childNodes.length; i++){
@@ -380,17 +495,22 @@ let game = {
 			}
 		}
 
-		this.message.welcome();
+		game.message.welcome('newGame');
 
-		this.sumTable(true); // обновляем таблицу выйгрыша
-		this.control.varListener.remove(); // удаляем обработчик событий с кнопок с вариантами ответов
+		game.sumTable(true); // обновляем таблицу выйгрыша
+		game.control.varListener.remove(); // удаляем обработчик событий с кнопок с вариантами ответов
 	},
 
-	showQuestion: function () { // показывает новый вопрос в интерфейсе
-		let questBoard = document.querySelector('.main-questBoard__question'); // добавляем вопрос
-		questBoard.textContent = this.questions[this.questionNumber].text;
+	showQuestion: () => { // показывает новый вопрос в интерфейсе
+		const questBoard = document.querySelector('.main-questBoard__question'); // добавляем вопрос
+		questBoard.textContent = game.questions[game.questionNumber].text;
 
-		let variant = document.querySelectorAll('.main__questVar'); // добавляем ответы
+		if (!game.control.fiftyListener.state) { // восстанавливаем обработчики на кнопки ответов после 50/50
+			game.control.varListener.remove();
+			game.control.varListener.add();
+		}
+
+		const variant = document.querySelectorAll('.main__questVar'); // добавляем ответы
 		for (let j = 0; j<variant.length; j++){ // если уже есть варианты ответов, удаляем их
 			if (variant[j].hasChildNodes()){
 				variant[j].setAttribute('class', 'main__questVar main__questVar_bgBlue main__questVar_clickable');//назначаем бакграунд для кнопок с ответами
@@ -400,19 +520,19 @@ let game = {
 			}
 		}
 
-		let arr_i = [0,1,2,3]; // ответы добавляются в рандомном порядке
-		let arr_variant = ['A', 'B', 'C', 'D'];
+		const arr_i = [0,1,2,3]; // ответы добавляются в рандомном порядке
+		const arr_variant = ['A', 'B', 'C', 'D'];
 		for (let j = 0; j<4; j++){
-			arr_i.sort(function(a,b){return Math.random()-0.5});
+			arr_i.sort((a,b) => {return Math.random()-0.5});
 			let p = document.createElement('p');
-			p.textContent = arr_variant[j] + '. ' +this.questions[this.questionNumber].variant[arr_i[0]];
+			p.textContent = arr_variant[j] + '. ' +game.questions[game.questionNumber].variant[arr_i[0]];
 			variant[j].appendChild(p);
 			arr_i.shift();
 		}
 	},
 
-	sumTable: function (clean) { // показывает сумму текущего вопроса
-		let sumTable = document.querySelector('.main__sumTable');
+	sumTable: (clean) => { // показывает сумму текущего вопроса
+		const sumTable = document.querySelector('.main__sumTable');
 		let nofire;
 		for (let i=14; i > -1; i--){
 			switch (i){ // стили для несгораемой суммы
@@ -429,9 +549,9 @@ let game = {
 				if (clean) {
 					sumTable.childNodes[1].childNodes[2*i].setAttribute('class', '' + nofire); // очистить таблицу при перезагрузке игры
 				} else {
-					if (14-i < this.questionNumber){
+					if (14-i < game.questionNumber){
 						sumTable.childNodes[1].childNodes[2*i].setAttribute('class', 'main-sumTable__win' + nofire); // отвеченные вопросы
-					} else if (i === 14-this.questionNumber) { // текущий вопрос
+					} else if (i === 14-game.questionNumber) { // текущий вопрос
 						sumTable.childNodes[1].childNodes[2*i].setAttribute('class', 'main-sumTable__now' + nofire); // текущий вопрос
 					} else {
 						sumTable.childNodes[1].childNodes[2*i].setAttribute('class', '' + nofire); // неотвеченные вопросы
@@ -441,27 +561,21 @@ let game = {
 		}
 	},
 
-	win: function () { // победа или забрали сумму выводим сообщение
-		this.message.gameOver('win');
-	},
-
-
+	win: () => { // победа или забрали сумму выводим сообщение
+		game.message.gameOver('win');
+	}
 };
 
-window.onload = function () {
-	let btnStart = document.querySelector('.main-show__control-btnStart');
-	btnStart.addEventListener('click', function() {
-		if (game.control.start === 'start'){
-			if (game.user.name === '') { // запрашиваем имя игрока
-				game.message.getName('user');
-			} else {
-				game.init(); // создаем новую викторину
-				game.control.start = 'takeMoney'; // заменяем кнопку 'старт' на кнопку 'забрать деньги'
-				document.querySelector('.main-show__control-btnStart').textContent = 'Забрать выйгрыш';
-			}
-		} else if (game.control.start === 'takeMoney'){
-			game.control.start = 'start'; // заменяем кнопку 'старт' на кнопку 'забрать деньги'
-			document.querySelector('.main-show__control-btnStart').textContent = 'Начать игру';
-		}
-	});
+window.onload = () => {
+	const btnStart = document.querySelector('.main-show__control-btnStart');
+	btnStart.addEventListener('click', game.control.startListener.handler);
+
+	const btnHall = document.querySelector('.user__hint-hall');
+	btnHall.addEventListener('click', game.control.hallListener.handler);
+
+	const btnFifty = document.querySelector('.user__hint-fifty');
+	btnFifty.addEventListener('click', game.control.fiftyListener.handler);
+
+	const btnFriend = document.querySelector('.user__hint-friend');
+	btnFriend.addEventListener('click', game.control.friendListener.handler);
 };
