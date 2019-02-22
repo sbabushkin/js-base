@@ -47,8 +47,9 @@ const goalKeeper = {
 /* eslint no-param-reassign: 0 */
 const attacker = {
   sectorToAttack: null,
-  goals: 0,
+  goals: 0,  
   goalsToWin: 10,
+  steps: 0,
   init(sector) {
     if (sectors.indexOf(sector) >= 0) {
       this.sectorToAttack = sector;
@@ -65,11 +66,13 @@ const attacker = {
     }
     console.log('GOAL!!!');
     this.goals++;
+    this.steps++;
     return true;
   },
   checkWin() {
     if (this.goals === this.goalsToWin) {
       console.log('Attacker wins!!!');
+      console.log('Attacker won by ' + this.steps + ' steps');
       return true;
     }
     console.log('Attacker need ' + (this.goalsToWin - this.goals) + ' more goals');
