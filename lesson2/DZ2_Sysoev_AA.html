@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DZ2-Sysoev_AA</title>
+    <script>
+        function first() {
+            let a = 1, b = 1, c, d;
+            c = ++a;
+            alert('c=++a=' + c + '; ' + 'Выводит 2, т.к. сначала увеличение значения "a" на 1, а затем присвоение полученного значения переменной "c"');
+            d = b++;
+            alert('d=b++=' + d + '; ' + 'Выводит 1, т.к. сначала присвоение значения "d" а затем увеличение значения "b" на 1');
+            c = (2 + ++a);
+            alert('(2+ ++a)=' + c + '; ' + 'Выводит 5, т.к. сначала идёт сложение двойки и увеличенной на 2 (1 с первого вывода и на 1 сейчас) переменной "a" то есть 2 + 2 + 1');
+            d = (2 + b++);
+            alert('(2+ b++)=' + d + '; ' + 'Выводит 4, т.к. сначала идёт присвоение переменной, а потом увеличение');
+            alert(a + '; ' + 'Выводит 3, т.к. было два увеличения в прошлых операциях');
+            alert(b + '; ' + 'Выводит 3, т.к. было два увеличения в прошлых операциях');
+        }
+
+        function second() {
+            let a = 2;
+            let x = 1 + (a *= 2);
+            alert(x + '; так как сначала присваеваем новое значение переменной "a" (a = a * 2) потом добавляем 1')
+        }
+
+        function third() {
+            let a, b;
+            a = Math.trunc(Math.random() * 100 - 50);
+            b = Math.trunc(Math.random() * 100 - 50);
+            if (a >= 0)
+                if (b >= 0)
+                    alert('a=' + a + '; ' + 'b=' + b + '; разность:' + (a - b));
+                else
+                    alert('a=' + a + '; ' + 'b=' + b + '; сумма:' + (a + b));
+            else if (b < 0)
+                alert('a=' + a + '; ' + 'b=' + b + '; произведение:' + (a * b));
+            else
+                alert('a=' + a + '; ' + 'b=' + b + '; сумма:' + (a + b));
+        }
+
+        function forth() {
+            let a;
+            a = Math.trunc(Math.random() * 15);
+            switch (a) {
+                case 0:
+                    return_for_4(a);
+                    break;
+                case 1:
+                    ret_for_4(a);
+                    break;
+                case 2:
+                    ret_for_4(a);
+                    break;
+                case 3:
+                    ret_for_4(a);
+                    break;
+                case 4:
+                    ret_for_4(a);
+                    break;
+                case 5:
+                    ret_for_4(a);
+                    break;
+                case 6:
+                    ret_for_4(a);
+                    break;
+                case 7:
+                    ret_for_4(a);
+                    break;
+                case 8:
+                    ret_for_4(a);
+                    break;
+                case 9:
+                    ret_for_4(a);
+                    break;
+                case 10:
+                    ret_for_4(a);
+                    break;
+                case 11:
+                    ret_for_4(a);
+                    break;
+                case 12:
+                    ret_for_4(a);
+                    break;
+                case 13:
+                    ret_for_4(a);
+                    break;
+                case 14:
+                    ret_for_4(a);
+                    break;
+                case 15:
+                    ret_for_4(a);
+                    break;
+            }
+
+        }
+
+        function ret_for_4(val) {
+            for (val; val <= 15; val++) {
+                alert(val);
+            }
+
+        }
+
+        function fifth() {
+            let a = Math.trunc(Math.random() * 5);
+            let b = Math.trunc(Math.random() * 5);
+
+
+        }
+
+        function plus() {
+            let a = Math.trunc(Math.random() * 10);
+            let b = Math.trunc(Math.random() * 10);
+            return (a + ' + ' + b + '= ' + (a + b))
+        }
+
+        function minus() {
+            let a = Math.trunc(Math.random() * 10);
+            let b = Math.trunc(Math.random() * 10);
+            return (a + ' - ' + b + '= ' + (a - b))
+        }
+
+        function multiple() {
+            let a = Math.trunc(Math.random() * 10);
+            let b = Math.trunc(Math.random() * 10);
+            return (a + ' * ' + b + '= ' + (a * b))
+        }
+
+        function divide() {
+            let a = Math.trunc(Math.random() * 10);
+            let b = Math.trunc(Math.random() * 10);
+            return (a + ' / ' + b + '= ' + (a / b))
+        }
+
+        function mathOperation(arg1, arg2, operation) {
+            if (isNaN(arg1) || isNaN(arg2)) {
+                return ('Необходимо ввести число!')
+
+            } else {
+                if ((operation === '+') || (operation === '-') || (operation === '*') || (operation === '/')) {
+                    switch (operation) {
+                        case '+':
+                            return ((parseInt(arg1) + parseInt(arg2)));
+                        case '-':
+                            return ((parseInt(arg1) - parseInt(arg2)));
+                        case '*':
+                            return ((parseInt(arg1) * parseInt(arg2)));
+                        case '/':
+                            return ((parseInt(arg1) - parseInt(arg2)));
+                    }
+                } else {
+                    return ('Введён неверный оператор!')
+                }
+            }
+
+        }
+
+        function seventh() {
+            variable1 = (null === 0);
+            alert(variable1);
+            alert('При любом варианте выводится false. Я думаю, что это связано с типом. Потому что null - это объект, и его нельзя привести к тому же типу, что и значение 0 (числовой тип).');
+
+        }
+
+        function power1(val, pow) {
+            val = parseInt(val);
+            pow = parseInt(pow);
+            if (isNaN(val) || isNaN(pow)) {
+                alert('Необходимо ввести число');
+
+            } else {
+                result = val;
+                if (pow > 1) {
+                    result = result * power(val, pow - 1);
+                    return result;
+                }
+
+            }
+
+
+        }
+
+        function power(val, pow) {
+            if (isNaN(val) || isNaN(pow)) {
+                return('Необходимо ввести число');
+            } else {
+                val = parseInt(val);
+                pow = parseInt(pow);
+                var result = val;
+                if (pow > 1) {
+                    result = result * power(val, pow - 1);
+                    }
+                else if (pow === 1) {
+                    return result;
+                }
+                else if ((pow === 0) && (val === 0))
+                    return('Математическая ошибка');
+                else if (pow === 0) {
+                    result = 1;
+                }
+                else if (pow < 0) {
+                    return('Программа рассчитана на расчёт только положительных чисел')
+                }
+
+                return result;
+            }
+        }
+    </script>
+</head>
+<body>
+<ul>
+    <li><a href="#" onclick="first()">Пункт 1. Вывод переменных с объяснением</a></li>
+    <li><a href="#" onclick="second()">Пункт 2. Чему равен 'x'</a></li>
+    <li><a href="#" onclick="third()">Пункт 3. Операции с двумя переменными</a></li>
+    <li><a href="#" onclick="forth()">Пункт 4. Вывод с помощью switch</a></li>
+    <li><a href="#" onclick="fifth()">Пункт 5. 4 арифмитические операции</a>
+        <ul>
+            <li><a href="#" onclick="alert(plus())">Сложение</a></li>
+            <li><a href="#" onclick="alert(minus())">Вычитание</a></li>
+            <li><a href="#" onclick="alert(multiple())">Умножение</a></li>
+            <li><a href="#" onclick="alert(divide())">Деление</a></li>
+        </ul>
+    </li>
+
+    <li><a href="#"
+           onclick="alert(mathOperation(prompt('Введите первое число:'),prompt('Введите второе число'), prompt('Введите операцию: +; -; *; /;')))">Пункт
+        6. Функция mathOperation</a></li>
+    <li><a href="#" onclick="seventh()">Пункт 7*. Сравнить null и 0</a></li>
+    <li><a href="#" onclick="alert(power(prompt('Введите число:'), prompt('Введите степень:')))">Пункт 8*. Возведения
+        числа в степень</a></li>
+</ul>
+
+</body>
+</html>
