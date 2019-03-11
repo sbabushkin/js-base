@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    /* Задание №1 */
+
+    let a = 1, b = 1, c, d;
+    c = ++a; alert(c); 
+    // 2 инкрементирование производится сразу, возврат происходит уже с обновлённым значением
+    d = b++; alert(d); 
+    // 1 инкрементирование производится после, возврат происходит с прежним значением 
+    c = (2+ ++a); alert(c); 
+    // 5 здесь a уже равно 3 (инкрементирование производится сразу)
+    d = (2+ b++); alert(d); 
+    // 4 здесь b уже равно 2 (инкрементирование производится после)
+    alert(a); // 3 
+    alert(b); // 3 обе переменные увеличились на 1 два раза
+
+    /* Задание №2 */
+
+    let a = 2;
+    let x = 1+ (a *= 2); // равно 5
+
+    /* Задание №3 */
+
+    let a = parseInt(prompt('Введите число a:'));
+    let b = parseInt(prompt('Введите число b:'));
+
+    if (isNaN(a) || isNaN(b)) {
+      alert('Вводить только числа!');
+    } else {  
+      if (a >= 0 && b >= 0) {
+        if (a > b) {
+          alert('Разность чисел: ' + (a - b));
+        } else {
+          alert('Разность чисел: ' + (b - a));
+        }
+      }
+      if (a < 0 && b < 0) {
+        alert('Произведение чисел равно: ' + (a * b));
+      }
+      if ((a >= 0 && b < 0) || (a < 0 && b >= 0)) {
+        alert('Сумма чисел равна: ' + (a + b));
+      }
+    }
+
+    /* Задание №4 */
+
+    let a = parseInt(prompt('Введите значение a от 0 до 15.'));
+    switch (a) {
+      case 0:
+        alert(a++);
+      case 1:
+        alert(a++);
+      case 2:
+        alert(a++);
+      case 3:
+        alert(a++);
+      case 4:
+        alert(a++);
+      case 5:
+        alert(a++);
+      case 6:
+        alert(a++);
+      case 7:
+        alert(a++);
+      case 8:
+        alert(a++);
+      case 9:
+        alert(a++);
+      case 10:
+        alert(a++);
+      case 11:
+        alert(a++);
+      case 12:
+        alert(a++);
+      case 13:
+        alert(a++);
+      case 14:
+        alert(a++);
+      case 15:
+        alert(a++);
+        break;
+    }
+
+    /* Задание №5 */
+
+    let a, b;
+    function sum(a, b) {
+      return (a + b);
+    }
+    function sub(a, b) {
+      return (a - b);
+    }
+    function mult(a, b) {
+      return (a * b);
+    }
+    function division(a, b) {
+      return (a / b);
+    }
+
+    /* Задание №6 */ 
+    
+    function mathOperation(arg1, arg2, operation) {
+  switch (operation) {
+    case 'addition':
+      return add(arg1, arg2);
+      break;
+    case 'subtraction':
+      return sub(arg1, arg2);
+      break;
+    case 'multiplication':
+      return mult(arg1, arg2);
+      break;
+    case 'division':
+      return division(arg1, arg2);
+      break;
+  }
+}
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
