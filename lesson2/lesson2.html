@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lesson2</title>
+</head>
+<body>
+<div style="width: 50%">
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        var a = 1, b = 1, c, d;<br>
+        c = ++a; alert(c);           // 2 инкрементация перед присвоением<br>
+        d = b++; alert(d);           // 1 инкрементация после присвоения<br>
+        c = (2+ ++a); alert(c);      // 5 инкрементация перед сложением<br>
+        d = (2+ b++); alert(d);      // 4 инкрементация после сложения<br>
+        alert(a);                    // 3 переменная инкрементирована дважды перед вызовом<br>
+        alert(b);                    // 3 переменная инкрементирована дважды перед вызовом<br>
+    </div>
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        Чему будет равен x?<br>
+        var a = 2;<br>
+        var x = 1 + (a *= 2); // х = 5<br>
+    </div>
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        Объявить две целочисленные переменные — a и b и задать им произвольные начальные значения.<br>
+        Затем написать скрипт, который работает по следующему принципу:<br>
+        если a и b положительные, вывести их разность;<br>
+        если а и b отрицательные, вывести их произведение;<br>
+        если а и b разных знаков, вывести их сумму;<br>
+        Ноль можно считать положительным числом.<br>
+
+        <input type="button" onclick="part3();" value="Поехали">
+    </div>
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        Присвоить переменной а значение в промежутке [0..15]. <br>
+        С помощью оператора switch организовать вывод чисел от a до 15. <br>
+        <input type="button" onclick="part4();" value="Поехали">
+    </div>
+
+
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        Реализовать четыре основные арифметические операции в виде функций с двумя параметрами. <br>
+        Обязательно использовать оператор return.<br><br>
+
+        Реализовать функцию с тремя параметрами: <br>
+        function mathOperation(arg1, arg2, operation), <br>
+        где arg1, arg2 — значения аргументов, <br>
+        operation — строка с названием операции. <br>
+        В зависимости от переданного значения выполнить одну из арифметических операций <br>
+        (использовать функции из пункта 5) и вернуть полученное значение (применить switch).<br>
+        <input type="button" onclick="part5();" value="Поехали">
+    </div>
+
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        Сравнить null и 0. Объяснить результат. <br>
+        <input type="button" onclick="part6();" value="Поехали">
+    </div>
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        С помощью рекурсии организовать функцию возведения числа в степень. <br>
+        Формат: function power(val, pow), где val — заданное число, pow –— степень. <br>
+        <input type="button" onclick="part7();" value="Поехали">
+    </div>
+</div>
+
+<script type="text/javascript">
+    function part3() {
+        let a = Number(prompt('Введите цисло "a"'));
+        if (isNaN(a)){
+            alert('"a" должно быть ЧИСЛОМ!');
+            return;
+        }
+        let b = Number(prompt('Введите цисло "b"'));
+        if (isNaN(b)){
+            alert('"b" должно быть ЧИСЛОМ!');
+            return;
+        }
+
+        if (a >= 0 && b >= 0){
+            alert('result a - b = ' + (a-b));
+            return;
+        }
+        if (a < 0 && b < 0){
+            alert('result a * b = ' + (a*b));
+            return;
+        }
+        if (a < 0 || b < 0){
+            alert('result a + b = ' + (a+b));
+            return;
+        }
+    };
+    function part4() {
+        let a = Number(prompt('Введите число от 0 до 15'));
+        if (isNaN(a) || a < 0 || a > 15){
+            alert('ЧИСЛО ОТ 0 ДО 15!!!');
+            return;
+        }
+        let arr = [];
+        for ($i = a; $i <= 15; $i++){
+            arr.push($i);
+        }
+        alert(arr.toString());
+    };
+    function part5() {
+        let sum = function (a,b){
+            return a + b;
+        };
+        let sub = function (a,b){
+            return a - b;
+        };
+        let mul = function(a,b){
+          return a * b;
+        };
+        let div = function(a,b){
+            return a / b;
+        }
+        let a = Number(prompt('Введите первое число'));
+        if (isNaN(a)){
+            alert('ЧИСЛО');
+            return;
+        }
+        let b = Number(prompt('Введите второе число'));
+        if (isNaN(b)){
+            alert('ЧИСЛО');
+            return;
+        }
+        let op = prompt('Выбирите операцию: \n' +
+            'Сложение - sum\n' +
+            'Вычитание - sub\n' +
+            'Умножение - mul\n' +
+            'Деление - div\n').toLowerCase();
+        switch (op) {
+            case 'sum':
+                alert(sum(a,b));
+                break;
+            case 'sub':
+                alert(sub(a,b));
+                break;
+            case 'mul':
+                alert(mul(a,b));
+                break;
+            case 'div':
+                alert(div(a,b));
+                break;
+            default:
+                alert('Не верная операция');
+                break;
+        }
+    };
+    function part6() {
+        alert(
+            'null == 0 ' + (null == 0) + ' потому что ничего не является нолем\n'
+            + 'null > 0 ' + (null > 0) + ' потому что ничего не больше ноля\n'
+            + 'null < 0 ' + (null < 0) + ' потому что ничего не меньше ноля\n'
+            + 'null === 0 ' + (null === 0) + ' а вот это Жж null не приводится к числу\n'
+            + 'Итого null это ничего, а 0 фактическая величина. Они не равны. Null не приводится к числу'
+        )
+    };
+    function part7() {
+        let val = Number(prompt('Введите цисло'));
+        if (isNaN(val)){
+            alert('ЧИСЛО!');
+            return;
+        }
+        let pow = Number(prompt('Введите степень'));
+        if (isNaN(pow)){
+            alert('Степень должна быть ЧИСЛОМ!');
+            return;
+        }
+        let power = function (val, pow) {
+           if (!pow){
+               return 1;
+           } else {
+               return val * power(val, --pow);
+           }
+        }
+        alert(power(val, pow));
+    };
+</script>
+</body>
+</html>
