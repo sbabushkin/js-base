@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess</title>
+    <script type="text/javascript" src="Chess.js"></script>
+</head>
+<body>
+<style>
+    table{
+        border-collapse: collapse;
+        text-align: center;
+    }
+    td{
+        width: 100px;
+        height: 100px;
+        padding: 0 0;
+        box-sizing: border-box;
+        vertical-align: middle;
+    }
+    tbody tr:nth-child(odd):not(:last-child) td:nth-child(2n+1):not(:first-child){
+        background-color: saddlebrown;
+    }
+    tbody tr:nth-child(odd):not(:last-child) td:nth-child(2n):not(:last-child){
+        background-color: sandybrown;
+    }
+    tbody tr:nth-child(even) td:nth-child(2n):not(:last-child){
+        background-color: saddlebrown;
+    }
+    tbody tr:nth-child(even) td:nth-child(2n+1):not(:first-child){
+        background-color: sandybrown;
+    }
+    tr.numColumns td{
+        height: 50px;
+    }
+    td.numRows {
+        width: 50px;
+    }
+
+</style>
+<div id="chessBox" style="display: inline-block; min-height: 920px; min-width: 920px; padding: 15px">
+    <table id="chessBoard" border="1px sold black" >
+    </table>
+</div>
+<div style="display: inline-block; width: 500px; vertical-align: top">
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        Сгенирировать шахматную доску<br>
+        <input type="button" onclick="part1()" value="Поехали">
+    </div>
+    <div style="padding: 15px; margin: 10px; border: 1px solid black">
+        Расставить фигуры<br>
+        <input type="button" onclick="part2()" value="Поехали">
+    </div>
+</div>
+<script type="text/javascript">
+    function part1(){
+        Chess.chessBoard.printBoard();
+    }
+    function part2(){
+        Chess.chessBoard.arrangeFigures();
+    }
+    /**
+    document.addEventListener("DOMContentLoaded", function () {
+        Chess.chessBoard.printBoard();
+        Chess.chessBoard.arrangeFigures();
+    });*/
+</script>
+</body>
+</html>
