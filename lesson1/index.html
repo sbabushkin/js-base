@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Домашняя работа №1</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="./js//bootbox.min.js"></script>
+    <!-- <script src="./js//bootbox.all.min.js"></script> -->
+    <script src="./js/script.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center">Домашняя работа №1</h1>
+        <button type="button" class="btn btn-warning  w-100" onclick="converterTemperature();"
+            style="margin-bottom: 20px;">Задание №1</button>
+        <button type="button" class="btn btn-warning  w-100" onclick="setVasili();" style="margin-bottom: 20px;">Задание
+            №2</button>
+
+        <div class="card text-black bg-warning mb-3">
+            <div class="card-header text-center">Задание №3</div>
+            <div class="card-body">
+                <h5 class="card-title">Чему будет равно JS-выражение 1000 + "108"?</h5>
+                <p class="card-text">Выражение будет равно &laquo;1000108&raquo;. Т.к. при сложении&nbsp;JS будет
+                    приводить правую и&nbsp;левую
+                    часть к&nbsp;одинаковому типу, а&nbsp;так как они не&nbsp;одинаковы, то&nbsp;всё будет приведено
+                    к&nbsp;типу &laquo;
+                    строка&raquo;. </p>
+            </div>
+        </div>
+        <div class="card text-black bg-warning mb-3">
+            <div class="card-header text-center">Задание №3</div>
+            <div class="card-body">
+                <h5 class="card-title">Самостоятельно разобраться с атрибутами тега script (async и defer)</h5>
+                <p class="card-text">async&nbsp;&mdash; скрипты грузятся асинхронно. первым загружается скрипт, который меньше всех весит.</p>
+                <p class="card-text">defer&nbsp;&mdash; скрипты грузятся синхронно в&nbsp;порядке их&nbsp;указания в&nbsp;файле html.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
