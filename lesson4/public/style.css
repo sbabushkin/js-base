@@ -1,0 +1,53 @@
+html{
+	background-color: rgb(36,36,36);
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	box-sizing: border-box;
+}
+.wrap{
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.console, .button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.console {
+	color: rgb(69,174,214);
+	width: 90%;
+	min-height: 100px;
+}
+.button {
+	color: rgb(200,58,192);
+	border: 1px dotted red;
+	width: 150px;
+	min-height: 75px;
+}
+.button:hover {
+	background-color: black;
+	cursor: pointer;
+}
+.clicked, .clicked:hover {
+	background-color: black;
+	cursor: no-drop;
+}
+.desc {
+	border: 1px dotted darkgrey;
+	padding: 10px 15px;
+	margin-top: 20px;
+	color: rgb(69,174,214);
+	width: 90%;
+	text-align: left;
+}
+@media (min-width: 650px){
+	.wrap{
+		width: 580px;
+	}
+}
