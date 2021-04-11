@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    //Задание 7;
+    
+    alert('null>0//' + (null>0));   // false;
+    alert('null>=0//' + (null>=0));  // true;
+    alert('null<0//' + (null<0));   // false;
+    alert('null<=0//' + (null<=0));  // true;
+    alert('null==0//' + (null==0));  // false;
+   
+  
+     //Задание 8;
+   
+    function power(val,pow){
+           if(pow == 0){
+               return 1;
+           } else if(pow > 0){
+                return val*power(val,--pow);  // power(2,3) == 2 * power(2,2) == 2 * 2 * 2;
+           } else if(pow < 0){
+               return 1/val*power(val,++pow);  
+           }
+         };
+       
+       let val = +prompt('Введите  число');
+       let pow = +prompt("Введите степень числа");
+       if(isNaN(val) || isNaN(pow)){
+           alert('Некорректное значение');
+       } else {
+           alert(power(val,pow));
+       };
+     
+    
+</script>
+</body>
+</html>

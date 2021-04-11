@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       
+     //Задание 5;
+       
+       function sum(x,y){
+           return x + y;
+       };
+       
+       function dif(x,y){
+           return x-y;
+       };
+       
+       function mul(x,y){
+           return x*y;
+       };
+       
+       function div(x,y){
+           if(y!=0){
+               return x/y;
+           } else{
+               alert('на ноль делить нельзя');
+           }
+           
+       };
+       
+   //Задание 6;
+      
+       function mathOperation (arg1,arg2,operation){       
+               switch(operation){
+                   case'sum':
+                       return sum(arg1,arg2);
+                   case 'dif':
+                       return dif(arg1,arg2);
+                   case 'mul':
+                      return mul(arg1,arg2);
+                   case 'div':
+                       return div(arg1,arg2);
+                   default:
+                       alert('Введена некорректная операция');
+                       
+            }
+       };
+       
+       let arg1 = +prompt('Введите первое число');
+       let arg2 = +prompt("Введите второе число");
+       if(isNaN(arg1) || isNaN(arg2)){
+           alert('Некорректное значение');
+       } else {
+           let operation = prompt("Введите одну из операций: \nсложение - sum, \nвычитание - 'dif', \nумножение - 'mul', \nделение - 'div'");
+           alert('Результат: ' + mathOperation(arg1,arg2,operation));
+       };
+    
+    
+    
+    
+    
+    </script>
+    
+</body>
+</html>
