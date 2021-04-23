@@ -1,0 +1,149 @@
+html{
+	background-color: rgb(36,36,36);
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	box-sizing: border-box;
+}
+/* ======= Main ======= */
+.wrap, .console, .button, .description{
+
+}
+.wrap{
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.console, .button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.console {
+	color: rgb(69,174,214);
+	width: 90%;
+	min-height: 100px;
+}
+.button {
+	color: rgb(200,58,192);
+	border: 1px dotted red;
+	width: 150px;
+	min-height: 75px;
+}
+.button:hover {
+	background-color: black;
+	cursor: pointer;
+}
+.clicked, .clicked:hover {
+	background-color: black;
+	cursor: no-drop;
+}
+.description {
+	border: 1px dotted darkgrey;
+	padding: 10px 15px;
+	margin: 20px 0px 10px 0px;
+	color: rgb(69,174,214);
+	width: 90%;
+	text-align: left;
+}
+/* ======= END Main ======= */
+@media (min-width: 650px){
+	.wrap{
+		width: 580px;
+	}
+}
+/* ======= Chess ======= */
+#chessWrap{
+	width: 210px;
+	margin: 10px 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+#mainChessBoard {
+    width:160px;
+    height:160px;
+    border:1px solid black;
+}
+.chessBlock {
+	width:20px;
+	height:20px;
+	float:left;
+}
+.chessRow, .chessCol{
+	border: 1px solid white;
+}
+.chessRow{
+	height: 20px;
+	width: 200px;
+	background-color: white;
+}
+.chessCol{
+	height: 160px;
+	width: 18px;
+	background-color: white;
+}
+.chessMarker{
+	width:20px;
+	height:20px;
+	float: left;
+}
+.chessNumber{
+	width:20px;
+	height:20px;
+}
+/* ======= Basket ======= */
+#basketWrap{
+	border: 1px dotted darkgrey;
+	padding: 10px 15px;
+	margin: 10px 0px;
+	color: rgb(69,174,214);
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+#basket{
+
+}
+/* ======= Catalog ======= */
+#catalogWrap{
+	border: 1px dotted darkgrey;
+	padding: 10px 15px;
+	margin: 10px 0px;
+	color: rgb(69,174,214);
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.catalog{
+	border: 1px dotted darkgrey;
+}
+.catalog .img{
+	width: 100px;
+	display: inline-block;
+	vertical-align: middle;
+	width: 32%;
+	min-width: 100px;
+ 	margin: 0 auto;
+}
+.catalog .desc{
+	display: inline-block;
+	vertical-align: middle;
+	margin: -1% auto;
+ 	padding: 2%;
+ 	width: 60%;
+ 	text-align: left;
+}
+.catalog .desc h3, .catalog .desc h4, .catalog .desc h5, .catalog .desc p{
+	margin: 5px 0px;
+	padding: 0;
+}
