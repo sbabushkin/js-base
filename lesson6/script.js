@@ -3,7 +3,7 @@ function myProcessor() {
     const element = event.target;
     const src = element.getAttribute('data-big-src');
     const bigElement = document.getElementById('bigPicture');
-    bigElement.innerHTML = '<img height="200" src="./' + src + '"/>';
+    bigElement.innerHTML = '<img height="200" src="./' + src + '" onerror="alert(&quot;I dont find this image&quot;)"/>';
     // element.removeEventListener('click', showBig);
   }
 
