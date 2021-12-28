@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>HW6</title>
+</head>
+
+<body>
+    <div id="gallery">
+        <div id="bigImg"><img src="big/3.jpg" style="visibility: hidden" alt=""></div>
+        <div class="smallImg" onclick="addBigImg('big/1.jpg')"><img src="small/1.jpg" alt=""></div>
+        <div class="smallImg" onclick="addBigImg('big/2.jpg')"><img src="small/2.jpg" alt=""></div>
+        <div class="smallImg" onclick="addBigImg('big/3.jpg')"><img src="small/3.jpg" alt=""></div>
+    </div>
+    <div id="shop">
+        <div id="t1">Товар1<img src="small/1.jpg" alt=""> <button onclick="addProduct('t1')">Купить</button>100руб</div>
+
+        <div id="t2">Товар2<img src="small/2.jpg" alt=""> <button onclick="addProduct('t2')">Купить</button>200руб</div>
+
+        <div id="t3">Товар3<img src="small/3.jpg" alt="">
+        <button onclick="addProduct('t3')">Купить</button>300руб</div>
+    </div>
+    <div id="basket">
+        <div id="sum">0</div>
+        <p>Корзина:</p>
+    </div>
+
+</body>
+
+</html>
